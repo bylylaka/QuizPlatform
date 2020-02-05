@@ -3,7 +3,7 @@ package com.example.diplom.testRetrofit;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class WeatherRepo {
+public class WeatherModel {
     @SerializedName("name")
     @Expose
     String name;
