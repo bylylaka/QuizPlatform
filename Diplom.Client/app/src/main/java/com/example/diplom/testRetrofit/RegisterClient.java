@@ -5,6 +5,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface RegisterClient {
@@ -15,5 +16,5 @@ public interface RegisterClient {
     Call<UserModel> login(@Body LoginUserModel model);
 
     @GET("/teta")
-    Call<List<WeatherRepo>> loadChanges();
+    Call<List<WeatherRepo>> loadChanges(@Header("Cookie") String cookie);
 }

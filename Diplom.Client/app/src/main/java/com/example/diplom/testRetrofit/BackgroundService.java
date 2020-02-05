@@ -10,7 +10,9 @@ import androidx.annotation.Nullable;
 import java.io.IOException;
 import java.util.List;
 
+import okhttp3.Headers;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class BackgroundService extends IntentService {
@@ -27,8 +29,10 @@ public class BackgroundService extends IntentService {
         LoginUserModel loginModel = new LoginUserModel("55555mixaaasfsfa", "55fs5");
 
         try {
-            UserModel user = registerApi.login(loginModel).execute().body();
-            List<WeatherRepo> weathers = registerApi.loadChanges().execute().body();
+            Response<UserModel> response = registerApi.login(loginModel).execute();
+            String cookie = response.headers().get("set-cookie");
+
+            List<WeatherRepo> weathers = registerApi.loadChanges(cookie).execute().body();
             int a = 3;
         } catch (IOException e) {
         }
