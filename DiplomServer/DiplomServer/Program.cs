@@ -15,7 +15,6 @@ namespace DiplomServer
 			{
 				var services = scope.ServiceProvider;
 				var context = services.GetRequiredService<ApplicationContext>();
-				DbInitializer.Initialize(context);
 			}
 
 			host.Run();

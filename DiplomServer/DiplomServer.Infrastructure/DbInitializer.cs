@@ -1,31 +1,38 @@
 ﻿namespace DiplomServer.Infrastructure
 {
 	using DiplomServer.Infrastructure.Models;
-	using System.Linq;
+	using Microsoft.EntityFrameworkCore;
 
 	public static class DbInitializer
 	{
-		public static void Initialize(ApplicationContext context)
+		public static void Initialize(ModelBuilder modelBuilder)
 		{
-			context.Database.EnsureCreated();
+			var adminRoleName = "admin";
+			var userRoleName = "user";
+			var adminEmail = "maxim_arslanov@mail.ru";
+			var adminPassword = "qwe123";
 
-			if (context.Users.Any())
+			var adminRole = new Role
 			{
-				return;
-			}
-
-			var users = new User[]
-			{
-				new User{
-					Email="test@email.ru",
-					Password="321321"
-				}
+				Id = 1,
+				Name = adminRoleName
 			};
-			foreach (var s in users)
+			var userRole = new Role
 			{
-				context.Users.Add(s);
-			}
-			context.SaveChanges();
+				Id = 2,
+				Name = userRoleName
+			};
+
+			var adminUser = new User
+			{
+				Id = 1,
+				Email = adminEmail,
+				Password = adminPassword,
+				RoleId = adminRole.Id
+			};
+
+			modelBuilder.Entity<Role>().HasData(new[] { adminRole, userRole });
+			modelBuilder.Entity<User>().HasData(new[] { adminUser });
 		}
 	}
 }

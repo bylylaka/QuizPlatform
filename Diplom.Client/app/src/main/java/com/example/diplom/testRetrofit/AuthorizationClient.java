@@ -7,12 +7,15 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
-public interface RegisterClient {
-    @POST("/account/register")
+public interface AuthorizationClient {
+    @POST("/authorization/register")
     Call<UserModel> register(@Body RegisterUserModel model);
 
-    @POST("/account/login")
+    @POST("/authorization/login")
     Call<UserModel> login(@Body LoginUserModel model);
+
+    @POST("/authorization/logout")
+    Call<Void> logout();
 
     @GET("/teta")
     Call<List<WeatherModel>> loadChanges();

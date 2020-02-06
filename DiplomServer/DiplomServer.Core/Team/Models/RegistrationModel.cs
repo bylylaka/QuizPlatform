@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace DiplomServer.Core.Models
+﻿namespace DiplomServer.Domain.Team.Models
 {
-	public class RegisterModel
+	using System.ComponentModel.DataAnnotations;
+
+	public class RegistrationModel
 	{
+		//TODO: check if unique
 		[Required(ErrorMessage = "Не указан Email")]
 		public string Email { get; set; }
 

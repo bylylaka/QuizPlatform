@@ -264,14 +264,17 @@
           "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         }
       },
-      "DiplomServer.Core/1.0.0": {
+      "DiplomServer.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "DiplomServer.Infrastructure": "1.0.0"
+        },
         "compile": {
-          "bin/placeholder/DiplomServer.Core.dll": {}
+          "bin/placeholder/DiplomServer.Domain.dll": {}
         },
         "runtime": {
-          "bin/placeholder/DiplomServer.Core.dll": {}
+          "bin/placeholder/DiplomServer.Domain.dll": {}
         }
       },
       "DiplomServer.Infrastructure/1.0.0": {
@@ -774,10 +777,10 @@
         "version.txt"
       ]
     },
-    "DiplomServer.Core/1.0.0": {
+    "DiplomServer.Domain/1.0.0": {
       "type": "project",
-      "path": "../DiplomServer.Core/DiplomServer.Core.csproj",
-      "msbuildProject": "../DiplomServer.Core/DiplomServer.Core.csproj"
+      "path": "../DiplomServer.Core/DiplomServer.Domain.csproj",
+      "msbuildProject": "../DiplomServer.Core/DiplomServer.Domain.csproj"
     },
     "DiplomServer.Infrastructure/1.0.0": {
       "type": "project",
@@ -787,7 +790,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "DiplomServer.Core >= 1.0.0",
+      "DiplomServer.Domain >= 1.0.0",
       "DiplomServer.Infrastructure >= 1.0.0"
     ]
   },
@@ -799,9 +802,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Diplom\\DiplomServer\\DiplomServer\\DiplomServer.csproj",
-      "projectName": "DiplomServer",
-      "projectPath": "D:\\Diplom\\DiplomServer\\DiplomServer\\DiplomServer.csproj",
+      "projectUniqueName": "D:\\Diplom\\DiplomServer\\DiplomServer\\DiplomServer.API.csproj",
+      "projectName": "DiplomServer.API",
+      "projectPath": "D:\\Diplom\\DiplomServer\\DiplomServer\\DiplomServer.API.csproj",
       "packagesPath": "C:\\Users\\Максим\\.nuget\\packages\\",
       "outputPath": "D:\\Diplom\\DiplomServer\\DiplomServer\\obj\\",
       "projectStyle": "PackageReference",
@@ -824,8 +827,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "D:\\Diplom\\DiplomServer\\DiplomServer.Core\\DiplomServer.Core.csproj": {
-              "projectPath": "D:\\Diplom\\DiplomServer\\DiplomServer.Core\\DiplomServer.Core.csproj"
+            "D:\\Diplom\\DiplomServer\\DiplomServer.Core\\DiplomServer.Domain.csproj": {
+              "projectPath": "D:\\Diplom\\DiplomServer\\DiplomServer.Core\\DiplomServer.Domain.csproj"
             },
             "D:\\Diplom\\DiplomServer\\DiplomServer.Infrastructure\\DiplomServer.Infrastructure.csproj": {
               "projectPath": "D:\\Diplom\\DiplomServer\\DiplomServer.Infrastructure\\DiplomServer.Infrastructure.csproj"

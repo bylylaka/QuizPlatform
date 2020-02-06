@@ -1,6 +1,7 @@
 namespace DiplomServer
 {
-	using DiplomServer.Infrastructure;
+    using DiplomServer.Domain.Team.Services;
+    using DiplomServer.Infrastructure;
     using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.AspNetCore.Builder;
 	using Microsoft.AspNetCore.Hosting;
@@ -34,6 +35,8 @@ namespace DiplomServer
 			   });
 
 			services.AddMvc();
+
+			services.AddScoped<IUserService, UserService>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

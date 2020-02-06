@@ -1,4 +1,4 @@
-﻿namespace DiplomServer.Core.Models
+﻿namespace DiplomServer.Core.Team.Models
 {
 	using System.ComponentModel.DataAnnotations;
 

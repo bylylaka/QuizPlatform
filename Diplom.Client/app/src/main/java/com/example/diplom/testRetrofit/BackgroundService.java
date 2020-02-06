@@ -20,13 +20,21 @@ public class BackgroundService extends IntentService {
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         Retrofit retrofit = RetrofitBuilder.getInstance();
-        RegisterClient registerClient = retrofit.create(RegisterClient.class);
+        AuthorizationClient authorizationClient = retrofit.create(AuthorizationClient.class);
+        AccountClient accountClient = retrofit.create(AccountClient.class);
 
-        LoginUserModel loginModel = new LoginUserModel("55555mixaaasfsfa", "55fs5");
+        LoginUserModel loginModel = new LoginUserModel("test@mail.ru", "q1q1q1");
+        RegisterUserModel registerUserModel = new RegisterUserModel(
+                "test@mail.ru",
+                "q1q1q1",
+                "q1q1q1");
 
         try {
-            Response<UserModel> response = registerClient.login(loginModel).execute();
-            List<WeatherModel> weathers = registerClient.loadChanges().execute().body();
+            Response<UserModel> response = authorizationClient.register(registerUserModel).execute();
+//            Response<UserModel> response = authorizationClient.login(loginModel).execute();
+//            List<WeatherModel> weathers = authorizationClient.loadChanges().execute().body();
+//            accountClient.index().execute().body();
+
             int a = 3;
         } catch (IOException e) {
         }
