@@ -1,5 +1,3 @@
-D:\Diplom\DiplomServer\DiplomServer\bin\Debug\netcoreapp3.1\DiplomServer.Domain.exe
-D:\Diplom\DiplomServer\DiplomServer\bin\Debug\netcoreapp3.1\DiplomServer.Infrastructure.exe
 D:\Diplom\DiplomServer\DiplomServer\bin\Debug\netcoreapp3.1\appsettings.Development.json
 D:\Diplom\DiplomServer\DiplomServer\bin\Debug\netcoreapp3.1\appsettings.json
 D:\Diplom\DiplomServer\DiplomServer\bin\Debug\netcoreapp3.1\Properties\launchSettings.json

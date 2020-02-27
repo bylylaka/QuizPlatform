@@ -3,12 +3,11 @@
 	using DiplomServer.Core.Team.Models;
 	using DiplomServer.Domain.Team.Models;
 	using DiplomServer.Domain.Team.Services;
-	using DiplomServer.Domain.Team.Validators;
 	using DiplomServer.Infrastructure;
-	using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
 	using Microsoft.AspNetCore.Mvc;
-    using System.Linq;
-    using System.Threading.Tasks;
+	using System.Threading.Tasks;
 
 	[Route("[controller]")]
 	public class AuthorizationController : Controller
@@ -56,9 +55,17 @@
 			return Ok();
 		}
 
+		[HttpGet]
+		[Authorize]
+		[Route("[action]")]
+		public async Task<IActionResult> IsAuthorized()
+		{
+			return Ok();
+		}
+
 		[HttpPost]
 		[Route("[action]")]
-		public async Task<IActionResult> Register(/*[FromBody]*/ RegistrationModel model)
+		public async Task<IActionResult> Register([FromBody] RegistrationModel model)
 		{
 			if (!ModelState.IsValid)
 			{

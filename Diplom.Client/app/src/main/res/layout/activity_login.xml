@@ -30,14 +30,7 @@
             android:layout_height="wrap_content"
             android:elevation="10dp"
             android:visibility="gone"
-            android:layout_alignTop="@+id/buttonSave"/>
-
-        <Button
-            android:id="@+id/buttonSave"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/errorLabel"
-            android:text="@string/log_in" />
+            android:layout_alignTop="@+id/buttonLogin"/>
 
         <TextView
             android:id="@+id/errorLabel"
@@ -49,6 +42,22 @@
             android:text="Incorrect email or password"
             android:textColor="#FF0000"
             android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/buttonLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/errorLabel"
+            android:text="@string/log_in" />
+
+        <TextView
+            android:id="@+id/loginLink"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Create account"
+            android:layout_below="@id/buttonLogin"/>
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
