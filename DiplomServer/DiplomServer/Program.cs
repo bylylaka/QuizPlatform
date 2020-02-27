@@ -1,13 +1,17 @@
 namespace DiplomServer
 {
-	using DiplomServer.Infrastructure;
+    using CustomIdentityApp;
+    using DiplomServer.Domain.Team.Models;
+    using DiplomServer.Infrastructure;
 	using Microsoft.AspNetCore.Hosting;
-	using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Hosting;
+    using System.Threading.Tasks;
 
-	public class Program
+    public class Program
 	{
-		public static void Main(string[] args)
+		public static async Task Main(string[] args)
 		{
 			var host = CreateHostBuilder(args).Build();
 
@@ -15,6 +19,10 @@ namespace DiplomServer
 			{
 				var services = scope.ServiceProvider;
 				var context = services.GetRequiredService<ApplicationContext>();
+
+				var userManager = services.GetRequiredService<UserManager<User>>();
+				var rolesManager = services.GetRequiredService<RoleManager<Role>>();
+				await DbInitializer.InitializeAsync(userManager, rolesManager);
 			}
 
 			host.Run();

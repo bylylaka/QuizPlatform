@@ -114,20 +114,6 @@ public class HomeFragment extends Fragment {
 //                }
 //            });
 
-
-//            registerApi.loadChanges().enqueue(new Callback<List<WeatherModel>>() {
-//                @Override
-//                public void onResponse(Call<List<WeatherModel>> call, Response<List<WeatherModel>> response) {
-//                    if (response.errorBody() != null) {
-//                        throw new Error("fef");
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(Call<List<WeatherModel>> call, Throwable t) {
-//                    int a = 3;
-//                }
-//            });
         }
 
         @Override

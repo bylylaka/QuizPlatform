@@ -1,10 +1,12 @@
 ﻿namespace DiplomServer.Domain.Team.Services
 {
-	using DiplomServer.Infrastructure.Models;
+    using DiplomServer.Domain.Team.Models;
 	using System.Threading.Tasks;
 
 	public interface IUserService
 	{
-		Task<User> FindUserByEmailAndPasswordAsync(string email, string password);
+		Task<User> GetUserByEmailAndPasswordAsync(string email, string password);
+
+		Task<User> GetUserByEmailAsync(string email);
 	}
 }

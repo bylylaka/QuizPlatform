@@ -23,20 +23,22 @@ public class BackgroundService extends IntentService {
         AuthorizationClient authorizationClient = retrofit.create(AuthorizationClient.class);
         AccountClient accountClient = retrofit.create(AccountClient.class);
 
-        LoginUserModel loginModel = new LoginUserModel("test@mail.ru", "q1q1q1");
+        LoginUserModel loginModel = new LoginUserModel("maxim_arslanov@mail.ru", "!Fdertyg8");
         RegisterUserModel registerUserModel = new RegisterUserModel(
                 "test@mail.ru",
                 "q1q1q1",
                 "q1q1q1");
 
         try {
-            Response<UserModel> response = authorizationClient.register(registerUserModel).execute();
+//            Response<UserModel> response = authorizationClient.register(registerUserModel).execute();
 //            Response<UserModel> response = authorizationClient.login(loginModel).execute();
-//            List<WeatherModel> weathers = authorizationClient.loadChanges().execute().body();
-//            accountClient.index().execute().body();
+            authorizationClient.login(loginModel).execute();
+            List<WeatherModel> weathers = authorizationClient.loadChanges().execute().body();
+            accountClient.index().execute().body();
 
             int a = 3;
         } catch (IOException e) {
+            int a = 3;
         }
     }
 }

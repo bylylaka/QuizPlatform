@@ -1,11 +1,17 @@
 namespace DiplomServer
 {
+    using DiplomServer.Domain.Team.Models;
     using DiplomServer.Domain.Team.Services;
+    using DiplomServer.Domain.Team.Validators;
     using DiplomServer.Infrastructure;
+    using DiplomServer.Infrastructure.Team.Repositories;
+    using FluentValidation;
+    using FluentValidation.AspNetCore;
     using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.AspNetCore.Builder;
 	using Microsoft.AspNetCore.Hosting;
-	using Microsoft.EntityFrameworkCore;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Hosting;
@@ -28,15 +34,22 @@ namespace DiplomServer
 			services.AddDbContext<ApplicationContext>(options =>
 				options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
-			services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-			   .AddCookie(options =>
-				{
-				   options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
-			   });
+			services.AddIdentity<User, Role>()
+				.AddEntityFrameworkStores<ApplicationContext>();
 
-			services.AddMvc();
+			//services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+			//   .AddCookie(options =>
+			//	{
+			//	   options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+			//   });
+
+			services.AddMvc()
+				.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<RegistrationValidator>());
 
 			services.AddScoped<IUserService, UserService>();
+			services.AddScoped<IRoleService, RoleService>();
+			services.AddScoped<IUserRepository, UserRepository>();
+			services.AddScoped<IRoleRepository, RoleRepository>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

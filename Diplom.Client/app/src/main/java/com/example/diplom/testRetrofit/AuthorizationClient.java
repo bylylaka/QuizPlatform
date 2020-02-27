@@ -9,10 +9,10 @@ import retrofit2.http.POST;
 
 public interface AuthorizationClient {
     @POST("/authorization/register")
-    Call<UserModel> register(@Body RegisterUserModel model);
+    Call<Void> register(@Body RegisterUserModel model);
 
     @POST("/authorization/login")
-    Call<UserModel> login(@Body LoginUserModel model);
+    Call<Void> login(@Body LoginUserModel model);
 
     @POST("/authorization/logout")
     Call<Void> logout();

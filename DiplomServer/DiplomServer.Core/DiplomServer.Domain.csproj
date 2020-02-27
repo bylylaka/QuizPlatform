@@ -6,7 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DiplomServer.Infrastructure\DiplomServer.Infrastructure.csproj" />
+    <PackageReference Include="FluentValidation.ValidatorAttribute" Version="8.6.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" />
   </ItemGroup>
 
 </Project>

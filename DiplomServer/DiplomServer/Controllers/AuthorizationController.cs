@@ -3,29 +3,38 @@
 	using DiplomServer.Core.Team.Models;
 	using DiplomServer.Domain.Team.Models;
 	using DiplomServer.Domain.Team.Services;
+	using DiplomServer.Domain.Team.Validators;
 	using DiplomServer.Infrastructure;
-	using DiplomServer.Infrastructure.Models;
-	using Microsoft.AspNetCore.Authentication;
-	using Microsoft.AspNetCore.Authentication.Cookies;
+	using Microsoft.AspNetCore.Identity;
 	using Microsoft.AspNetCore.Mvc;
-	using Microsoft.EntityFrameworkCore;
-	using System.Collections.Generic;
-	using System.Security.Claims;
-	using System.Threading.Tasks;
+    using System.Linq;
+    using System.Threading.Tasks;
 
 	[Route("[controller]")]
 	public class AuthorizationController : Controller
 	{
-		private readonly ApplicationContext db;
+		private readonly ApplicationContext _dbContext;
+
+		private readonly UserManager<User> _userManager;
+
+		private readonly SignInManager<User> _signInManager;
 
 		private readonly IUserService _userService;
 
+		private readonly IRoleService _roleService;
+
 		public AuthorizationController(
-			ApplicationContext context,
-			IUserService userService)
+			ApplicationContext dbContext,
+			IUserService userService,
+			UserManager<User> userManager,
+			SignInManager<User> signInManager,
+			IRoleService roleService)
 		{
-			db = context;
+			_dbContext = dbContext;
 			_userService = userService;
+			_userManager = userManager;
+			_signInManager = signInManager;
+			_roleService = roleService;
 		}
 
 		[HttpPost]
@@ -37,63 +46,46 @@
 				return BadRequest(ModelState);
 			}
 
-			var user = await _userService.FindUserByEmailAndPasswordAsync(model.Email, model.Password);
-			if (user == null)
+			var logonResult =
+				await _signInManager.PasswordSignInAsync(model.Email, model.Password, true, false);
+
+			if (!logonResult.Succeeded)
 			{
-				return NotFound();
+				return Unauthorized();
 			}
-			await Authenticate(user);
-			return Ok(user);
+			return Ok();
 		}
 
 		[HttpPost]
 		[Route("[action]")]
-		public async Task<IActionResult> Register([FromBody] RegistrationModel model)
+		public async Task<IActionResult> Register(/*[FromBody]*/ RegistrationModel model)
 		{
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
 
-			var user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email);    //TODO: move to model
-			if (user != null)
+			var user = new User { Email = model.Email, UserName = model.Email };
+			var registerResult = await _userManager.CreateAsync(user, model.Password);
+
+
+			await _userManager.AddToRoleAsync(user, "user");
+
+			if (!registerResult.Succeeded)
 			{
-				return BadRequest("User already exists");
+				return BadRequest(registerResult.Errors);
 			}
 
-			var role = await db.Roles.AsNoTracking().FirstAsync(r => r.Name == "user");
-			var roleId = role.Id;
-
-			user = db.Users.Add(new User
-			{
-				Email = model.Email,
-				Password = model.Password,
-				RoleId = roleId
-			}).Entity;
-			await db.SaveChangesAsync();
-
-			await Authenticate(user);
-
-			return Ok(user);
+			await _signInManager.SignInAsync(user, false);
+			return Ok();
 		}
 
 		[HttpPost]
 		[Route("[action]")]
 		public async Task<IActionResult> Logout()
 		{
-			await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+			await _signInManager.SignOutAsync();
 			return Ok();
-		}
-
-		private async Task Authenticate(User user)
-		{
-			var claims = new List<Claim>
-			{
-				new Claim(ClaimsIdentity.DefaultNameClaimType, user.Email),
-				new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role.Name)
-			};
-			var id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
-			await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
 		}
 	}
 }

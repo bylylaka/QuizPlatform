@@ -1,38 +1,65 @@
-﻿namespace DiplomServer.Infrastructure
+﻿//using DiplomServer.Domain.Team.Models;
+//using Microsoft.AspNetCore.Identity;
+//using System.Threading.Tasks;
+
+//namespace DiplomServer.Infrastructure
+//{
+//	using DiplomServer.Domain.Team.Models;
+//	using Microsoft.AspNetCore.Identity;
+//	using Microsoft.EntityFrameworkCore;
+
+//	public class DbInitializer
+//	{
+//		private readonly UserManager<User> _userManager;
+
+//		private readonly RoleManager<User> _roleManager;
+
+//		public DbInitializer(
+//			UserManager<User> userManager,
+//			RoleManager<User> roleManager)
+//		{
+//			_userManager = userManager;
+//			_roleManager = roleManager;
+//		}
+
+//		public static void Initialize(ModelBuilder modelBuilder)
+//		{
+//			var adminRoleName = "admin";
+//			var adminEmail = "maxim_arslanov@mail.ru";
+//			var adminPassword = "qwe123";
+//		}
+//	}
+//}
+
+namespace CustomIdentityApp
 {
-	using DiplomServer.Infrastructure.Models;
-	using Microsoft.EntityFrameworkCore;
+	using DiplomServer.Domain.Team.Models;
+	using Microsoft.AspNetCore.Identity;
+	using System.Threading.Tasks;
 
-	public static class DbInitializer
+	public class DbInitializer
 	{
-		public static void Initialize(ModelBuilder modelBuilder)
+		public static async Task InitializeAsync(UserManager<User> userManager, RoleManager<Role> roleManager)
 		{
-			var adminRoleName = "admin";
-			var userRoleName = "user";
 			var adminEmail = "maxim_arslanov@mail.ru";
-			var adminPassword = "qwe123";
-
-			var adminRole = new Role
+			var adminPassword = "!Fdertyg8";
+			if (await roleManager.FindByNameAsync("admin") == null)
 			{
-				Id = 1,
-				Name = adminRoleName
-			};
-			var userRole = new Role
+				await roleManager.CreateAsync(new Role("admin"));
+			}
+			if (await roleManager.FindByNameAsync("user") == null)
 			{
-				Id = 2,
-				Name = userRoleName
-			};
-
-			var adminUser = new User
+				await roleManager.CreateAsync(new Role("user"));
+			}
+			if (await userManager.FindByNameAsync(adminEmail) == null)
 			{
-				Id = 1,
-				Email = adminEmail,
-				Password = adminPassword,
-				RoleId = adminRole.Id
-			};
-
-			modelBuilder.Entity<Role>().HasData(new[] { adminRole, userRole });
-			modelBuilder.Entity<User>().HasData(new[] { adminUser });
+				var admin = new User { Email = adminEmail, UserName = adminEmail };
+				var result = await userManager.CreateAsync(admin, adminPassword);
+				if (result.Succeeded)
+				{
+					await userManager.AddToRoleAsync(admin, "admin");
+				}
+			}
 		}
 	}
 }

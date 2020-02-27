@@ -1,14 +1,13 @@
 ﻿namespace DiplomServer.Infrastructure
 {
-	using DiplomServer.Infrastructure.Models;
+	using DiplomServer.Domain.Team.Models;
+	using Microsoft.AspNetCore.Identity;
+	using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore;
 
-	public class ApplicationContext : DbContext
+	public class ApplicationContext : IdentityDbContext<User, Role, int, IdentityUserClaim<int>, IdentityUserRole<int>,
+		IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>
 	{
-		public DbSet<User> Users { get; set; }
-
-		public DbSet<Role> Roles { get; set; }
-
 		public ApplicationContext(DbContextOptions options) : base(options)
 		{
 			Database.EnsureCreated();
@@ -16,25 +15,7 @@
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<User>(user =>
-			{
-				user.Property(u => u.Id)
-				.ValueGeneratedOnAdd();
-
-				user.HasIndex(u => u.Email)
-				.IsUnique();
-			});
-
-			modelBuilder.Entity<Role>(role =>
-			{
-				role.Property(r => r.Id)
-				.ValueGeneratedOnAdd();
-
-				role.HasIndex(r => r.Name)
-				.IsUnique();
-			});
-
-			DbInitializer.Initialize(modelBuilder);
+			base.OnModelCreating(modelBuilder);
 		}
 	}
 }

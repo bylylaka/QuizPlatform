@@ -1,23 +1,25 @@
 ﻿namespace DiplomServer.Domain.Team.Services
 {
-	using DiplomServer.Infrastructure;
-	using DiplomServer.Infrastructure.Models;
-	using Microsoft.EntityFrameworkCore;
-	using System.Threading.Tasks;
+    using DiplomServer.Domain.Team.Models;
+    using System.Threading.Tasks;
 
 	public class UserService : IUserService
 	{
-		private readonly ApplicationContext db;
+		private readonly IUserRepository _userRepository;
 
-		public UserService(ApplicationContext context)
+		public UserService(IUserRepository userRepository)
 		{
-			db = context;
+			_userRepository = userRepository;
 		}
 
-		public async Task<User> FindUserByEmailAndPasswordAsync(string email, string password)
+		public async Task<User> GetUserByEmailAndPasswordAsync(string email, string password)
 		{
-			var user = await db.Users.FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
-			return user;
+			return await _userRepository.FindUserByEmailAndPasswordAsync(email, password);
+		}
+
+		public async Task<User> GetUserByEmailAsync(string email)
+		{
+			return await _userRepository.FindUserByEmailAsync(email);
 		}
 	}
 }
