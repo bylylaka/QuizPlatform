@@ -1,0 +1,7 @@
+D:\Diplom\Diplom.Server.Domain\bin\Debug\netcoreapp3.1\Diplom.Server.Domain.deps.json
+D:\Diplom\Diplom.Server.Domain\bin\Debug\netcoreapp3.1\Diplom.Server.Domain.dll
+D:\Diplom\Diplom.Server.Domain\bin\Debug\netcoreapp3.1\Diplom.Server.Domain.pdb
+D:\Diplom\Diplom.Server.Domain\obj\Debug\netcoreapp3.1\Diplom.Server.Domain.AssemblyInfoInputs.cache
+D:\Diplom\Diplom.Server.Domain\obj\Debug\netcoreapp3.1\Diplom.Server.Domain.AssemblyInfo.cs
+D:\Diplom\Diplom.Server.Domain\obj\Debug\netcoreapp3.1\Diplom.Server.Domain.dll
+D:\Diplom\Diplom.Server.Domain\obj\Debug\netcoreapp3.1\Diplom.Server.Domain.pdb
