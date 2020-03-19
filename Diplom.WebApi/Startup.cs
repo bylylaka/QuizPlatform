@@ -45,7 +45,7 @@ namespace Diplom
 
 			services.AddSpaStaticFiles(configuration =>
 			{
-				configuration.RootPath = "ClientApp/build";
+				configuration.RootPath = "../Diplom.Client/build";
 			});
 		}
 
@@ -81,7 +81,7 @@ namespace Diplom
 
 			app.UseSpa(spa =>
 			{
-				spa.Options.SourcePath = "ClientApp";
+				spa.Options.SourcePath = "../Diplom.Client";
 
 				if (env.IsDevelopment())
 				{

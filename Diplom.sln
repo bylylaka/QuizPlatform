@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diplom.WebApi", "Diplom\Diplom.WebApi.csproj", "{D5BA2F3C-6C10-444E-993F-79BE0EEA2051}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diplom.WebApi", "Diplom.WebApi\Diplom.WebApi.csproj", "{D5BA2F3C-6C10-444E-993F-79BE0EEA2051}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diplom.Domain", "Diplom.Domain\Diplom.Domain.csproj", "{E582DE63-9680-4C16-9A0F-C601CBA2F8D0}"
 EndProject
