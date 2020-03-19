@@ -1,0 +1,4 @@
+C:\Users\Максим\source\repos\Diplom\Diplom.Infrastructure\bin\Debug\netstandard2.0\Diplom.Infrastructure.deps.json
+C:\Users\Максим\source\repos\Diplom\Diplom.Infrastructure\bin\Debug\netstandard2.0\Diplom.Infrastructure.dll
+C:\Users\Максим\source\repos\Diplom\Diplom.Infrastructure\obj\Debug\netstandard2.0\Diplom.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Максим\source\repos\Diplom\Diplom.Infrastructure\obj\Debug\netstandard2.0\Diplom.Infrastructure.AssemblyInfo.cs

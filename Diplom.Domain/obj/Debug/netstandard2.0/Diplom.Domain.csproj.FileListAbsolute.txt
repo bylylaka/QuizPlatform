@@ -1,0 +1,5 @@
+C:\Users\Максим\source\repos\Diplom\Diplom.Domain\bin\Debug\netstandard2.0\Diplom.Domain.deps.json
+C:\Users\Максим\source\repos\Diplom\Diplom.Domain\bin\Debug\netstandard2.0\Diplom.Domain.dll
+C:\Users\Максим\source\repos\Diplom\Diplom.Domain\obj\Debug\netstandard2.0\Diplom.Domain.csprojAssemblyReference.cache
+C:\Users\Максим\source\repos\Diplom\Diplom.Domain\obj\Debug\netstandard2.0\Diplom.Domain.AssemblyInfoInputs.cache
+C:\Users\Максим\source\repos\Diplom\Diplom.Domain\obj\Debug\netstandard2.0\Diplom.Domain.AssemblyInfo.cs

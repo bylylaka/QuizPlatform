@@ -1,0 +1,13 @@
+C:\Users\Максим\source\repos\Diplom\Diplom.Infrastructure\bin\Debug\netcoreapp3.1\Diplom.Infrastructure.deps.json
+C:\Users\Максим\source\repos\Diplom\Diplom.Infrastructure\bin\Debug\netcoreapp3.1\Diplom.Infrastructure.dll
+C:\Users\Максим\source\repos\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.csprojAssemblyReference.cache
+C:\Users\Максим\source\repos\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Максим\source\repos\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.AssemblyInfo.cs
+C:\Users\Максим\source\repos\Diplom\Diplom.Infrastructure\bin\Debug\netcoreapp3.1\Diplom.Infrastructure.runtimeconfig.json
+C:\Users\Максим\source\repos\Diplom\Diplom.Infrastructure\bin\Debug\netcoreapp3.1\Diplom.Infrastructure.runtimeconfig.dev.json
+C:\Users\Максим\source\repos\Diplom\Diplom.Infrastructure\bin\Debug\netcoreapp3.1\Diplom.Infrastructure.pdb
+C:\Users\Максим\source\repos\Diplom\Diplom.Infrastructure\bin\Debug\netcoreapp3.1\Diplom.Domain.dll
+C:\Users\Максим\source\repos\Diplom\Diplom.Infrastructure\bin\Debug\netcoreapp3.1\Diplom.Domain.pdb
+C:\Users\Максим\source\repos\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.csproj.CopyComplete
+C:\Users\Максим\source\repos\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.dll
+C:\Users\Максим\source\repos\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.pdb
