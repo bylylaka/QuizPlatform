@@ -42,11 +42,11 @@
 		}
 
 		[HttpGet]
-		[Authorize]
+		//[Authorize]
 		[Route("[action]")]
 		public IActionResult IsAuthorized()
 		{
-			return Ok();
+			return Ok(User.Identity.IsAuthenticated);
 		}
 
 		[HttpPost]

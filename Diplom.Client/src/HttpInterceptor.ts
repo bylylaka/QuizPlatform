@@ -18,7 +18,7 @@ export default class HttpInterceptor {
             )
           )
         );
-        return Promise.reject(error);
+        return error.response;
       }
     );
   }

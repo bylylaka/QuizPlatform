@@ -3,7 +3,7 @@ import { State } from "../../logic/reducers/reducer";
 import { IRegistrationPageProps, IRegistrationPageCallProps } from "./props";
 import { Dispatch } from "redux";
 import Actions from "../../logic/actions/actions";
-import RegistrationPage from "./RegistrarionPage";
+import RegistrationPage from "./RegistrationPage";
 
 const mapStateToProps = (state: State): IRegistrationPageProps => {
   return {};

@@ -10,6 +10,13 @@ const Actions = {
     };
   },
 
+  setAuthorized(authorized: boolean) {
+    return {
+      type: ActionTypes.SET_AUTHORIZED,
+      authorized
+    };
+  },
+
   //saga actions
   login(values: FormData) {
     return {
@@ -22,6 +29,12 @@ const Actions = {
     return {
       type: ActionTypes.REGISTER,
       values
+    };
+  },
+
+  checkAuthorized() {
+    return {
+      type: ActionTypes.CHECK_AUTHORIZED
     };
   }
 };

@@ -10,6 +10,10 @@ function* registerWatcher() {
   yield takeLatest(ActionTypes.REGISTER, Sagas.registerSaga);
 }
 
+function* checkAuthorized() {
+  yield takeLatest(ActionTypes.CHECK_AUTHORIZED, Sagas.checkAuthorized);
+}
+
 export default function* watchers() {
-  yield all([loginWatcher(), registerWatcher()]);
+  yield all([loginWatcher(), registerWatcher(), checkAuthorized()]);
 }

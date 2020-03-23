@@ -4,10 +4,12 @@ import { AnyAction } from "redux";
 
 export interface State {
   appSnackbarMessage: AppSnackbarMessage;
+  authorized: boolean | undefined;
 }
 
 const initialState: State = {
-  appSnackbarMessage: {} as AppSnackbarMessage
+  appSnackbarMessage: {} as AppSnackbarMessage,
+  authorized: undefined
 };
 
 export const Reducer = (state = initialState, action: AnyAction): State => {
@@ -16,6 +18,11 @@ export const Reducer = (state = initialState, action: AnyAction): State => {
       return {
         ...state,
         appSnackbarMessage: action.message
+      };
+    case ActionTypes.SET_AUTHORIZED:
+      return {
+        ...state,
+        authorized: action.authorized
       };
     default:
       return state;
