@@ -1,5 +1,6 @@
 import ActionTypes from "../actionTypes/actionTypes";
 import { AppSnackbarMessage } from "../../GUI/shared/AppSnackbar/props";
+import User from "../../shared/models/user/User";
 
 const Actions = {
   //store actions
@@ -17,6 +18,13 @@ const Actions = {
     };
   },
 
+  setProfile(profile: User) {
+    return {
+      type: ActionTypes.SET_PROFILE,
+      profile
+    };
+  },
+
   //saga actions
   login(values: FormData) {
     return {
@@ -29,6 +37,18 @@ const Actions = {
     return {
       type: ActionTypes.REGISTER,
       values
+    };
+  },
+
+  logout() {
+    return {
+      type: ActionTypes.LOGOUT
+    };
+  },
+
+  getProfile() {
+    return {
+      type: ActionTypes.GET_PROFILE
     };
   },
 

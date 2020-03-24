@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
-import { State } from "../../logic/reducers/reducer";
 import { IRegistrationPageProps, IRegistrationPageCallProps } from "./props";
 import { Dispatch } from "redux";
 import Actions from "../../logic/actions/actions";
 import RegistrationPage from "./RegistrationPage";
+import { RootState } from "../../logic/reducers/rootReducer";
 
-const mapStateToProps = (state: State): IRegistrationPageProps => {
+const mapStateToProps = (state: RootState): IRegistrationPageProps => {
   return {};
 };
 

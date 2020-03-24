@@ -1,28 +1,36 @@
 ﻿namespace Diplom.Controllers
 {
-    using Diplom.Infrastructure;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
-    using System.Linq;
+	using AutoMapper;
+	using Diplom.Domain.Team.Models;
+	using Diplom.WebApi.Models;
+	using Microsoft.AspNetCore.Authorization;
+	using Microsoft.AspNetCore.Identity;
+	using Microsoft.AspNetCore.Mvc;
+	using System.Threading.Tasks;
 
-    [Route("[controller]")]
+	[Route("api/[controller]")]
 	public class AccountController : Controller
 	{
-		private readonly ApplicationContext db;
+		private readonly IMapper _mapper;
+		private readonly UserManager<User> _userManager;
 
-		public AccountController(ApplicationContext context)
+		public AccountController(
+			IMapper mapper,
+			UserManager<User> userManager)
 		{
-			db = context;
+			_mapper = mapper;
+			_userManager = userManager;
 		}
 
 		[Authorize]
 		[HttpGet]
-		public IActionResult Index()
+		[Route("[action]")]
+		public async Task<IActionResult> GetProfile()
 		{
-			var email = User.Identity.Name;
-			var user = db.Users.FirstOrDefault(user => user.Email == email);
+			var user = await _userManager.GetUserAsync(User);
+			var model = _mapper.Map<UserViewModel>(user);
 
-			return Ok(user);
+			return Ok(model);
 		}
 	}
 }

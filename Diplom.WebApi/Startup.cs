@@ -1,5 +1,6 @@
 namespace Diplom
 {
+	using AutoMapper;
 	using Diplom.Domain.Team.Models;
 	using Diplom.Domain.Team.Services;
 	using Diplom.Domain.Team.Validators;
@@ -34,6 +35,8 @@ namespace Diplom
 
 			services.AddIdentity<User, Role>()
 				.AddEntityFrameworkStores<ApplicationContext>();
+
+			services.AddAutoMapper(typeof(Startup));
 
 			services.AddMvc()
 				.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<RegistrationValidator>());
@@ -85,7 +88,7 @@ namespace Diplom
 
 				if (env.IsDevelopment())
 				{
-					spa.UseReactDevelopmentServer(npmScript: "start");
+					//spa.UseReactDevelopmentServer(npmScript: "start");
 				}
 			});
 		}

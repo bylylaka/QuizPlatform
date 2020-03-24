@@ -11,3 +11,16 @@ C:\Users\Максим\source\repos\Diplom\Diplom.Infrastructure\bin\Debug\netcor
 C:\Users\Максим\source\repos\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.csproj.CopyComplete
 C:\Users\Максим\source\repos\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.dll
 C:\Users\Максим\source\repos\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.pdb
+D:\Diplom\Diplom.Infrastructure\bin\Debug\netcoreapp3.1\Diplom.Infrastructure.deps.json
+D:\Diplom\Diplom.Infrastructure\bin\Debug\netcoreapp3.1\Diplom.Infrastructure.runtimeconfig.json
+D:\Diplom\Diplom.Infrastructure\bin\Debug\netcoreapp3.1\Diplom.Infrastructure.runtimeconfig.dev.json
+D:\Diplom\Diplom.Infrastructure\bin\Debug\netcoreapp3.1\Diplom.Infrastructure.dll
+D:\Diplom\Diplom.Infrastructure\bin\Debug\netcoreapp3.1\Diplom.Infrastructure.pdb
+D:\Diplom\Diplom.Infrastructure\bin\Debug\netcoreapp3.1\Diplom.Domain.dll
+D:\Diplom\Diplom.Infrastructure\bin\Debug\netcoreapp3.1\Diplom.Domain.pdb
+D:\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.csprojAssemblyReference.cache
+D:\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.AssemblyInfoInputs.cache
+D:\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.AssemblyInfo.cs
+D:\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.csproj.CopyComplete
+D:\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.dll
+D:\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.pdb

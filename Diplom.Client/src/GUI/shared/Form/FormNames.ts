@@ -14,6 +14,15 @@ const FormNames = {
       password: "password",
       errorMessage: "errorMessage"
     }
+  },
+  ProfileForm: {
+    name: "ProfileForm",
+    fieldNames: {
+      name: "name",
+      email: "email",
+      age: "age",
+      gender: "gender"
+    }
   }
 };
 

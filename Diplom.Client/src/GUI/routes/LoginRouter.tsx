@@ -1,20 +1,24 @@
 import React, { FunctionComponent } from "react";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import {
+  Route,
+  BrowserRouter as Router,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import LoginPageContainer from "../LoginPage/LoginPageContainer";
 import RegistrationPageConainer from "../RegistrationPage/RegistrationPageContainer";
-import NotFountPage from "../NotFountPage/NotFoundPage";
 
 const LoginRouter: FunctionComponent = () => {
   return (
-    <div>
+    <>
       <Router>
         <Switch>
           <Route exact path="/login" component={LoginPageContainer} />
-          {/* <Route exact path="/register" component={RegistrationPageConainer} /> */}
-          <Route component={NotFountPage} />
+          <Route exact path="/register" component={RegistrationPageConainer} />
+          <Redirect to="/register" />
         </Switch>
       </Router>
-    </div>
+    </>
   );
 };
 

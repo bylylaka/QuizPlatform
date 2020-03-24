@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -10,95 +10,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.1" />
   </ItemGroup>
-
-  <!--<ItemGroup>
-    Don't publish the SPA source files, but do show them in the project files list  
-    <Compile Remove="Diplom.Client\**" />
-    <Content Remove="$(SpaRoot)**" />
-    <Content Remove="Diplom.Client\**" />
-    <EmbeddedResource Remove="Diplom.Client\**" />
-    <None Remove="$(SpaRoot)**" />
-    <None Remove="Diplom.Client\**" />
-    <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
-  </ItemGroup>-->
-
-      <!--<ItemGroup>
-    <None Remove="Diplom.Client\.eslintrc.json" />
-    <None Remove="Diplom.Client\.gitignore" />
-    <None Remove="Diplom.Client\package-lock.json" />
-    <None Remove="Diplom.Client\package.json" />
-    <None Remove="Diplom.Client\public\favicon.ico" />
-    <None Remove="Diplom.Client\public\index.html" />
-    <None Remove="Diplom.Client\public\manifest.json" />
-    <None Remove="Diplom.Client\README.md" />
-    <None Remove="Diplom.Client\src\GUI\AppRouter.tsx" />
-    <None Remove="Diplom.Client\src\GUI\LoginPage\LoginForm\LoginForm.tsx" />
-    <None Remove="Diplom.Client\src\GUI\LoginPage\LoginForm\props.ts" />
-    <None Remove="Diplom.Client\src\GUI\LoginPage\LoginForm\styles.ts" />
-    <None Remove="Diplom.Client\src\GUI\LoginPage\LoginPage.tsx" />
-    <None Remove="Diplom.Client\src\GUI\LoginPage\LoginPageContainer.ts" />
-    <None Remove="Diplom.Client\src\GUI\LoginPage\props.ts" />
-    <None Remove="Diplom.Client\src\GUI\LoginPage\styles.ts" />
-    <None Remove="Diplom.Client\src\GUI\NotFountPage\NotFoundPage.tsx" />
-    <None Remove="Diplom.Client\src\GUI\RegistrationPage\props.ts" />
-    <None Remove="Diplom.Client\src\GUI\RegistrationPage\RegistrarionPage.tsx" />
-    <None Remove="Diplom.Client\src\GUI\RegistrationPage\RegistrationForm\props.ts" />
-    <None Remove="Diplom.Client\src\GUI\RegistrationPage\RegistrationForm\RegistrationForm.tsx" />
-    <None Remove="Diplom.Client\src\GUI\RegistrationPage\RegistrationForm\styles.ts" />
-    <None Remove="Diplom.Client\src\GUI\RegistrationPage\RegistrationPageContainer.ts" />
-    <None Remove="Diplom.Client\src\GUI\RegistrationPage\styles.ts" />
-    <None Remove="Diplom.Client\src\GUI\shared\AppSnackbar\AppSnackbar.tsx" />
-    <None Remove="Diplom.Client\src\GUI\shared\AppSnackbar\AppSnackbarContainer.ts" />
-    <None Remove="Diplom.Client\src\GUI\shared\AppSnackbar\props.ts" />
-    <None Remove="Diplom.Client\src\GUI\shared\Form\Fields\CustomErrorMessage.tsx" />
-    <None Remove="Diplom.Client\src\GUI\shared\Form\Fields\CustomTextField.tsx" />
-    <None Remove="Diplom.Client\src\GUI\shared\Form\FormNames.ts" />
-    <None Remove="Diplom.Client\src\HttpInterceptor.ts" />
-    <None Remove="Diplom.Client\src\index.tsx" />
-    <None Remove="Diplom.Client\src\logic\actions\actions.ts" />
-    <None Remove="Diplom.Client\src\logic\actionTypes\actionTypes.ts" />
-    <None Remove="Diplom.Client\src\logic\reducers\reducer.ts" />
-    <None Remove="Diplom.Client\src\logic\reducers\rootReducer.ts" />
-    <None Remove="Diplom.Client\src\logic\sagas\apis\apis.ts" />
-    <None Remove="Diplom.Client\src\logic\sagas\sagasRunner.ts" />
-    <None Remove="Diplom.Client\src\logic\sagas\sagas\sagas.ts" />
-    <None Remove="Diplom.Client\src\logic\sagas\selectors\selectors.ts" />
-    <None Remove="Diplom.Client\src\logic\sagas\watchers\watchers.ts" />
-    <None Remove="Diplom.Client\src\react-app-env.d.ts" />
-    <None Remove="Diplom.Client\tsconfig.json" />
-  </ItemGroup>-->
 
   <ItemGroup>
     <ProjectReference Include="..\Diplom.Domain\Diplom.Domain.csproj" />
     <ProjectReference Include="..\Diplom.Infrastructure\Diplom.Infrastructure.csproj" />
   </ItemGroup>
 
-  <!--<Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
-    --><!-- Ensure Node.js is installed --><!--
-    <Exec Command="node -(!!!!!!WAS 2 - !!!!)version" ContinueOnError="true">
-      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
-    </Exec>
-    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
-    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
-    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
-  </Target>-->
-
-  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
-    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
-    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
-    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />
-
-    <!-- Include the newly-built files in the publish output -->
-    <ItemGroup>
-      <DistFiles Include="$(SpaRoot)build\**; $(SpaRoot)build-ssr\**" />
-      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
-        <RelativePath>%(DistFiles.Identity)</RelativePath>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      </ResolvedFileToPublish>
-    </ItemGroup>
-  </Target>
 
 </Project>

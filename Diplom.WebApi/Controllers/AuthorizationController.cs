@@ -2,7 +2,6 @@
 {
 	using Diplom.Core.Team.Models;
 	using Diplom.Domain.Team.Models;
-	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.AspNetCore.Mvc;
 	using System.Threading.Tasks;
@@ -42,7 +41,6 @@
 		}
 
 		[HttpGet]
-		//[Authorize]
 		[Route("[action]")]
 		public IActionResult IsAuthorized()
 		{
