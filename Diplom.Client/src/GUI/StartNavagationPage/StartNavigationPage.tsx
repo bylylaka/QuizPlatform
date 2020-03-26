@@ -3,7 +3,7 @@ import {
   IStartNavigationPageProps,
   IStartNavigationPageCallProps
 } from "./props";
-import AppRouter from "../routes/AppRouter";
+import AppRouter from "../routes/AppRouter/AppRouter";
 import LoginRouter from "../routes/LoginRouter";
 
 export const StartNavigationPage: FunctionComponent<IStartNavigationPageProps &
