@@ -1,6 +1,7 @@
 namespace Diplom
 {
 	using AutoMapper;
+	using Diplom.Domain.Files.Services;
 	using Diplom.Domain.Team.Models;
 	using Diplom.Domain.Team.Services;
 	using Diplom.Domain.Team.Validators;
@@ -43,6 +44,7 @@ namespace Diplom
 
 			services.AddScoped<IUserService, UserService>();
 			services.AddScoped<IRoleService, RoleService>();
+			services.AddScoped<IFileService, FileService>();
 			services.AddScoped<IUserRepository, UserRepository>();
 			services.AddScoped<IRoleRepository, RoleRepository>();
 
@@ -88,7 +90,7 @@ namespace Diplom
 
 				if (env.IsDevelopment())
 				{
-					//spa.UseReactDevelopmentServer(npmScript: "start");
+					spa.UseReactDevelopmentServer(npmScript: "start");
 				}
 			});
 		}

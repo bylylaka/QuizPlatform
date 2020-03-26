@@ -56,6 +56,13 @@ const Actions = {
     return {
       type: ActionTypes.CHECK_AUTHORIZED
     };
+  },
+
+  updateProfile(profile: User) {
+    return {
+      type: ActionTypes.UPDATE_PROFILE,
+      profile
+    };
   }
 };
 

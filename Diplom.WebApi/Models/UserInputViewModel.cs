@@ -1,8 +1,9 @@
 ﻿using Diplom.Domain.Team.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Diplom.WebApi.Models
 {
-	public class UserViewModel
+	public class UserInputViewModel
 	{
 		public string Name { get; set; }
 
@@ -12,6 +13,6 @@ namespace Diplom.WebApi.Models
 
 		public Gender Gender { get; set; }
 
-		public string Avatar { get; set; }
+		public IFormFile Avatar { get; set; }
 	}
 }

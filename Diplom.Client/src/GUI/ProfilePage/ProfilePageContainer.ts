@@ -14,7 +14,8 @@ const mapStateToProps = (state: RootState): IProfilePageProps => {
 const mapDispatchToProps = (dispatch: Dispatch): IProfilePageCallProps => {
   return {
     getProfile: () => dispatch(Actions.getProfile()),
-    logout: () => dispatch(Actions.logout())
+    logout: () => dispatch(Actions.logout()),
+    updateProfile: profile => dispatch(Actions.updateProfile(profile))
   };
 };
 

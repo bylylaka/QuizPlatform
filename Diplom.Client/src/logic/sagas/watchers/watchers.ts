@@ -22,12 +22,17 @@ function* getProfileWatcher() {
   yield takeLatest(ActionTypes.GET_PROFILE, Sagas.getProfileSaga);
 }
 
+function* updateProfileWatcher() {
+  yield takeLatest(ActionTypes.UPDATE_PROFILE, Sagas.updateProfileSaga);
+}
+
 export default function* watchers() {
   yield all([
     loginWatcher(),
     registerWatcher(),
     checkAuthorizedWatcher(),
     logoutWatcher(),
-    getProfileWatcher()
+    getProfileWatcher(),
+    updateProfileWatcher()
   ]);
 }

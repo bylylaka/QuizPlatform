@@ -1,4 +1,5 @@
 import Axios from "axios";
+import User from "../../../shared/models/user/User";
 
 export const Apis = {
   login(values: FormData) {
@@ -15,6 +16,9 @@ export const Apis = {
   },
   getProfile() {
     return Axios.get(`api/account/getProfile`);
+  },
+  updateProfile(profile: User) {
+    return Axios.put(`api/account/updateProfile`, profile);
   }
 };
 

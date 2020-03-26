@@ -5,6 +5,7 @@ class User {
   email?: string;
   age?: number;
   gender?: Gender;
+  avatar?: File | string;
 }
 
 export default User;

@@ -13,7 +13,7 @@
 
 		public void MapForUsers()
 		{
-			CreateMap<User, UserViewModel>()
+			CreateMap<User, UserOutputViewModel>()
 				.ForMember(um => um.Name,
 				opt => opt.MapFrom(u => u.UserName));
 		}

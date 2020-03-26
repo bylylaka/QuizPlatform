@@ -1,4 +1,9 @@
-import React, { FunctionComponent } from "react";
+import React, {
+  FunctionComponent,
+  useCallback,
+  useEffect,
+  useState
+} from "react";
 import createStyles from "./styles";
 import { Field, reduxForm } from "redux-form";
 import { IProfileFormProps, IProfileFormCallProps } from "./props";
@@ -8,6 +13,7 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import FormNames from "../../shared/Form/FormNames";
 import Gender from "../../../shared/models/user/Gender";
+import CustomDropZoneField from "../../shared/Form/Fields/CustomDropZoneField";
 
 const ProfileForm: FunctionComponent<IProfileFormProps &
   IProfileFormCallProps> = props => {
@@ -19,50 +25,33 @@ const ProfileForm: FunctionComponent<IProfileFormProps &
     <form onSubmit={handleSubmit}>
       <Grid item container direction="column">
         <Field
+          name="avatar"
+          label="avatar"
+          component={CustomDropZoneField}
+          type="file"
+        />
+        <Field
           name="email"
           label="Email"
           required
           component={CustomTextField}
-          customProps={
-            {
-              // disabled: true
-            }
-          }
           type="email"
         />
+        <Field name="name" label="Имя" required component={CustomTextField} />
         <Field
-          name="name"
-          label="Имя"
-          required
-          component={CustomTextField}
-          customProps={
-            {
-              // disabled: true
-            }
-          }
-        />
-        <Field
-          name="Age"
+          name="age"
           label="Возраст"
           required
           component={CustomTextField}
-          customProps={
-            {
-              // disabled: true
-            }
-          }
           type="number"
+          parse={(value: string) => (value ? Number(value) : null)}
         />
         <Field
           name="gender"
           label="Пол"
           required
           component={CutomSelectField}
-          customProps={
-            {
-              // disabled: true
-            }
-          }
+          parse={(value: string) => (value ? Number(value) : null)}
         >
           <option value={Gender.Male}>М</option>
           <option value={Gender.Female}>Ж</option>

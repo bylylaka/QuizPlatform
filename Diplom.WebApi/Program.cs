@@ -7,6 +7,7 @@ namespace Diplom
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Hosting;
+	using System.IO;
 	using System.Threading.Tasks;
 
 	public class Program
@@ -32,7 +33,8 @@ namespace Diplom
 			Host.CreateDefaultBuilder(args)
 				.ConfigureWebHostDefaults(webBuilder =>
 				{
-					webBuilder.UseStartup<Startup>();
+					webBuilder.UseWebRoot(Path.Combine(Directory.GetCurrentDirectory(), "..", "wwwroot"));
+					webBuilder.UseStartup<Startup>();	
 				});
 	}
 }

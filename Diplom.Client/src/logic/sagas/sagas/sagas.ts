@@ -5,6 +5,7 @@ import { stopSubmit } from "redux-form";
 import FormNames from "../../../GUI/shared/Form/FormNames";
 import { AxiosResponse } from "axios";
 import Profile from "../../../shared/models/user/User";
+import { AppSnackbarMessage } from "../../../GUI/shared/AppSnackbar/props";
 
 export const Sagas = {
   *loginSaga(action: ReturnType<typeof Actions.login>) {
@@ -41,6 +42,25 @@ export const Sagas = {
   *getProfileSaga(action: ReturnType<typeof Actions.getProfile>) {
     const response: AxiosResponse<Profile> = yield call(Apis.getProfile);
     yield put(Actions.setProfile(response.data));
+  },
+
+  *updateProfileSaga(action: ReturnType<typeof Actions.updateProfile>) {
+    let formData = new FormData();
+
+    for (var key in action.profile) {
+      formData.append(key, (action.profile as any)[key]);
+    }
+
+    const response: AxiosResponse<Profile> = yield call(
+      Apis.updateProfile,
+      formData as any
+    );
+
+    const snackbarMessage = new AppSnackbarMessage(
+      "Данные успешно обновлены.",
+      "success"
+    );
+    yield put(Actions.setAppSnackbarMessage(snackbarMessage));
   },
 
   *checkAuthorizedSaga(action: ReturnType<typeof Actions.checkAuthorized>) {

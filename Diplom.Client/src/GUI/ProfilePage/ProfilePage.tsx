@@ -4,17 +4,18 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import ProfileForm from "./ProfileForm/ProfileForm";
+import User from "../../shared/models/user/User";
 
 export const ProfilePage: React.FunctionComponent<IProfilePageProps &
   IProfilePageCallProps> = props => {
-  const { getProfile, profile, logout } = props;
+  const { getProfile, profile, updateProfile, logout } = props;
 
   useEffect(() => {
     getProfile();
   }, []);
 
-  const handleSubmit = (values: any) => {
-    console.log(values);
+  const handleSubmit = (profile: User) => {
+    updateProfile(profile);
   };
 
   const handleLogout = () => {
