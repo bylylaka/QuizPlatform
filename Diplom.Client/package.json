@@ -8,6 +8,7 @@
     "@material-ui/lab": "^4.0.0-alpha.45",
     "axios": "^0.19.2",
     "connected-react-router": "6.5.2",
+    "country-state-city": "^1.0.4",
     "history": "4.10.1",
     "merge": "1.2.1",
     "popper.js": "^1.16.0",

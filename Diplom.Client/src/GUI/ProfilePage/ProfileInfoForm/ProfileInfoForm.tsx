@@ -19,10 +19,11 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
+import CountrySateCity, { ICountry, IState, ICity } from "country-state-city";
 
 const ProfileInfoForm: FunctionComponent<IProfileInfoFormProps &
   IProfileInfoFormCallProps> = props => {
-  const { handleSubmit, avatar } = props;
+  const { handleSubmit, avatar, country } = props;
 
   const classes = createStyles();
 
@@ -32,11 +33,22 @@ const ProfileInfoForm: FunctionComponent<IProfileInfoFormProps &
     setOpen(!open);
   };
 
+  const getCountriesOptions = (): JSX.Element[] => {
+    let countries = CountrySateCity.getAllCountries();
+    return countries.map(c => <option value={c.id}>{c.name}</option>);
+  };
+
+  const getCitiesOptions = (): JSX.Element[] => {
+    if (country) {
+      let cities = CountrySateCity.getStatesOfCountry(`${country}`);
+      return cities.map(c => <option value={c.id}>{c.name}</option>);
+    }
+    return [];
+  };
+
   const getAvatarUrl = () => {
-    // let backgroundPath: any = avatar;
     if (!avatar) {
-      //empty avatar
-      return "images\\\\social_network.jpg"; // TODO: change to default
+      return "images\\\\social_network.jpg";
     }
     if (typeof avatar == "string") {
       return avatar.replace("\\", "\\\\");
@@ -100,6 +112,16 @@ const ProfileInfoForm: FunctionComponent<IProfileInfoFormProps &
             <option value={Gender.Male}>М</option>
             <option value={Gender.Female}>Ж</option>
           </Field>
+          <Field name="country" label="Страна" component={CutomSelectField}>
+            <option>Выберите страну</option>
+            {getCountriesOptions()}
+          </Field>
+          {country && (
+            <Field name="city" label=" Город" component={CutomSelectField}>
+              <option>Выберите город</option>
+              {getCitiesOptions()}
+            </Field>
+          )}
         </Collapse>
       </Grid>
       <Button

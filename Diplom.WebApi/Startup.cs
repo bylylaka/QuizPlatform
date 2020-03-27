@@ -5,6 +5,7 @@ namespace Diplom
 	using Diplom.Domain.Team.Models;
 	using Diplom.Domain.Team.Services;
 	using Diplom.Domain.Team.Validators;
+	using Diplom.Domain.utils.Countries;
 	using Diplom.Infrastructure;
 	using Diplom.Infrastructure.Team.Repositories;
 	using Diplom.Server.WebApi.Middleware;
@@ -51,6 +52,7 @@ namespace Diplom
 			services.AddScoped<IFileService, FileService>();
 			services.AddScoped<IUserRepository, UserRepository>();
 			services.AddScoped<IRoleRepository, RoleRepository>();
+			services.AddScoped<CountriesHelper>();
 
 			services.AddSpaStaticFiles(configuration =>
 			{

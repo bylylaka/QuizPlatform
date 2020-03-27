@@ -9,8 +9,8 @@ C:\Users\Максим\source\repos\Diplom\Diplom.Domain\obj\Debug\netcoreapp3.1\
 D:\Diplom\Diplom.Domain\bin\Debug\netcoreapp3.1\Diplom.Domain.deps.json
 D:\Diplom\Diplom.Domain\bin\Debug\netcoreapp3.1\Diplom.Domain.dll
 D:\Diplom\Diplom.Domain\bin\Debug\netcoreapp3.1\Diplom.Domain.pdb
-D:\Diplom\Diplom.Domain\obj\Debug\netcoreapp3.1\Diplom.Domain.csprojAssemblyReference.cache
 D:\Diplom\Diplom.Domain\obj\Debug\netcoreapp3.1\Diplom.Domain.AssemblyInfoInputs.cache
 D:\Diplom\Diplom.Domain\obj\Debug\netcoreapp3.1\Diplom.Domain.AssemblyInfo.cs
 D:\Diplom\Diplom.Domain\obj\Debug\netcoreapp3.1\Diplom.Domain.dll
 D:\Diplom\Diplom.Domain\obj\Debug\netcoreapp3.1\Diplom.Domain.pdb
+D:\Diplom\Diplom.Domain\obj\Debug\netcoreapp3.1\Diplom.Domain.csprojAssemblyReference.cache

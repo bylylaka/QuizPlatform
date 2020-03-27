@@ -44,8 +44,6 @@ const DropZone: FunctionComponent<IDropZoneProps &
     return "images\\\\social_network.jpg";
   };
 
-  console.log(getImageUrl());
-
   return (
     <div {...getRootProps()}>
       <input {...getInputProps()} />

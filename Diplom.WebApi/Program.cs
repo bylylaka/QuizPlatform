@@ -33,7 +33,7 @@ namespace Diplom
 			Host.CreateDefaultBuilder(args)
 				.ConfigureWebHostDefaults(webBuilder =>
 				{
-					webBuilder.UseWebRoot(Path.Combine(Directory.GetCurrentDirectory(), "..", "wwwroot"));
+					webBuilder.UseWebRoot(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"));
 					webBuilder.UseStartup<Startup>();	
 				});
 	}

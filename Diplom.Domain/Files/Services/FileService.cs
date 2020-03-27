@@ -21,15 +21,9 @@
 			var extension = file.FileName.Split('.').Last();
 			var path = Path.Combine("uploads", $"{Guid.NewGuid()}.{extension}");
 
-			try
+			using (var fileStream = new FileStream(Path.Combine(_appEnvironment.WebRootPath, path), FileMode.Create))
 			{
-				using (var fileStream = new FileStream(Path.Combine(_appEnvironment.WebRootPath, path), FileMode.Create))
-				{
-					await file.CopyToAsync(fileStream);
-				}
-			} catch (Exception e)
-			{
-				throw e;
+				await file.CopyToAsync(fileStream);
 			}
 
 			return path;

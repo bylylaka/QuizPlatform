@@ -3,6 +3,7 @@ import { InjectedFormProps } from "redux-form";
 
 export interface IProfileInfoFormProps extends InjectedFormProps {
   avatar: File | string;
+  country: number;
 }
 
 export interface IProfileInfoFormCallProps {
