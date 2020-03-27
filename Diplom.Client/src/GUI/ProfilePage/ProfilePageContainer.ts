@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch: Dispatch): IProfilePageCallProps => {
   return {
     getProfile: () => dispatch(Actions.getProfile()),
     logout: () => dispatch(Actions.logout()),
-    updateProfile: profile => dispatch(Actions.updateProfile(profile))
+    setTitle: title => dispatch(Actions.setTitle(title))
   };
 };
 

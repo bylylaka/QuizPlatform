@@ -19,7 +19,7 @@
 		public async Task<string> SaveFile(IFormFile file)
 		{
 			var extension = file.FileName.Split('.').Last();
-			var path = Path.Combine("images", $"{Guid.NewGuid()}.{extension}");
+			var path = Path.Combine("uploads", $"{Guid.NewGuid()}.{extension}");
 
 			try
 			{

@@ -3,8 +3,8 @@ import {
   IStartNavigationPageProps,
   IStartNavigationPageCallProps
 } from "./props";
-import AppRouter from "../routes/AppRouter/AppRouter";
 import LoginRouter from "../routes/LoginRouter";
+import AppLayoutContainer from "../shared/AppLayout/AppLayoutContainer";
 
 export const StartNavigationPage: FunctionComponent<IStartNavigationPageProps &
   IStartNavigationPageCallProps> = props => {
@@ -18,7 +18,7 @@ export const StartNavigationPage: FunctionComponent<IStartNavigationPageProps &
     return <p>Loading...</p>;
   }
   if (isAuthorized) {
-    return <AppRouter />;
+    return <AppLayoutContainer />;
   } else {
     return <LoginRouter />;
   }

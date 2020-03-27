@@ -7,5 +7,5 @@ export interface IProfilePageProps {
 export interface IProfilePageCallProps {
   logout: () => void;
   getProfile: () => void;
-  updateProfile: (profile: User) => void;
+  setTitle: (title: string) => void;
 }

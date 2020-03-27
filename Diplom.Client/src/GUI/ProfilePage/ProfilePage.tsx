@@ -1,16 +1,14 @@
 import React, { useEffect } from "react";
 import { IProfilePageProps, IProfilePageCallProps } from "./interface";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import ProfileForm from "./ProfileForm/ProfileForm";
-import User from "../../shared/models/user/User";
 import Grid from "@material-ui/core/Grid";
 import createStyles from "./styles";
+import ProfileInfoFormContainer from "./ProfileInfoForm/ProfileInfoFormContainer";
 
 export const ProfilePage: React.FunctionComponent<IProfilePageProps &
   IProfilePageCallProps> = props => {
-  const { getProfile, profile, updateProfile, logout } = props;
+  const { setTitle, getProfile, profile, logout } = props;
 
   const classes = createStyles();
 
@@ -18,9 +16,11 @@ export const ProfilePage: React.FunctionComponent<IProfilePageProps &
     getProfile();
   }, []);
 
-  const handleSubmit = (profile: User) => {
-    updateProfile(profile);
-  };
+  useEffect(() => {
+    if (profile) {
+      setTitle(profile.name as string);
+    }
+  }, [profile]);
 
   const handleLogout = () => {
     logout();
@@ -32,9 +32,10 @@ export const ProfilePage: React.FunctionComponent<IProfilePageProps &
 
   //TODO: move ВЫХОД в боковое меню
   return (
-    <Grid container item className={classes.root}>
-      <ProfileForm initialValues={profile} onSubmit={handleSubmit} />
-      {/* <Button onClick={handleLogout}>Выход</Button> */}
+    <Grid container justify="center">
+      <Grid container item className={classes.root}>
+        <ProfileInfoFormContainer />
+      </Grid>
     </Grid>
   );
 };

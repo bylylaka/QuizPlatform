@@ -55,9 +55,8 @@
 			currentProfile.Age = profile.Age;
 			currentProfile.Gender = profile.Gender;
 			currentProfile.Avatar = filePath;
-
+			
 			await _userManager.UpdateAsync(currentProfile);
-
 			var result = _mapper.Map<UserOutputViewModel>(currentProfile);
 
 			return Ok(result);

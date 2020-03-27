@@ -2,12 +2,16 @@ import React from "react";
 import { IDropZoneProps, IDropZoneCallProps } from "./props";
 import { useEffect, useState, FunctionComponent } from "react";
 import { useDropzone } from "react-dropzone";
+import createStyles from "./styles";
+import Avatar from "@material-ui/core/Avatar";
 
 const DropZone: FunctionComponent<IDropZoneProps &
   IDropZoneCallProps> = props => {
   const { handleDrop, initialPicture } = props;
 
   const [files, setFiles] = useState([] as any);
+
+  const classes = createStyles();
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
@@ -30,32 +34,28 @@ const DropZone: FunctionComponent<IDropZoneProps &
     [files]
   );
 
-  const renderContent = (): JSX.Element => {
+  const getImageUrl = (): string => {
     if (files.length) {
-      return (
-        <aside>
-          <div>
-            <img src={files[0].preview} />
-          </div>
-        </aside>
-      );
+      return files[0].preview;
     }
     if (!files.length && initialPicture) {
-      return (
-        <aside>
-          <div>
-            <img src={initialPicture} />
-          </div>
-        </aside>
-      );
+      return initialPicture.replace("\\", "\\\\");
     }
-    return <p>Drag 'n' drop some files here, or click to select files</p>;
+    return "images\\\\social_network.jpg";
   };
+
+  console.log(getImageUrl());
 
   return (
     <div {...getRootProps()}>
       <input {...getInputProps()} />
-      <section>{renderContent()}</section>
+      <section>
+        <aside>
+          <div>
+            <Avatar src={getImageUrl()} className={classes.image} />
+          </div>
+        </aside>
+      </section>
     </div>
   );
 };

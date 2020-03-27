@@ -15,9 +15,10 @@ const FormNames = {
       errorMessage: "errorMessage"
     }
   },
-  ProfileForm: {
-    name: "ProfileForm",
+  ProfileInfoForm: {
+    name: "ProfileInfoForm",
     fieldNames: {
+      avatar: "avatar",
       name: "name",
       email: "email",
       age: "age",

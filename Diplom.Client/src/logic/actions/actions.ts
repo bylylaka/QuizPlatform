@@ -4,6 +4,12 @@ import User from "../../shared/models/user/User";
 
 const Actions = {
   //store actions
+  setTitle(title: string) {
+    return {
+      type: ActionTypes.SET_TITLE,
+      title
+    };
+  },
   setAppSnackbarMessage(message: AppSnackbarMessage) {
     return {
       type: ActionTypes.SET_APPSNACKBAR_MESSAGE,

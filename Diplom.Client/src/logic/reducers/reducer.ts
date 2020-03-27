@@ -4,18 +4,25 @@ import { AnyAction } from "redux";
 import User from "../../shared/models/user/User";
 
 export interface State {
+  title: string;
   appSnackbarMessage: AppSnackbarMessage;
   authorized: boolean | undefined;
   profile?: User;
 }
 
 const initialState: State = {
+  title: "",
   appSnackbarMessage: {} as AppSnackbarMessage,
   authorized: undefined
 };
 
 export const Reducer = (state = initialState, action: AnyAction): State => {
   switch (action.type) {
+    case ActionTypes.SET_TITLE:
+      return {
+        ...state,
+        title: action.title
+      };
     case ActionTypes.SET_APPSNACKBAR_MESSAGE:
       return {
         ...state,

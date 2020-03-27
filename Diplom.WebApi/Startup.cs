@@ -34,7 +34,11 @@ namespace Diplom
 			services.AddDbContext<ApplicationContext>(options =>
 				options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
-			services.AddIdentity<User, Role>()
+			services.AddIdentity<User, Role>(options =>
+			{
+				options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZéöó" +
+				"êåíãøùçõúôûâàïğîëäæıÿ÷ñìèòüáşÉÖÓÊÅÍÃØÙÇÕÚÔÛÂÀÏĞÎËÄÆİß×ÑÌÈÒÜÁŞ0123456789-._@+";
+			})
 				.AddEntityFrameworkStores<ApplicationContext>();
 
 			services.AddAutoMapper(typeof(Startup));

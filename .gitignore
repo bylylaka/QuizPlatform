@@ -3,6 +3,7 @@ Diplom.Client/.idea/
 
 # dependencies
 /Diplom.Client/node_modules
+/wwwroot
 .pnp
 .pnp.js
 .vs
