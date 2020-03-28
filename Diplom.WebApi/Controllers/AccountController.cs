@@ -1,7 +1,8 @@
 ﻿namespace Diplom.Controllers
 {
 	using AutoMapper;
-	using Diplom.Domain.Files.Services;
+    using Diplom.Domain.Exceptions;
+    using Diplom.Domain.Files.Services;
 	using Diplom.Domain.Team.Models;
 	using Diplom.WebApi.Models;
 	using Microsoft.AspNetCore.Authorization;
@@ -18,7 +19,7 @@
 
 		public AccountController(
 			IMapper mapper,
-			UserManager<User> userManager,
+			UserManager<User> userManager,	
 			IFileService fileService)
 		{
 			_mapper = mapper;
@@ -40,7 +41,8 @@
 		[Authorize]
 		[HttpPut]
 		[Route("[action]")]
-		public async Task<IActionResult> UpdateProfile([FromForm] UserInputViewModel profile)
+		public async Task<IActionResult> UpdateProfile([
+			FromForm] UserInputViewModel profile)
 		{
 			var currentProfile = await _userManager.GetUserAsync(User);
 			var filePath = currentProfile.Avatar;
@@ -55,8 +57,24 @@
 			currentProfile.Age = profile.Age;
 			currentProfile.Gender = profile.Gender;
 			currentProfile.Avatar = filePath;
+			currentProfile.ChildsCount = profile.ChildsCount;
+			currentProfile.City = profile.City;
+			currentProfile.Country = profile.Country;
+			currentProfile.Drink = profile.Drink;
+			currentProfile.Education = profile.Education;
+			currentProfile.LoveAnimals = profile.LoveAnimals;
+			currentProfile.MaritalStatus = profile.MaritalStatus;
+			currentProfile.Salary = profile.Salary;
+			currentProfile.Study = profile.Study;
+			currentProfile.Work = profile.Work;
+			currentProfile.Birth = profile.Birth;
 			
-			await _userManager.UpdateAsync(currentProfile);
+			var updateResult = await _userManager.UpdateAsync(currentProfile);
+			if (!updateResult.Succeeded)
+			{
+				throw new BadRequestException();
+			}
+
 			var result = _mapper.Map<UserOutputViewModel>(currentProfile);
 
 			return Ok(result);

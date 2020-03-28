@@ -22,7 +22,9 @@ const FormNames = {
       name: "name",
       email: "email",
       age: "age",
-      gender: "gender"
+      gender: "gender",
+      birth: "birth",
+      country: "country"
     }
   }
 };

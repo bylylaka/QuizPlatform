@@ -19,7 +19,8 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
-import CountrySateCity, { ICountry, IState, ICity } from "country-state-city";
+import CountrySateCity from "country-state-city";
+import CustomDateFoeld from "../../shared/Form/Fields/CustomDateField";
 
 const ProfileInfoForm: FunctionComponent<IProfileInfoFormProps &
   IProfileInfoFormCallProps> = props => {
@@ -122,6 +123,14 @@ const ProfileInfoForm: FunctionComponent<IProfileInfoFormProps &
               {getCitiesOptions()}
             </Field>
           )}
+          <Field
+            name="birth"
+            label="Дата рождения"
+            component={CustomDateFoeld}
+            InputLabelProps={{
+              shrink: true
+            }}
+          />
         </Collapse>
       </Grid>
       <Button

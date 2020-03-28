@@ -8,6 +8,9 @@ import SagasRunner from "./logic/sagas/sagasRunner";
 import HttpInterceptor from "./HttpInterceptor";
 import RootReducer from "./logic/reducers/rootReducer";
 import StartNavigationPageContainer from "./GUI/StartNavagationPage/StartNavigationPageContainer";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
+import "date-fns";
 
 const sagaMiddleware = createSagaMiddleware();
 const mainStore = createStore(RootReducer, applyMiddleware(sagaMiddleware));

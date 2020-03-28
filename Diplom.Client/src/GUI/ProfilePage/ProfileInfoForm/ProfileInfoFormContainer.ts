@@ -18,7 +18,7 @@ const selector = formValueSelector(FormNames.ProfileInfoForm.name);
 const mapStateToProps = (state: RootState): ContainerProps => {
   return {
     avatar: selector(state, FormNames.ProfileInfoForm.fieldNames.avatar),
-    country: selector(state, "country"), // TODO: use FormNames
+    country: selector(state, FormNames.ProfileInfoForm.fieldNames.country),
     initialValues: state.reducer.profile as any
   };
 };
