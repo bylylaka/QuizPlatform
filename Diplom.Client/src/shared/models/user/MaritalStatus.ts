@@ -1,5 +1,6 @@
-const enum MaritialStatus {
+enum MaritialStatus {
   Single,
+  Meeting,
   Married,
   Divorced
 }

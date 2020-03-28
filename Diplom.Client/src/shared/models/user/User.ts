@@ -8,7 +8,6 @@ class User {
   age?: number;
   gender?: Gender;
   avatar?: File | string;
-
   birth?: Date;
   education?: Education;
   country?: number;

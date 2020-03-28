@@ -21,6 +21,9 @@ import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import CountrySateCity from "country-state-city";
 import CustomDateFoeld from "../../shared/Form/Fields/CustomDateField";
+import Education from "../../../shared/models/user/Education";
+import MaritialStatus from "../../../shared/models/user/MaritalStatus";
+import CustomCheckboxField from "../../shared/Form/Fields/CustomCheckboxField";
 
 const ProfileInfoForm: FunctionComponent<IProfileInfoFormProps &
   IProfileInfoFormCallProps> = props => {
@@ -28,7 +31,7 @@ const ProfileInfoForm: FunctionComponent<IProfileInfoFormProps &
 
   const classes = createStyles();
 
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
@@ -45,6 +48,27 @@ const ProfileInfoForm: FunctionComponent<IProfileInfoFormProps &
       return cities.map(c => <option value={c.id}>{c.name}</option>);
     }
     return [];
+  };
+
+  const getEdicationOptions = (): JSX.Element[] => {
+    return [
+      <option value={Education.No}>Без образования</option>,
+      <option value={Education.middleCommon}>Среднее общее</option>,
+      <option value={Education.middleProfessional}>
+        Среднее профессиональное
+      </option>,
+      <option value={Education.Bachelor}>Бакалавр</option>,
+      <option value={Education.Magister}>Магистр</option>
+    ];
+  };
+
+  const getMaritalStatusOptions = (): JSX.Element[] => {
+    return [
+      <option value={MaritialStatus.Single}>Одиночка</option>,
+      <option value={MaritialStatus.Meeting}>Встречаюсь</option>,
+      <option value={MaritialStatus.Married}>В замужестве</option>,
+      <option value={MaritialStatus.Divorced}>После развода</option>
+    ];
   };
 
   const getAvatarUrl = () => {
@@ -118,7 +142,7 @@ const ProfileInfoForm: FunctionComponent<IProfileInfoFormProps &
             {getCountriesOptions()}
           </Field>
           {country && (
-            <Field name="city" label=" Город" component={CutomSelectField}>
+            <Field name="city" label="Город" component={CutomSelectField}>
               <option>Выберите город</option>
               {getCitiesOptions()}
             </Field>
@@ -130,6 +154,59 @@ const ProfileInfoForm: FunctionComponent<IProfileInfoFormProps &
             InputLabelProps={{
               shrink: true
             }}
+          />
+          <Field
+            name="education"
+            label="Образование"
+            component={CutomSelectField}
+          >
+            <option>Выберите ваш уровень образования</option>
+            {getEdicationOptions()}
+          </Field>
+          <Field
+            name="maritalStatus"
+            label="Семейное положение"
+            component={CutomSelectField}
+          >
+            <option>Выберите ваше семейное положение</option>
+            {getMaritalStatusOptions()}
+          </Field>
+          <Field
+            name="loveAnimals"
+            label="Любите животных?"
+            component={CustomCheckboxField}
+          />
+          <Field name="smoke" label="Курите?" component={CustomCheckboxField} />
+          <Field
+            name="drink"
+            label="Выпиваете?"
+            component={CustomCheckboxField}
+          />
+          <Field
+            name="childsCount"
+            label="Сколько у вас детей?"
+            required
+            component={CustomTextField}
+            type="number"
+            parse={(value: string) => (value ? Number(value) : null)}
+          />
+          <Field
+            name="work"
+            label="Работаете?"
+            component={CustomCheckboxField}
+          />
+          <Field
+            name="study"
+            label="Учитесь?"
+            component={CustomCheckboxField}
+          />
+          <Field
+            name="salary"
+            label="Сколько ежемесячно получаете?"
+            required
+            component={CustomTextField}
+            type="number"
+            parse={(value: string) => (value ? Number(value) : null)}
           />
         </Collapse>
       </Grid>

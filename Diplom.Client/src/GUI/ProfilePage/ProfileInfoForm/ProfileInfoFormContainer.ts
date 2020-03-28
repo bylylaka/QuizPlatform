@@ -16,6 +16,7 @@ type ContainerProps = Pick<
 const selector = formValueSelector(FormNames.ProfileInfoForm.name);
 
 const mapStateToProps = (state: RootState): ContainerProps => {
+  console.log(selector(state, "imya"));
   return {
     avatar: selector(state, FormNames.ProfileInfoForm.fieldNames.avatar),
     country: selector(state, FormNames.ProfileInfoForm.fieldNames.country),

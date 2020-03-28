@@ -1,4 +1,4 @@
-const enum Education {
+enum Education {
   No,
   middleCommon,
   middleProfessional,
