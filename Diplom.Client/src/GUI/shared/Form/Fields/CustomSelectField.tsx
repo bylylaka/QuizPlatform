@@ -13,12 +13,16 @@ export interface ICustomSelectProps
 }
 
 const customSelectField = (props: ICustomSelectProps) => {
-  const { meta, error, input, children, label, customProps, disabled } = props;
+  const { meta, error, input, children, label, disabled } = props;
 
   const classNames = createStyles();
 
   return (
-    <FormControl error={meta.touched && error} disabled={disabled}>
+    <FormControl
+      error={meta.touched && error}
+      disabled={disabled}
+      {...(props as any)}
+    >
       <InputLabel>{label}</InputLabel>
       <Select
         native

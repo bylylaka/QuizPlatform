@@ -21,7 +21,9 @@
 			CreateMap<User, ProfileSimplifiedViewModel>()
 				.ReverseMap();
 
-			CreateMap<User, UserSimplifiedViewModel>();
+			CreateMap<User, UserSimplifiedViewModel>()
+				.ForMember(um => um.Name,
+				opt => opt.MapFrom(u => u.UserName));
 		}
 	}
 }

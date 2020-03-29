@@ -6,15 +6,12 @@ import SearchPage from "./SearchPage";
 import Actions from "../../logic/actions/actions";
 
 const mapStateToProps = (state: RootState): ISearchPageProps => {
-  return {
-    users: state.reducer.searchUsers
-  };
+  return {};
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): ISearchPageCallProps => {
   return {
-    setTitle: (title: string) => dispatch(Actions.setTitle(title)),
-    search: (string: string) => dispatch(Actions.search(string))
+    setTitle: (title: string) => dispatch(Actions.setTitle(title))
   };
 };
 

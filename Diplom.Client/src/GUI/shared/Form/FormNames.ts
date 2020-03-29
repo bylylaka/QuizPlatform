@@ -26,6 +26,9 @@ const FormNames = {
       birth: "birth",
       country: "country"
     }
+  },
+  createQuizForm: {
+    name: "createQuizForm"
   }
 };
 
