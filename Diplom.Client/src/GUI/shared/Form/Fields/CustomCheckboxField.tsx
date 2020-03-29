@@ -22,7 +22,11 @@ const CustomCheckboxField = (props: ICheckboxFieldProps) => {
         disabled: classNames.disabled
       }}
       control={
-        <Checkbox {...(props as any)} checked={input.value ? true : false} />
+        <Checkbox
+          {...(props as any)}
+          checked={input.value ? true : false}
+          onChange={input.onChange}
+        />
       }
       label={label}
     />

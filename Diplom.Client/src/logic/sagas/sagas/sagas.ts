@@ -10,18 +10,18 @@ import ProfileSimplifiedViewModel from "../../../shared/models/profile/ProfileSi
 
 export const Sagas = {
   *loginSaga(action: ReturnType<typeof Actions.login>) {
-    try {
-      const response: AxiosResponse<ProfileSimplifiedViewModel> = yield call(
-        Apis.login,
-        action.values
-      );
-      window.location.href = `/user/${response.data.id}`;
-    } catch (e) {
+    const response: AxiosResponse<ProfileSimplifiedViewModel> = yield call(
+      Apis.login,
+      action.values
+    );
+    if (response.status != 200) {
       yield put(
         stopSubmit(FormNames.LoginForm.name, {
           errorMessage: "Неверная комбинация емейла или пароля."
         })
       );
+    } else {
+      window.location.href = `/user/${response.data.id}`;
     }
   },
 
