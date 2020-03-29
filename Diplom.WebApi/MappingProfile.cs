@@ -20,6 +20,8 @@
 
 			CreateMap<User, ProfileSimplifiedViewModel>()
 				.ReverseMap();
+
+			CreateMap<User, UserSimplifiedViewModel>();
 		}
 	}
 }

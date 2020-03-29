@@ -1,12 +1,14 @@
 ﻿namespace Diplom.Domain.Team.Services
 {
 	using Diplom.Domain.Team.Models;
-	using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
 
 	public interface IUserRepository
 	{
 		public Task<User> FindUserByEmailAndPasswordAsync(string email, string password);
 
-		public Task<User> FindUserByEmailAsync(string email);
+		public IQueryable<User> FindUsersTrackable();
 	}
 }

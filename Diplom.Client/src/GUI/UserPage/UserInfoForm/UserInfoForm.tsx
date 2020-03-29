@@ -253,5 +253,6 @@ const UserInfoForm: FunctionComponent<IUserInfoFormProps &
 };
 
 export default reduxForm({
-  form: FormNames.ProfileInfoForm.name
+  form: FormNames.ProfileInfoForm.name,
+  enableReinitialize: true
 })(UserInfoForm as any);

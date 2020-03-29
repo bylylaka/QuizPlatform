@@ -1,14 +1,15 @@
 ﻿namespace Diplom.Domain.Team.Services
 {
 	using Diplom.Domain.Team.Models;
-	using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
 
 	public interface IUserService
 	{
 		Task<User> FindUserById(int id);
 
-		Task<User> GetUserByEmailAndPasswordAsync(string email, string password);
+		Task<List<User>> GetUsersBySearchWord(string word);
 
-		Task<User> GetUserByEmailAsync(string email);
+		Task<User> GetUserByEmailAndPasswordAsync(string email, string password);
 	}
 }

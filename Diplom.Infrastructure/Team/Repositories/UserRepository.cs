@@ -3,7 +3,9 @@
     using Diplom.Domain.Team.Models;
     using Diplom.Domain.Team.Services;
 	using Microsoft.EntityFrameworkCore;
-	using System.Threading.Tasks;
+	using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
 
 	public class UserRepository : IUserRepository
 	{
@@ -24,6 +26,11 @@
 		{
 			return null;
 			//return await _dbContext.Users.FirstOrDefaultAsync(x => x.Email == email);
+		}
+
+		public IQueryable<User> FindUsersTrackable()
+		{
+			return _dbContext.Users.AsQueryable();
 		}
 	}
 }

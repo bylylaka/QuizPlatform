@@ -2,6 +2,7 @@ import ActionTypes from "../actionTypes/actionTypes";
 import { AppSnackbarMessage } from "../../GUI/shared/AppSnackbar/props";
 import User from "../../shared/models/user/User";
 import ProfileSimplifiedViewModel from "../../shared/models/profile/ProfileSimplifiedViewModel";
+import UserSimplifiedViewModel from "../../shared/models/user/UserSimplifiedViewModel";
 
 const Actions = {
   //store actions
@@ -36,6 +37,13 @@ const Actions = {
     return {
       type: ActionTypes.SET_USER,
       user
+    };
+  },
+
+  setSearchUsers(users: UserSimplifiedViewModel[]) {
+    return {
+      type: ActionTypes.SET_SEARCH_USERS,
+      users
     };
   },
 
@@ -83,6 +91,13 @@ const Actions = {
     return {
       type: ActionTypes.UPDATE_PROFILE,
       profile
+    };
+  },
+
+  search(string: string) {
+    return {
+      type: ActionTypes.SEARCH,
+      string
     };
   }
 };

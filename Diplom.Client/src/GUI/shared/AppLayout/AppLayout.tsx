@@ -38,6 +38,10 @@ const AppLayout: FunctionComponent<IAppLayoutProps &
     history.push(`/user/${profileId}`);
   };
 
+  const searchRedirect = () => {
+    history.push(`/search`);
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -74,7 +78,7 @@ const AppLayout: FunctionComponent<IAppLayoutProps &
                 </Tooltip>
               </ListItem>
               <ListItem button>
-                <Tooltip title="Поиск">
+                <Tooltip title="Поиск" onClick={searchRedirect}>
                   <ListItemIcon>
                     <SearchIcon className={classes.listIcon} />
                   </ListItemIcon>

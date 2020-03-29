@@ -7,6 +7,7 @@ import { AxiosResponse } from "axios";
 import User from "../../../shared/models/user/User";
 import { AppSnackbarMessage } from "../../../GUI/shared/AppSnackbar/props";
 import ProfileSimplifiedViewModel from "../../../shared/models/profile/ProfileSimplifiedViewModel";
+import UserSimplifiedViewModel from "../../../shared/models/user/UserSimplifiedViewModel";
 
 export const Sagas = {
   *loginSaga(action: ReturnType<typeof Actions.login>) {
@@ -77,6 +78,18 @@ export const Sagas = {
       "success"
     );
     yield put(Actions.setAppSnackbarMessage(snackbarMessage));
+  },
+
+  *searchSaga(action: ReturnType<typeof Actions.search>) {
+    if (!action.string) {
+      yield put(Actions.setSearchUsers([]));
+      return;
+    }
+    const response: AxiosResponse<UserSimplifiedViewModel[]> = yield call(
+      Apis.searchUsers,
+      action.string
+    );
+    yield put(Actions.setSearchUsers(response.data));
   },
 
   *checkAuthorizedSaga(action: ReturnType<typeof Actions.checkAuthorized>) {

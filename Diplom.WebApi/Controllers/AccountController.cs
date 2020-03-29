@@ -10,7 +10,8 @@
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.AspNetCore.Mvc;
-	using System.Threading.Tasks;
+    using System.Linq;
+    using System.Threading.Tasks;
 
 	[Route("api/[controller]")]
 	public class AccountController : Controller
@@ -59,6 +60,17 @@
 			var result = _mapper.Map<ProfileSimplifiedViewModel>(currentProfile);
 
 			return Ok(result);
+		}
+
+		[Authorize]
+		[HttpGet]
+		[Route("[action]/{searchWord}")]
+		public async Task<IActionResult> SearchByWord([FromRoute] string searchWord)
+		{
+			var users = await _userService.GetUsersBySearchWord(searchWord);
+			var usersSimplified = users.Select(u => _mapper.Map<UserSimplifiedViewModel>(u));
+
+			return Ok(usersSimplified);
 		}
 
 		[Authorize]

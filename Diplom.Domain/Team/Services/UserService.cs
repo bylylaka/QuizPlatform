@@ -3,6 +3,8 @@
 	using Diplom.Domain.Team.Models;
 	using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
+	using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
 	public class UserService : IUserService
@@ -23,14 +25,20 @@
 			return await _userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
 		}
 
+		public Task<List<User>> GetUsersBySearchWord(string word)
+		{
+			var usersAsQuery = _userRepository.FindUsersTrackable();
+			var filteredUsers = usersAsQuery
+				.Where(u => u.Email.Contains(word) ||
+				u.UserName.Contains(word))
+				.ToListAsync();
+
+			return filteredUsers;
+		}
+
 		public async Task<User> GetUserByEmailAndPasswordAsync(string email, string password)
 		{
 			return await _userRepository.FindUserByEmailAndPasswordAsync(email, password);
-		}
-
-		public async Task<User> GetUserByEmailAsync(string email)
-		{
-			return await _userRepository.FindUserByEmailAsync(email);
 		}
 	}
 }

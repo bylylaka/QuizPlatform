@@ -22,6 +22,9 @@ export const Apis = {
   },
   updateProfile(profile: User) {
     return Axios.put(`api/account/updateProfile`, profile);
+  },
+  searchUsers(string: string) {
+    return Axios.get(`api/account/searchByWord/${string}`);
   }
 };
 

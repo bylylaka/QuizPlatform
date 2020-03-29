@@ -3,6 +3,7 @@ import { AppSnackbarMessage } from "../../GUI/shared/AppSnackbar/props";
 import { AnyAction } from "redux";
 import User from "../../shared/models/user/User";
 import ProfileSimplifiedViewModel from "../../shared/models/profile/ProfileSimplifiedViewModel";
+import UserSimplifiedViewModel from "../../shared/models/user/UserSimplifiedViewModel";
 
 export interface State {
   title: string;
@@ -10,12 +11,14 @@ export interface State {
   authorized: boolean | undefined;
   myProfileSimplified?: ProfileSimplifiedViewModel;
   user?: User;
+  searchUsers: UserSimplifiedViewModel[];
 }
 
 const initialState: State = {
   title: "",
   appSnackbarMessage: {} as AppSnackbarMessage,
-  authorized: undefined
+  authorized: undefined,
+  searchUsers: []
 };
 
 export const Reducer = (state = initialState, action: AnyAction): State => {
@@ -45,6 +48,11 @@ export const Reducer = (state = initialState, action: AnyAction): State => {
       return {
         ...state,
         user: action.user
+      };
+    case ActionTypes.SET_SEARCH_USERS:
+      return {
+        ...state,
+        searchUsers: action.users
       };
     default:
       return state;

@@ -33,6 +33,10 @@ function* updateProfileWatcher() {
   yield takeLatest(ActionTypes.UPDATE_PROFILE, Sagas.updateProfileSaga);
 }
 
+function* searchWatcher() {
+  yield takeLatest(ActionTypes.SEARCH, Sagas.searchSaga);
+}
+
 export default function* watchers() {
   yield all([
     loginWatcher(),
@@ -41,6 +45,7 @@ export default function* watchers() {
     logoutWatcher(),
     getMyProfileSimplifiedWatcher(),
     getUserWatcher(),
-    updateProfileWatcher()
+    updateProfileWatcher(),
+    searchWatcher()
   ]);
 }
