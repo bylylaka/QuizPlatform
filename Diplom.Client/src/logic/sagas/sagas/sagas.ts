@@ -1,17 +1,21 @@
 import Actions from "../../actions/actions";
-import { call, put } from "@redux-saga/core/effects";
+import { call, put, select } from "@redux-saga/core/effects";
 import Apis from "../apis/apis";
 import { stopSubmit } from "redux-form";
 import FormNames from "../../../GUI/shared/Form/FormNames";
 import { AxiosResponse } from "axios";
-import Profile from "../../../shared/models/user/User";
+import User from "../../../shared/models/user/User";
 import { AppSnackbarMessage } from "../../../GUI/shared/AppSnackbar/props";
+import ProfileSimplifiedViewModel from "../../../shared/models/profile/ProfileSimplifiedViewModel";
 
 export const Sagas = {
   *loginSaga(action: ReturnType<typeof Actions.login>) {
     try {
-      const response: AxiosResponse = yield call(Apis.login, action.values);
-      window.location.href = "/profile";
+      const response: AxiosResponse<ProfileSimplifiedViewModel> = yield call(
+        Apis.login,
+        action.values
+      );
+      window.location.href = `/user/${response.data.id}`;
     } catch (e) {
       yield put(
         stopSubmit(FormNames.LoginForm.name, {
@@ -22,7 +26,10 @@ export const Sagas = {
   },
 
   *registerSaga(action: ReturnType<typeof Actions.register>) {
-    const response: AxiosResponse = yield call(Apis.register, action.values);
+    const response: AxiosResponse<ProfileSimplifiedViewModel> = yield call(
+      Apis.register,
+      action.values
+    );
     if (response.status != 200) {
       yield put(
         stopSubmit(FormNames.RegistrationForm.name, {
@@ -30,7 +37,7 @@ export const Sagas = {
         })
       );
     } else {
-      window.location.href = "/profile";
+      window.location.href = `/user/${response.data.id}`;
     }
   },
 
@@ -39,9 +46,18 @@ export const Sagas = {
     window.location.reload();
   },
 
-  *getProfileSaga(action: ReturnType<typeof Actions.getProfile>) {
-    const response: AxiosResponse<Profile> = yield call(Apis.getProfile);
-    yield put(Actions.setProfile(response.data));
+  *getMyProfileSimplifiedSaga(
+    action: ReturnType<typeof Actions.getMyProfileSimplified>
+  ) {
+    const response: AxiosResponse<ProfileSimplifiedViewModel> = yield call(
+      Apis.getMyProfileSimplified
+    );
+    yield put(Actions.setMyProfileSimplified(response.data));
+  },
+
+  *getUserSaga(action: ReturnType<typeof Actions.getUser>) {
+    const response: AxiosResponse<User> = yield call(Apis.getUser, action.id);
+    yield put(Actions.setUser(response.data));
   },
 
   *updateProfileSaga(action: ReturnType<typeof Actions.updateProfile>) {
@@ -51,7 +67,7 @@ export const Sagas = {
       formData.append(key, (action.profile as any)[key]);
     }
 
-    const response: AxiosResponse<Profile> = yield call(
+    const response: AxiosResponse<User> = yield call(
       Apis.updateProfile,
       formData as any
     );

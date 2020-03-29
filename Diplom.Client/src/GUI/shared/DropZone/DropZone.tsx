@@ -7,15 +7,19 @@ import Avatar from "@material-ui/core/Avatar";
 
 const DropZone: FunctionComponent<IDropZoneProps &
   IDropZoneCallProps> = props => {
-  const { handleDrop, initialPicture } = props;
+  const { handleDrop, initialPicture, disabled } = props;
 
   const [files, setFiles] = useState([] as any);
 
   const classes = createStyles();
 
   const { getRootProps, getInputProps } = useDropzone({
+    disabled,
     accept: "image/*",
     onDrop: acceptedFiles => {
+      if (disabled) {
+        return;
+      }
       setFiles(
         acceptedFiles.map(file =>
           Object.assign(file, {
@@ -50,7 +54,12 @@ const DropZone: FunctionComponent<IDropZoneProps &
       <section>
         <aside>
           <div>
-            <Avatar src={getImageUrl()} className={classes.image} />
+            <Avatar
+              src={getImageUrl()}
+              classes={{
+                root: classes.image
+              }}
+            />
           </div>
         </aside>
       </section>

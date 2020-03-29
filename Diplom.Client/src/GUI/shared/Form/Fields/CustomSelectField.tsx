@@ -1,19 +1,33 @@
 import React from "react";
 import { BaseTextFieldProps } from "@material-ui/core/TextField";
 import { WrappedFieldProps } from "redux-form";
-import { FormControl, InputLabel, Select } from "@material-ui/core";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import createStyles from "./styles";
 
-export interface ITextFieldProps extends BaseTextFieldProps, WrappedFieldProps {
-  customProps: object;
+export interface ICustomSelectProps
+  extends BaseTextFieldProps,
+    WrappedFieldProps {
+  customProps?: any;
 }
 
-const customSelectField = (props: ITextFieldProps) => {
-  const { meta, error, input, children, label } = props;
+const customSelectField = (props: ICustomSelectProps) => {
+  const { meta, error, input, children, label, customProps, disabled } = props;
+
+  const classNames = createStyles();
 
   return (
-    <FormControl error={meta.touched && error}>
+    <FormControl error={meta.touched && error} disabled={disabled}>
       <InputLabel>{label}</InputLabel>
-      <Select native {...input} {...props.customProps}>
+      <Select
+        native
+        {...input}
+        {...props.customProps}
+        classes={{
+          disabled: classNames.disabled
+        }}
+      >
         {children}
       </Select>
     </FormControl>

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useEffect } from "react";
 import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
@@ -14,12 +14,29 @@ import SearchIcon from "@material-ui/icons/Search";
 import Tooltip from "@material-ui/core/Tooltip";
 import AppRouter from "../../routes/AppRouter/AppRouter";
 import createStyles from "./styles";
-import { IAppLayoutProps } from "./props";
+import { IAppLayoutProps, IAppLayoutCallProps } from "./props";
+import Grid from "@material-ui/core/Grid";
+import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
+import { Link, BrowserRouter as Router, useHistory } from "react-router-dom";
 
-const AppLayout: FunctionComponent<IAppLayoutProps> = props => {
-  const { title } = props;
+const AppLayout: FunctionComponent<IAppLayoutProps &
+  IAppLayoutCallProps> = props => {
+  const { title, logout, loadMyProfileSimplified, profileId } = props;
 
   const classes = createStyles();
+  let history = useHistory();
+
+  useEffect(() => {
+    loadMyProfileSimplified();
+  }, []);
+
+  const handleLogout = () => {
+    logout();
+  };
+
+  const profileRedirect = () => {
+    history.push(`/user/${profileId}`);
+  };
 
   return (
     <div className={classes.root}>
@@ -40,21 +57,43 @@ const AppLayout: FunctionComponent<IAppLayoutProps> = props => {
       >
         <div className={classes.toolbar} />
         <Divider />
-        <List>
-          <ListItem button>
-            <Tooltip title="Мой профиль">
-              <ListItemIcon>
-                <PersonIcon className={classes.listIcon} />
-              </ListItemIcon>
-            </Tooltip>
-          </ListItem>
-          <ListItem button>
-            <Tooltip title="Поиск">
-              <ListItemIcon>
-                <SearchIcon className={classes.listIcon} />
-              </ListItemIcon>
-            </Tooltip>
-          </ListItem>
+        <List className={classes.fullHeight}>
+          <Grid
+            item
+            container
+            direction="column"
+            justify="space-between"
+            className={classes.fullHeight}
+          >
+            <Grid item className={classes.fitContent}>
+              <ListItem button>
+                <Tooltip title="Мой профиль" onClick={profileRedirect}>
+                  <ListItemIcon>
+                    <PersonIcon className={classes.listIcon} />
+                  </ListItemIcon>
+                </Tooltip>
+              </ListItem>
+              <ListItem button>
+                <Tooltip title="Поиск">
+                  <ListItemIcon>
+                    <SearchIcon className={classes.listIcon} />
+                  </ListItemIcon>
+                </Tooltip>
+              </ListItem>
+            </Grid>
+            <Grid item className={classes.fitContent}>
+              <ListItem button onClick={handleLogout}>
+                <Tooltip title="Выход">
+                  <ListItemIcon>
+                    <PowerSettingsNewIcon
+                      color="error"
+                      className={classes.listIcon}
+                    />
+                  </ListItemIcon>
+                </Tooltip>
+              </ListItem>
+            </Grid>
+          </Grid>
         </List>
       </Drawer>
       <main className={classes.content}>

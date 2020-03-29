@@ -1,7 +1,9 @@
 ﻿namespace DiplomServer.Controllers
 {
+	using AutoMapper;
 	using Diplom.Core.Team.Models;
 	using Diplom.Domain.Team.Models;
+	using Diplom.WebApi.Models.Profile;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.AspNetCore.Mvc;
 	using System.Threading.Tasks;
@@ -9,14 +11,18 @@
 	[Route("api/[controller]")]
 	public class AuthorizationController : Controller
 	{
+		private readonly IMapper _mapper;
+
 		private readonly UserManager<User> _userManager;
 
 		private readonly SignInManager<User> _signInManager;
 
 		public AuthorizationController(
+			IMapper mapper,
 			UserManager<User> userManager,
 			SignInManager<User> signInManager)
 		{
+			_mapper = mapper;
 			_userManager = userManager;
 			_signInManager = signInManager;
 		}
@@ -30,14 +36,18 @@
 				return BadRequest(ModelState);
 			}
 
-			var logonResult =
+			var loginResult =
 				await _signInManager.PasswordSignInAsync(model.Email, model.Password, true, false);
 
-			if (!logonResult.Succeeded)
+			if (!loginResult.Succeeded)
 			{
 				return Unauthorized();
 			}
-			return Ok();
+
+			var currentProfile = await _userManager.FindByEmailAsync(model.Email);
+			var result = _mapper.Map<ProfileSimplifiedViewModel>(currentProfile);
+
+			return Ok(result);
 		}
 
 		[HttpGet]
@@ -68,7 +78,11 @@
 			}
 
 			await _signInManager.SignInAsync(user, false);
-			return Ok();
+
+			var currentProfile = await _userManager.FindByEmailAsync(model.Email);
+			var result = _mapper.Map<ProfileSimplifiedViewModel>(currentProfile);
+
+			return Ok(result);
 		}
 
 		[HttpPost]

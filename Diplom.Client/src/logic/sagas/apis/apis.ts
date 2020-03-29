@@ -14,8 +14,11 @@ export const Apis = {
   IsAuthorized() {
     return Axios.get(`api/authorization/isAuthorized`);
   },
-  getProfile() {
-    return Axios.get(`api/account/getProfile`);
+  getMyProfileSimplified() {
+    return Axios.get(`api/account/getMyProfileSimplified`);
+  },
+  getUser(id: number) {
+    return Axios.get(`api/account/getUser/${id}`);
   },
   updateProfile(profile: User) {
     return Axios.put(`api/account/updateProfile`, profile);

@@ -6,7 +6,7 @@ import React, {
 } from "react";
 import createStyles from "./styles";
 import { Field, reduxForm, InjectedFormProps } from "redux-form";
-import { IProfileInfoFormProps, IProfileInfoFormCallProps } from "./props";
+import { IUserInfoFormProps, IUserInfoFormCallProps } from "./props";
 import CustomTextField from "../../shared/Form/Fields/CustomTextField";
 import CutomSelectField from "../../shared/Form/Fields/CustomSelectField";
 import Grid from "@material-ui/core/Grid";
@@ -20,14 +20,14 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import CountrySateCity from "country-state-city";
-import CustomDateFoeld from "../../shared/Form/Fields/CustomDateField";
+import CustomDateField from "../../shared/Form/Fields/CustomDateField";
 import Education from "../../../shared/models/user/Education";
 import MaritialStatus from "../../../shared/models/user/MaritalStatus";
 import CustomCheckboxField from "../../shared/Form/Fields/CustomCheckboxField";
 
-const ProfileInfoForm: FunctionComponent<IProfileInfoFormProps &
-  IProfileInfoFormCallProps> = props => {
-  const { handleSubmit, avatar, country } = props;
+const UserInfoForm: FunctionComponent<IUserInfoFormProps &
+  IUserInfoFormCallProps> = props => {
+  const { handleSubmit, canEdit, avatar, country } = props;
 
   const classes = createStyles();
 
@@ -95,6 +95,7 @@ const ProfileInfoForm: FunctionComponent<IProfileInfoFormProps &
             name="avatar"
             label="avatar"
             component={CustomDropZoneField}
+            disabled={!canEdit}
             type="file"
           />
         </Grid>
@@ -102,10 +103,17 @@ const ProfileInfoForm: FunctionComponent<IProfileInfoFormProps &
           name="email"
           label="Email"
           required
+          disabled={!canEdit}
           component={CustomTextField}
           type="email"
         />
-        <Field name="name" label="Имя" required component={CustomTextField} />
+        <Field
+          name="name"
+          label="Имя"
+          disabled={!canEdit}
+          required
+          component={CustomTextField}
+        />
         <ListItem button onClick={handleClick}>
           <ListItemText
             secondary={open ? "Показать меньше" : "Показать больше"}
@@ -122,27 +130,37 @@ const ProfileInfoForm: FunctionComponent<IProfileInfoFormProps &
           <Field
             name="age"
             label="Возраст"
-            required
             component={CustomTextField}
+            disabled={!canEdit}
             type="number"
             parse={(value: string) => (value ? Number(value) : null)}
           />
           <Field
             name="gender"
             label="Пол"
-            required
+            disabled={!canEdit}
             component={CutomSelectField}
             parse={(value: string) => (value ? Number(value) : null)}
           >
             <option value={Gender.Male}>М</option>
             <option value={Gender.Female}>Ж</option>
           </Field>
-          <Field name="country" label="Страна" component={CutomSelectField}>
+          <Field
+            name="country"
+            label="Страна"
+            disabled={!canEdit}
+            component={CutomSelectField}
+          >
             <option>Выберите страну</option>
             {getCountriesOptions()}
           </Field>
           {country && (
-            <Field name="city" label="Город" component={CutomSelectField}>
+            <Field
+              name="city"
+              disabled={!canEdit}
+              label="Город"
+              component={CutomSelectField}
+            >
               <option>Выберите город</option>
               {getCitiesOptions()}
             </Field>
@@ -150,7 +168,8 @@ const ProfileInfoForm: FunctionComponent<IProfileInfoFormProps &
           <Field
             name="birth"
             label="Дата рождения"
-            component={CustomDateFoeld}
+            component={CustomDateField}
+            disabled={!canEdit}
             InputLabelProps={{
               shrink: true
             }}
@@ -158,6 +177,7 @@ const ProfileInfoForm: FunctionComponent<IProfileInfoFormProps &
           <Field
             name="education"
             label="Образование"
+            disabled={!canEdit}
             component={CutomSelectField}
           >
             <option>Выберите ваш уровень образования</option>
@@ -165,6 +185,7 @@ const ProfileInfoForm: FunctionComponent<IProfileInfoFormProps &
           </Field>
           <Field
             name="maritalStatus"
+            disabled={!canEdit}
             label="Семейное положение"
             component={CutomSelectField}
           >
@@ -173,37 +194,46 @@ const ProfileInfoForm: FunctionComponent<IProfileInfoFormProps &
           </Field>
           <Field
             name="loveAnimals"
+            disabled={!canEdit}
             label="Любите животных?"
             component={CustomCheckboxField}
           />
-          <Field name="smoke" label="Курите?" component={CustomCheckboxField} />
+          <Field
+            name="smoke"
+            label="Курите?"
+            disabled={!canEdit}
+            component={CustomCheckboxField}
+          />
           <Field
             name="drink"
+            disabled={!canEdit}
             label="Выпиваете?"
             component={CustomCheckboxField}
           />
           <Field
             name="childsCount"
             label="Сколько у вас детей?"
-            required
             component={CustomTextField}
             type="number"
+            disabled={!canEdit}
             parse={(value: string) => (value ? Number(value) : null)}
           />
           <Field
             name="work"
             label="Работаете?"
+            disabled={!canEdit}
             component={CustomCheckboxField}
           />
           <Field
             name="study"
+            disabled={!canEdit}
             label="Учитесь?"
             component={CustomCheckboxField}
           />
           <Field
             name="salary"
             label="Сколько ежемесячно получаете?"
-            required
+            disabled={!canEdit}
             component={CustomTextField}
             type="number"
             parse={(value: string) => (value ? Number(value) : null)}
@@ -224,4 +254,4 @@ const ProfileInfoForm: FunctionComponent<IProfileInfoFormProps &
 
 export default reduxForm({
   form: FormNames.ProfileInfoForm.name
-})(ProfileInfoForm as any);
+})(UserInfoForm as any);

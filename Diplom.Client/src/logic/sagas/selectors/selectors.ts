@@ -1,9 +1,9 @@
-import { State } from "../../reducers/reducer";
+import { RootState } from "../../reducers/rootReducer";
 
 const Selectors = {
-  // organisationStructure(state: State) {
-  //   return state.organisationStructure;
-  // },
+  myProfileSimplified(state: RootState) {
+    return state.reducer.myProfileSimplified;
+  }
 };
 
 export default Selectors;

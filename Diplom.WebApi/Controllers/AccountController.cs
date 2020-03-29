@@ -1,10 +1,12 @@
 ﻿namespace Diplom.Controllers
 {
 	using AutoMapper;
-    using Diplom.Domain.Exceptions;
-    using Diplom.Domain.Files.Services;
+	using Diplom.Domain.Exceptions;
+	using Diplom.Domain.Files.Services;
 	using Diplom.Domain.Team.Models;
-	using Diplom.WebApi.Models;
+	using Diplom.Domain.Team.Services;
+	using Diplom.WebApi.Models.Profile;
+	using Diplom.WebApi.Models.User;
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.AspNetCore.Mvc;
@@ -14,26 +16,47 @@
 	public class AccountController : Controller
 	{
 		private readonly IMapper _mapper;
+
 		private readonly UserManager<User> _userManager;
+
+		private readonly IUserService _userService;
+
 		private readonly IFileService _fileService;
 
 		public AccountController(
 			IMapper mapper,
-			UserManager<User> userManager,	
-			IFileService fileService)
+			UserManager<User> userManager,
+			IFileService fileService,
+			IUserService userService)
 		{
 			_mapper = mapper;
 			_userManager = userManager;
 			_fileService = fileService;
+			_userService = userService;
+		}
+
+		[Authorize]
+		[HttpGet]
+		[Route("[action]/{id}")]
+		public async Task<IActionResult> GetUser([FromRoute] int id)
+		{
+			var user = await _userService.FindUserById(id);
+			if (user == null)
+			{
+				throw new BadRequestException();
+			}
+			var result = _mapper.Map<UserOutputViewModel>(user);
+
+			return Ok(result);
 		}
 
 		[Authorize]
 		[HttpGet]
 		[Route("[action]")]
-		public async Task<IActionResult> GetProfile()
+		public async Task<IActionResult> GetMyProfileSimplified()
 		{
 			var currentProfile = await _userManager.GetUserAsync(User);
-			var result = _mapper.Map<UserOutputViewModel>(currentProfile);
+			var result = _mapper.Map<ProfileSimplifiedViewModel>(currentProfile);
 
 			return Ok(result);
 		}
@@ -41,8 +64,8 @@
 		[Authorize]
 		[HttpPut]
 		[Route("[action]")]
-		public async Task<IActionResult> UpdateProfile([
-			FromForm] UserInputViewModel profile)
+		public async Task<IActionResult> UpdateProfile(
+			[FromForm] UserInputViewModel profile)
 		{
 			var currentProfile = await _userManager.GetUserAsync(User);
 			var filePath = currentProfile.Avatar;
@@ -68,7 +91,7 @@
 			currentProfile.Study = profile.Study;
 			currentProfile.Work = profile.Work;
 			currentProfile.Birth = profile.Birth;
-			
+
 			var updateResult = await _userManager.UpdateAsync(currentProfile);
 			if (!updateResult.Succeeded)
 			{

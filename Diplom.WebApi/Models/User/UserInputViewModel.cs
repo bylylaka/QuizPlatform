@@ -1,4 +1,4 @@
-﻿namespace Diplom.WebApi.Models
+﻿namespace Diplom.WebApi.Models.User
 {
 	using Diplom.Domain.Team.Models;
 	using Microsoft.AspNetCore.Http;
@@ -6,6 +6,8 @@
 
 	public class UserInputViewModel
 	{
+		public int Id { get; set; }
+
 		public string Name { get; set; }
 
 		public string Email { get; set; }

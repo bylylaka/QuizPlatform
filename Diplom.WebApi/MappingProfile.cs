@@ -2,7 +2,8 @@
 {
 	using AutoMapper;
 	using Diplom.Domain.Team.Models;
-	using Diplom.WebApi.Models;
+	using Diplom.WebApi.Models.Profile;
+	using Diplom.WebApi.Models.User;
 
 	public class MappingProfile : Profile
 	{
@@ -16,6 +17,9 @@
 			CreateMap<User, UserOutputViewModel>()
 				.ForMember(um => um.Name,
 				opt => opt.MapFrom(u => u.UserName));
+
+			CreateMap<User, ProfileSimplifiedViewModel>()
+				.ReverseMap();
 		}
 	}
 }

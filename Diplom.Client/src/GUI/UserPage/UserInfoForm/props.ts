@@ -1,11 +1,12 @@
 import User from "../../../shared/models/user/User";
 import { InjectedFormProps } from "redux-form";
 
-export interface IProfileInfoFormProps extends InjectedFormProps {
+export interface IUserInfoFormProps extends InjectedFormProps {
   avatar: File | string;
   country: number;
+  canEdit: boolean;
 }
 
-export interface IProfileInfoFormCallProps {
+export interface IUserInfoFormCallProps {
   onSubmit: (profile: User) => void;
 }

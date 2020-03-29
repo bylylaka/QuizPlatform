@@ -18,8 +18,15 @@ function* checkAuthorizedWatcher() {
   yield takeLatest(ActionTypes.CHECK_AUTHORIZED, Sagas.checkAuthorizedSaga);
 }
 
-function* getProfileWatcher() {
-  yield takeLatest(ActionTypes.GET_PROFILE, Sagas.getProfileSaga);
+function* getMyProfileSimplifiedWatcher() {
+  yield takeLatest(
+    ActionTypes.GET_MY_PROFILE_SIMPLIFIED,
+    Sagas.getMyProfileSimplifiedSaga
+  );
+}
+
+function* getUserWatcher() {
+  yield takeLatest(ActionTypes.GET_USER, Sagas.getUserSaga);
 }
 
 function* updateProfileWatcher() {
@@ -32,7 +39,8 @@ export default function* watchers() {
     registerWatcher(),
     checkAuthorizedWatcher(),
     logoutWatcher(),
-    getProfileWatcher(),
+    getMyProfileSimplifiedWatcher(),
+    getUserWatcher(),
     updateProfileWatcher()
   ]);
 }

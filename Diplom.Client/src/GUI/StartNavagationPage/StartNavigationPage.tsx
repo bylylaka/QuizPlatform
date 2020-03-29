@@ -5,6 +5,7 @@ import {
 } from "./props";
 import LoginRouter from "../routes/LoginRouter";
 import AppLayoutContainer from "../shared/AppLayout/AppLayoutContainer";
+import { BrowserRouter as Router } from "react-router-dom";
 
 export const StartNavigationPage: FunctionComponent<IStartNavigationPageProps &
   IStartNavigationPageCallProps> = props => {
@@ -18,9 +19,17 @@ export const StartNavigationPage: FunctionComponent<IStartNavigationPageProps &
     return <p>Loading...</p>;
   }
   if (isAuthorized) {
-    return <AppLayoutContainer />;
+    return (
+      <Router>
+        <AppLayoutContainer />
+      </Router>
+    );
   } else {
-    return <LoginRouter />;
+    return (
+      <Router>
+        <LoginRouter />
+      </Router>
+    );
   }
 };
 

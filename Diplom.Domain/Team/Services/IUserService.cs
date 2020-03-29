@@ -5,6 +5,8 @@
 
 	public interface IUserService
 	{
+		Task<User> FindUserById(int id);
+
 		Task<User> GetUserByEmailAndPasswordAsync(string email, string password);
 
 		Task<User> GetUserByEmailAsync(string email);

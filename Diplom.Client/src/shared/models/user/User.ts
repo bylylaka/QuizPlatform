@@ -3,6 +3,7 @@ import Education from "./Education";
 import MaritalStatus from "./MaritalStatus";
 
 class User {
+  id?: number;
   name?: string;
   email?: string;
   age?: number;

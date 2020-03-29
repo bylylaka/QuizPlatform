@@ -4,17 +4,23 @@ import { WrappedFieldProps } from "redux-form";
 import DropZone from "../../DropZone/DropZone";
 
 export interface ITextFieldProps extends BaseTextFieldProps, WrappedFieldProps {
-  customProps: object;
+  customProps?: any;
 }
 
 const CustomDropZoneField = (props: ITextFieldProps) => {
-  const { meta, error, input } = props;
+  const { meta, error, input, disabled } = props;
 
   const handleDrop = (file: File) => {
     input.onChange(file);
   };
 
-  return <DropZone handleDrop={handleDrop} initialPicture={input.value} />;
+  return (
+    <DropZone
+      handleDrop={handleDrop}
+      initialPicture={input.value}
+      disabled={disabled}
+    />
+  );
 };
 
 export default CustomDropZoneField;

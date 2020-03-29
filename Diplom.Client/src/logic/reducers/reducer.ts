@@ -2,12 +2,14 @@ import ActionTypes from "../actionTypes/actionTypes";
 import { AppSnackbarMessage } from "../../GUI/shared/AppSnackbar/props";
 import { AnyAction } from "redux";
 import User from "../../shared/models/user/User";
+import ProfileSimplifiedViewModel from "../../shared/models/profile/ProfileSimplifiedViewModel";
 
 export interface State {
   title: string;
   appSnackbarMessage: AppSnackbarMessage;
   authorized: boolean | undefined;
-  profile?: User;
+  myProfileSimplified?: ProfileSimplifiedViewModel;
+  user?: User;
 }
 
 const initialState: State = {
@@ -33,10 +35,16 @@ export const Reducer = (state = initialState, action: AnyAction): State => {
         ...state,
         authorized: action.authorized
       };
-    case ActionTypes.SET_PROFILE:
+    case ActionTypes.SET_MY_PROFILE_SIMPLIFIED: {
       return {
         ...state,
-        profile: action.profile
+        myProfileSimplified: action.profile
+      };
+    }
+    case ActionTypes.SET_USER:
+      return {
+        ...state,
+        user: action.user
       };
     default:
       return state;

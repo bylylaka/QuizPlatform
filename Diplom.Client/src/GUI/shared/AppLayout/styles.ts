@@ -41,6 +41,12 @@ const createStyles = makeStyles(theme => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3)
+  },
+  fullHeight: {
+    height: "100%"
+  },
+  fitContent: {
+    height: "fit-content"
   }
 }));
 

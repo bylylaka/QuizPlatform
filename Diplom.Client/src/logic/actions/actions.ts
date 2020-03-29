@@ -1,6 +1,7 @@
 import ActionTypes from "../actionTypes/actionTypes";
 import { AppSnackbarMessage } from "../../GUI/shared/AppSnackbar/props";
 import User from "../../shared/models/user/User";
+import ProfileSimplifiedViewModel from "../../shared/models/profile/ProfileSimplifiedViewModel";
 
 const Actions = {
   //store actions
@@ -24,10 +25,17 @@ const Actions = {
     };
   },
 
-  setProfile(profile: User) {
+  setMyProfileSimplified(profile: ProfileSimplifiedViewModel) {
     return {
-      type: ActionTypes.SET_PROFILE,
+      type: ActionTypes.SET_MY_PROFILE_SIMPLIFIED,
       profile
+    };
+  },
+
+  setUser(user: User) {
+    return {
+      type: ActionTypes.SET_USER,
+      user
     };
   },
 
@@ -52,9 +60,16 @@ const Actions = {
     };
   },
 
-  getProfile() {
+  getMyProfileSimplified() {
     return {
-      type: ActionTypes.GET_PROFILE
+      type: ActionTypes.GET_MY_PROFILE_SIMPLIFIED
+    };
+  },
+
+  getUser(id: number) {
+    return {
+      type: ActionTypes.GET_USER,
+      id
     };
   },
 

@@ -2,13 +2,16 @@ import React from "react";
 import TextField, { BaseTextFieldProps } from "@material-ui/core/TextField";
 import { WrappedFieldProps } from "redux-form";
 import moment from "moment";
+import createStyles from "./styles";
 
-export interface ITextFieldProps extends BaseTextFieldProps, WrappedFieldProps {
-  customProps: object;
+export interface IDateFieldProps extends BaseTextFieldProps, WrappedFieldProps {
+  customProps?: any;
 }
 
-const CustomDateFoeld = (props: ITextFieldProps) => {
-  const { meta, error, input } = props;
+const CustomDateFoeld = (props: IDateFieldProps) => {
+  const { meta, error, input, customProps } = props;
+
+  const classNames = createStyles();
 
   const value = moment(input.value).format("YYYY-MM-DD");
 
@@ -16,8 +19,12 @@ const CustomDateFoeld = (props: ITextFieldProps) => {
     <TextField
       {...(props as any)}
       {...input}
-      {...props.customProps}
       value={value}
+      InputProps={{
+        classes: {
+          disabled: classNames.disabled
+        }
+      }}
       type="date"
       error={meta.touched && meta.invalid}
       helperText={meta.touched && meta.error}
