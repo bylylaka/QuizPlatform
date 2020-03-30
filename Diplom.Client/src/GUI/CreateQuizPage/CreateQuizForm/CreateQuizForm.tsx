@@ -31,8 +31,6 @@ export const CreateQuizForm: FunctionComponent<ICreateQuizFormProps &
   ICreateQuizFormCallProps> = props => {
   const { handleSubmit, formValues } = props;
 
-  console.log(formValues);
-
   const classes = createStyles();
 
   const renderQuestions = (params: any) => {
@@ -41,52 +39,22 @@ export const CreateQuizForm: FunctionComponent<ICreateQuizFormProps &
         <AddQuestion fields={params["fields"]} />
         {(params["fields"] as []).map((question: any, index: number) => {
           // В этом методе надо вызвать editQuestion, и там выставить разные филды внутри вопроса в зависимости от выброанного типа
+
+          // Использлвать для определеия значения типа
+          console.log(formValues["questions"][index]);
+
           return (
             <>
-              <p>
-                123
-                <Field
-                  required
-                  name={`${question}.title`}
-                  label="Тител"
-                  fullWidth
-                  component={customTextField}
-                />
-                <FieldArray
-                  name={`${question}.questionFields`}
-                  component={renderQuestionFields}
-                />
-              </p>
+              <Field
+                required
+                name={`${question}.title`}
+                label="Тител"
+                fullWidth
+                component={customTextField}
+              />
             </>
           );
         })}
-      </>
-    );
-  };
-
-  const renderQuestionFields = (params: any) => {
-    return (
-      <>
-        <p
-          onClick={() => {
-            (params["fields"] as []).push({
-              title: 123
-            } as never);
-          }}
-        >
-          456
-        </p>
-
-        {(params["fields"] as []).map((field: any, index: number) => (
-          <Field
-            required
-            name={`${field}.title`}
-            label="Формулировка вопроса"
-            fullWidth
-            component={customTextField}
-          />
-        ))}
-        {/* {renderQuestionsListItems()} */}
       </>
     );
   };
