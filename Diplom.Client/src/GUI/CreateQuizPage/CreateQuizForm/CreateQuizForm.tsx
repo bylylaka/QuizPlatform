@@ -9,7 +9,6 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import FormNames from "../../shared/Form/FormNames";
-import { reduxForm } from "redux-form";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import MaterialLink from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
@@ -25,17 +24,71 @@ import AddQuestion from "./../AddQuestion/AddQuestion";
 import Question from "../../../shared/models/quiz/Question";
 import Container from "@material-ui/core/Container";
 import EditQuestion from "../EditQuestion/EditQuestion";
+import { Field, FieldArray, reduxForm } from "redux-form";
+import customTextField from "../../shared/Form/Fields/CustomTextField";
 
 export const CreateQuizForm: FunctionComponent<ICreateQuizFormProps &
   ICreateQuizFormCallProps> = props => {
   const { handleSubmit, formValues } = props;
 
+  console.log(formValues);
+
   const classes = createStyles();
 
-  const [questions, setQuestions] = useState([] as Question[]);
+  const renderQuestions = (params: any) => {
+    return (
+      <>
+        <AddQuestion fields={params["fields"]} />
+        {(params["fields"] as []).map((question: any, index: number) => {
+          // В этом методе надо вызвать editQuestion, и там выставить разные филды внутри вопроса в зависимости от выброанного типа
+          return (
+            <>
+              <p>
+                123
+                <Field
+                  required
+                  name={`${question}.title`}
+                  label="Тител"
+                  fullWidth
+                  component={customTextField}
+                />
+                <FieldArray
+                  name={`${question}.questionFields`}
+                  component={renderQuestionFields}
+                />
+              </p>
+            </>
+          );
+        })}
+      </>
+    );
+  };
 
-  const handleQuestionAdd = (name: string) => {
-    setQuestions([...questions, new Question(name)]);
+  const renderQuestionFields = (params: any) => {
+    return (
+      <>
+        <p
+          onClick={() => {
+            (params["fields"] as []).push({
+              title: 123
+            } as never);
+          }}
+        >
+          456
+        </p>
+
+        {(params["fields"] as []).map((field: any, index: number) => (
+          <Field
+            required
+            name={`${field}.title`}
+            label="Формулировка вопроса"
+            fullWidth
+            component={customTextField}
+          />
+        ))}
+        {/* {renderQuestionsListItems()} */}
+      </>
+    );
   };
 
   const renderQuestionsListItems = (): JSX.Element[] => {
@@ -58,8 +111,7 @@ export const CreateQuizForm: FunctionComponent<ICreateQuizFormProps &
   return (
     <form>
       <Container component="main" maxWidth="lg">
-        <AddQuestion addQuestion={handleQuestionAdd} />
-        {renderQuestionsListItems()}
+        <FieldArray name="questions" component={renderQuestions} />
       </Container>
     </form>
   );
@@ -68,4 +120,4 @@ export const CreateQuizForm: FunctionComponent<ICreateQuizFormProps &
 export default reduxForm({
   form: FormNames.createQuizForm.name,
   enableReinitialize: true
-})(CreateQuizForm as any);
+})(CreateQuizForm as any) as any;

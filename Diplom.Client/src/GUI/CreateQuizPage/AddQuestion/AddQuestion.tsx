@@ -9,7 +9,7 @@ import TextField from "@material-ui/core/TextField";
 
 export const AddQuestion: FunctionComponent<IAddQuestionProps &
   IAddQuestionCallProps> = props => {
-  const { addQuestion } = props;
+  const { fields } = props;
 
   const classes = createStyles();
 
@@ -20,7 +20,9 @@ export const AddQuestion: FunctionComponent<IAddQuestionProps &
   };
 
   const handleAdd = () => {
-    addQuestion(questionName);
+    fields.push({
+      title: questionName
+    });
   };
 
   return (

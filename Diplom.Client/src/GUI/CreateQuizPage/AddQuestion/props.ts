@@ -1,5 +1,5 @@
-export interface IAddQuestionProps {}
-
-export interface IAddQuestionCallProps {
-  addQuestion: (name: string) => void;
+export interface IAddQuestionProps {
+  fields: any;
 }
+
+export interface IAddQuestionCallProps {}
