@@ -52,9 +52,50 @@ export const CreateQuizForm: FunctionComponent<ICreateQuizFormProps &
                 fullWidth
                 component={customTextField}
               />
+              {/* <FieldArray
+                    name={`${question}.questionFields`}
+                    component={renderQuestionFields}
+                  /> */}
             </>
           );
         })}
+      </>
+    );
+  };
+
+  const renderQuestionFields = (params: any) => {
+    return (
+      <>
+        <p
+          onClick={() => {
+            (params["fields"] as []).push({
+              title: 123
+            } as never);
+          }}
+        >
+          456
+        </p>
+
+        {(params["fields"] as []).map((field: any, index: number, c: any) => {
+          console.log(field);
+          console.log(c);
+
+          let a = formValues;
+          let b = field;
+
+          debugger;
+
+          return (
+            <Field
+              required
+              name={`${field}.title`}
+              label="Формулировка вопроса"
+              fullWidth
+              component={customTextField}
+            />
+          );
+        })}
+        {/* {renderQuestionsListItems()} */}
       </>
     );
   };
