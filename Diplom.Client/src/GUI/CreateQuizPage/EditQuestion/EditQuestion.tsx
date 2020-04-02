@@ -7,17 +7,71 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import TextField from "@material-ui/core/TextField";
 import FormNames from "../../shared/Form/FormNames";
-import { reduxForm, Field, InjectedFormProps } from "redux-form";
+import { reduxForm, Field, InjectedFormProps, FieldArray } from "redux-form";
 import Card from "@material-ui/core/Card";
 import customTextField from "../../shared/Form/Fields/CustomTextField";
 import customSelectField from "../../shared/Form/Fields/CustomSelectField";
 import QuestionType from "../../../shared/models/quiz/QuestionType";
+import AddQuestion from "../AddQuestion/AddQuestion";
+
+const removeOption = () => {
+  // TODO: add removing options after change from select to another type
+};
+
+const renderOptions = (params: any) => {
+  const classes = createStyles();
+
+  return (
+    <span className={classes.optionsPart}>
+      <AddQuestion fields={params["fields"]} title="Добавить опцию" />
+      {(params["fields"] as []).length > 0 && (
+        <Grid className={classes.padding}>
+          {(params["fields"] as []).map((field: string, index: number) => {
+            return (
+              <Grid container spacing={3}>
+                <Grid item sm={9}>
+                  <Field
+                    required
+                    name={`${field}.title`}
+                    label="Формулировка ответа"
+                    fullWidth
+                    component={customTextField}
+                  />
+                </Grid>
+              </Grid>
+              // <EditQuestion
+              //   key={index}
+              //   fieldPrefix={field}
+              //   question={params["fields"].get(index)}
+              // />
+            );
+          })}
+        </Grid>
+      )}
+    </span>
+  );
+};
 
 export const EditQuestion: FunctionComponent<IEditQuestionProps &
   IEditQuestionCallProps> = props => {
-  const { question } = props;
+  const { fieldPrefix, question } = props;
 
   const classes = createStyles();
+
+  const renderOptionalFields = () => {
+    if (question && question.type == QuestionType.Select) {
+      return (
+        <FieldArray name={`${fieldPrefix}.options`} component={renderOptions} />
+      );
+      // return (
+      // <Grid container justify="center">
+      //   <Button onClick={addOption} variant="contained" color="primary">
+      //     Добавить опцию
+      //   </Button>
+      // </Grid>
+      // );
+    }
+  };
 
   return (
     <Card className={classes.card}>
@@ -25,7 +79,7 @@ export const EditQuestion: FunctionComponent<IEditQuestionProps &
         <Grid item xs={12} sm={6}>
           <Field
             required
-            name="title"
+            name={`${fieldPrefix}.title`}
             label="Формулировка вопроса"
             fullWidth
             component={customTextField}
@@ -34,8 +88,8 @@ export const EditQuestion: FunctionComponent<IEditQuestionProps &
         <Grid item xs={12} sm={6}>
           <Field
             required
-            name="type"
-            label="Last name"
+            name={`${fieldPrefix}.type`}
+            label="Тип поля"
             fullWidth
             component={customSelectField}
           >
@@ -47,16 +101,7 @@ export const EditQuestion: FunctionComponent<IEditQuestionProps &
             <option value={QuestionType.File}>Файл</option>
           </Field>
         </Grid>
-        {/* <Grid item xs={12}>
-            <TextField
-              required
-              id="address1"
-              name="address1"
-              label="Address line 1"
-              fullWidth
-              autoComplete="billing address-line1"
-            />
-          </Grid> */}
+        {renderOptionalFields()}
       </Grid>
     </Card>
   );

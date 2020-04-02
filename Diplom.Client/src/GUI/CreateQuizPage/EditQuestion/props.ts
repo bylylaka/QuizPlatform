@@ -1,7 +1,8 @@
 import Question from "../../../shared/models/quiz/Question";
 
 export interface IEditQuestionProps {
-  question: Question;
+  fieldPrefix: string;
+  question?: Question;
 }
 
 export interface IEditQuestionCallProps {}

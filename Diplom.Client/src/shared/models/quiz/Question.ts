@@ -1,8 +1,9 @@
+import QuestionType from "./QuestionType";
+
 class Question {
-  constructor(name: string) {
-    this.name = name;
-  }
-  name: string;
+  constructor() {}
+  title?: string;
+  type?: QuestionType;
 }
 
 export default Question;
