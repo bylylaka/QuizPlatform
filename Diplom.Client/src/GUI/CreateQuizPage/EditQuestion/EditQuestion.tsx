@@ -1,22 +1,14 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useState, useEffect } from "react";
 import { IEditQuestionProps, IEditQuestionCallProps } from "./props";
 import createStyles from "./styles";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import TextField from "@material-ui/core/TextField";
-import FormNames from "../../shared/Form/FormNames";
-import { reduxForm, Field, InjectedFormProps, FieldArray } from "redux-form";
+import { Field, FieldArray } from "redux-form";
 import Card from "@material-ui/core/Card";
 import customTextField from "../../shared/Form/Fields/CustomTextField";
 import customSelectField from "../../shared/Form/Fields/CustomSelectField";
 import QuestionType from "../../../shared/models/quiz/QuestionType";
 import AddQuestion from "../AddQuestion/AddQuestion";
-
-const removeOption = () => {
-  // TODO: add removing options after change from select to another type
-};
+import Question from "../../../shared/models/quiz/Question";
 
 const renderOptions = (params: any) => {
   const classes = createStyles();
@@ -28,7 +20,7 @@ const renderOptions = (params: any) => {
         <Grid className={classes.padding}>
           {(params["fields"] as []).map((field: string, index: number) => {
             return (
-              <Grid container spacing={3}>
+              <Grid container spacing={3} key={index}>
                 <Grid item sm={9}>
                   <Field
                     required
@@ -39,11 +31,6 @@ const renderOptions = (params: any) => {
                   />
                 </Grid>
               </Grid>
-              // <EditQuestion
-              //   key={index}
-              //   fieldPrefix={field}
-              //   question={params["fields"].get(index)}
-              // />
             );
           })}
         </Grid>
@@ -58,18 +45,23 @@ export const EditQuestion: FunctionComponent<IEditQuestionProps &
 
   const classes = createStyles();
 
+  const [oldType, setOldType] = useState(QuestionType.Checkbox);
+
+  useEffect(() => {
+    if (!question || !question.type) {
+      return;
+    }
+    if (oldType == QuestionType.Select) {
+      question.options = undefined;
+    }
+    setOldType((question as Question).type as QuestionType);
+  }, [question && question.type]);
+
   const renderOptionalFields = () => {
     if (question && question.type == QuestionType.Select) {
       return (
         <FieldArray name={`${fieldPrefix}.options`} component={renderOptions} />
       );
-      // return (
-      // <Grid container justify="center">
-      //   <Button onClick={addOption} variant="contained" color="primary">
-      //     Добавить опцию
-      //   </Button>
-      // </Grid>
-      // );
     }
   };
 

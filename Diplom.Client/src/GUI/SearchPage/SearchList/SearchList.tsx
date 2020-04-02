@@ -23,8 +23,6 @@ const SearchList: FunctionComponent<ISearchListProps &
     return users.map(user => {
       const avatar = getAvatarUrl(user.avatar);
 
-      console.log(user);
-
       var model = new SearchItemModel(user.id, user.name, "", avatar);
       return <SearchListItem item={model} />;
     });
