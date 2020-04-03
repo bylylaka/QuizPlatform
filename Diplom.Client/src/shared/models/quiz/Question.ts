@@ -1,10 +1,10 @@
 import QuestionType from "./QuestionType";
+import Option from "./Option";
 
 class Question {
-  constructor() {}
   title?: string;
   type?: QuestionType;
-  options?: string[];
+  options?: Option[];
 }
 
 export default Question;

@@ -1,5 +1,6 @@
 import Axios from "axios";
 import User from "../../../shared/models/user/User";
+import Quiz from "../../../shared/models/quiz/Quiz";
 
 export const Apis = {
   login(values: FormData) {
@@ -25,6 +26,9 @@ export const Apis = {
   },
   searchUsers(string: string) {
     return Axios.get(`api/account/searchByWord/${string}`);
+  },
+  createQuiz(quiz: Quiz) {
+    return Axios.post(`api/quiz`, quiz);
   }
 };
 

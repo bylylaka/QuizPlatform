@@ -3,6 +3,7 @@ import { AppSnackbarMessage } from "../../GUI/shared/AppSnackbar/props";
 import User from "../../shared/models/user/User";
 import ProfileSimplifiedViewModel from "../../shared/models/profile/ProfileSimplifiedViewModel";
 import UserSimplifiedViewModel from "../../shared/models/user/UserSimplifiedViewModel";
+import Quiz from "../../shared/models/quiz/Quiz";
 
 const Actions = {
   //store actions
@@ -98,6 +99,13 @@ const Actions = {
     return {
       type: ActionTypes.SEARCH,
       string
+    };
+  },
+
+  createQuiz(quiz: Quiz) {
+    return {
+      type: ActionTypes.CREATE_QUIZ,
+      quiz
     };
   }
 };

@@ -6,6 +6,7 @@ const ActionTypes = {
   SET_USER: "SET_USER",
   SET_TITLE: "SET_TITLE",
   SET_SEARCH_USERS: "SET_SEARCH_USERS",
+  CREATE_QUIZ: "CREATE_QUIZ",
 
   //saga actions
   LOGIN: "LOGIN",

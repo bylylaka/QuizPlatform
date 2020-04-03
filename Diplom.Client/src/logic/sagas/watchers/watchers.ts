@@ -37,6 +37,10 @@ function* searchWatcher() {
   yield takeLatest(ActionTypes.SEARCH, Sagas.searchSaga);
 }
 
+function* createQuizWatcher() {
+  yield takeLatest(ActionTypes.CREATE_QUIZ, Sagas.createQuizSaga);
+}
+
 export default function* watchers() {
   yield all([
     loginWatcher(),
@@ -46,6 +50,7 @@ export default function* watchers() {
     getMyProfileSimplifiedWatcher(),
     getUserWatcher(),
     updateProfileWatcher(),
-    searchWatcher()
+    searchWatcher(),
+    createQuizWatcher()
   ]);
 }

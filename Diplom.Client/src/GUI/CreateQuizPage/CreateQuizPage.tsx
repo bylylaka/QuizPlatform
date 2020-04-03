@@ -5,7 +5,7 @@ import CreateQuizForm from "./CreateQuizForm/CreateQuizForm";
 
 export const CreateQuizPage: FunctionComponent<ICreateQuizPageProps &
   ICreateQuizPageCallProps> = props => {
-  const { setTitle, formValues } = props;
+  const { setTitle, formValues, submitQuiz } = props;
 
   const classes = createStyles();
 
@@ -13,7 +13,7 @@ export const CreateQuizPage: FunctionComponent<ICreateQuizPageProps &
     setTitle("Создание опроса");
   }, []);
 
-  return <CreateQuizForm formValues={formValues} />;
+  return <CreateQuizForm formValues={formValues} onSubmit={submitQuiz} />;
 };
 
 export default CreateQuizPage;

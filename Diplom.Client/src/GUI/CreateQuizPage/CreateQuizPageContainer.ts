@@ -4,8 +4,9 @@ import { Dispatch } from "redux";
 import CreateQuizPage from "./CreateQuizPage";
 import Actions from "../../logic/actions/actions";
 import { RootState } from "../../logic/reducers/rootReducer";
-import { getFormValues } from "redux-form";
+import { getFormValues, actionTypes } from "redux-form";
 import FormNames from "../shared/Form/FormNames";
+import Quiz from "../../shared/models/quiz/Quiz";
 
 const mapStateToProps = (state: RootState): ICreateQuizPageProps => {
   return {
@@ -15,7 +16,8 @@ const mapStateToProps = (state: RootState): ICreateQuizPageProps => {
 
 const mapDispatchToProps = (dispatch: Dispatch): ICreateQuizPageCallProps => {
   return {
-    setTitle: (title: string) => dispatch(Actions.setTitle(title))
+    setTitle: (title: string) => dispatch(Actions.setTitle(title)),
+    submitQuiz: (quiz: Quiz) => dispatch(Actions.createQuiz(quiz))
   };
 };
 

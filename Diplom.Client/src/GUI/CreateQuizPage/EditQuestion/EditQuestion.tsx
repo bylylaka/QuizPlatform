@@ -7,41 +7,14 @@ import Card from "@material-ui/core/Card";
 import customTextField from "../../shared/Form/Fields/CustomTextField";
 import customSelectField from "../../shared/Form/Fields/CustomSelectField";
 import QuestionType from "../../../shared/models/quiz/QuestionType";
-import AddQuestion from "../AddQuestion/AddQuestion";
 import Question from "../../../shared/models/quiz/Question";
-
-const renderOptions = (params: any) => {
-  const classes = createStyles();
-
-  return (
-    <span className={classes.optionsPart}>
-      <AddQuestion fields={params["fields"]} title="Добавить опцию" />
-      {(params["fields"] as []).length > 0 && (
-        <Grid className={classes.padding}>
-          {(params["fields"] as []).map((field: string, index: number) => {
-            return (
-              <Grid container spacing={3} key={index}>
-                <Grid item sm={9}>
-                  <Field
-                    required
-                    name={`${field}.title`}
-                    label="Формулировка ответа"
-                    fullWidth
-                    component={customTextField}
-                  />
-                </Grid>
-              </Grid>
-            );
-          })}
-        </Grid>
-      )}
-    </span>
-  );
-};
+import DeleteIcon from "@material-ui/icons/Delete";
+import IconButton from "@material-ui/core/IconButton";
+import EditOptions from "./EditOpions/EditOptions";
 
 export const EditQuestion: FunctionComponent<IEditQuestionProps &
   IEditQuestionCallProps> = props => {
-  const { fieldPrefix, question } = props;
+  const { fieldPrefix, question, fields, index } = props;
 
   const classes = createStyles();
 
@@ -60,42 +33,51 @@ export const EditQuestion: FunctionComponent<IEditQuestionProps &
   const renderOptionalFields = () => {
     if (question && question.type == QuestionType.Select) {
       return (
-        <FieldArray name={`${fieldPrefix}.options`} component={renderOptions} />
+        <FieldArray name={`${fieldPrefix}.options`} component={EditOptions} />
       );
     }
   };
 
+  const removeQuestion = () => {
+    fields.remove(index);
+  };
+
   return (
-    <Card className={classes.card}>
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
-          <Field
-            required
-            name={`${fieldPrefix}.title`}
-            label="Формулировка вопроса"
-            fullWidth
-            component={customTextField}
-          />
+    <Grid container alignItems="center">
+      <Card className={classes.card}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6}>
+            <Field
+              required
+              name={`${fieldPrefix}.title`}
+              label="Формулировка вопроса"
+              fullWidth
+              component={customTextField}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Field
+              required
+              name={`${fieldPrefix}.type`}
+              label="Тип поля"
+              fullWidth
+              component={customSelectField}
+              parse={(value: string) => (value ? Number(value) : 0)}
+            >
+              <option value={QuestionType.Text}>Текстовое поле</option>
+              <option value={QuestionType.Select}>Список</option>
+              <option value={QuestionType.Checkbox}>Чекбокс</option>
+              <option value={QuestionType.Date}>Дата</option>
+              <option value={QuestionType.File}>Файл</option>
+            </Field>
+          </Grid>
+          {renderOptionalFields()}
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <Field
-            required
-            name={`${fieldPrefix}.type`}
-            label="Тип поля"
-            fullWidth
-            component={customSelectField}
-          >
-            <option>Выберите тип поля</option>
-            <option value={QuestionType.Text}>Текстовое поле</option>
-            <option value={QuestionType.Select}>Список</option>
-            <option value={QuestionType.Checkbox}>Чекбокс</option>
-            <option value={QuestionType.Date}>Дата</option>
-            <option value={QuestionType.File}>Файл</option>
-          </Field>
-        </Grid>
-        {renderOptionalFields()}
-      </Grid>
-    </Card>
+      </Card>
+      <IconButton className={classes.removeIcon} onClick={removeQuestion}>
+        <DeleteIcon color="secondary" />
+      </IconButton>
+    </Grid>
   );
 };
 

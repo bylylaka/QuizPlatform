@@ -7,6 +7,7 @@ import Container from "@material-ui/core/Container";
 import EditQuestion from "../EditQuestion/EditQuestion";
 import { FieldArray, reduxForm } from "redux-form";
 import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
 
 const renderQuestions = (params: any) => {
   const classes = createStyles();
@@ -14,21 +15,17 @@ const renderQuestions = (params: any) => {
   return (
     <>
       <AddQuestion fields={params["fields"]} title="Добавить вопрос" />
+
       {(params["fields"] as []).length > 0 && (
         <Grid className={classes.questionsBlock}>
           {(params["fields"] as []).map((field: string, index: number) => {
-            // Использлвать для определеия значения типа
-            // console.log(field); //use as prefix to Field name
-            // console.log(formValues["questions"][index]); // {title: "aaa", ...}
-            // console.log(params["fields"]); //Object(3)
-            // console.log(params["fields"].get(index)); // {title: "aaa", ...}
-            // console.log(formValues["questions"]); // {title: "aaa", ...}
-
             return (
               <EditQuestion
                 key={index}
                 fieldPrefix={field}
+                fields={params["fields"]}
                 question={params["fields"].get(index)}
+                index={index}
               />
             );
           })}
@@ -45,10 +42,18 @@ export const CreateQuizForm: FunctionComponent<ICreateQuizFormProps &
   const classes = createStyles();
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <Container component="main" maxWidth="lg">
         <FieldArray name="questions" component={renderQuestions} />
       </Container>
+
+      {formValues && formValues.questions.length > 0 && (
+        <Grid container justify="center">
+          <Button type="submit" variant="contained" color="primary">
+            Подтвердить
+          </Button>
+        </Grid>
+      )}
     </form>
   );
 };

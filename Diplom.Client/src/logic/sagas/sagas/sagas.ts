@@ -92,6 +92,14 @@ export const Sagas = {
     yield put(Actions.setSearchUsers(response.data));
   },
 
+  *createQuizSaga(action: ReturnType<typeof Actions.createQuiz>) {
+    const response: AxiosResponse<boolean> = yield call(
+      Apis.createQuiz,
+      action.quiz
+    );
+    console.log(response);
+  },
+
   *checkAuthorizedSaga(action: ReturnType<typeof Actions.checkAuthorized>) {
     const response: AxiosResponse<boolean> = yield call(Apis.IsAuthorized);
     yield put(Actions.setAuthorized(response.data));
