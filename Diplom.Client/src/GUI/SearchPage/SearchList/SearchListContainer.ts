@@ -6,7 +6,8 @@ import SearchList from "./SearchList";
 
 const mapStateToProps = (state: RootState): ISearchListProps => {
   return {
-    users: state.reducer.searchUsers
+    users: state.reducer.searchUsers,
+    quizes: state.reducer.searchQuizes,
   };
 };
 

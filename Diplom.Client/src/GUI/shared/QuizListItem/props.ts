@@ -1,9 +1,7 @@
-import Quiz from "../../../shared/models/quiz/Quiz";
-import User from "../../../shared/models/user/User";
+import QuizSearch from "../../../shared/models/quiz/QuizSearch";
 
 export interface IQuizListItemProps {
-  quiz: Quiz;
-  user: User;
+  item: QuizSearch;
 }
 
 export interface IQuizListItemCallProps {}

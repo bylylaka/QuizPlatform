@@ -3,8 +3,9 @@ import { AppSnackbarMessage } from "../../GUI/shared/AppSnackbar/props";
 import { AnyAction } from "redux";
 import User from "../../shared/models/user/User";
 import ProfileSimplifiedViewModel from "../../shared/models/profile/ProfileSimplifiedViewModel";
-import UserSimplifiedViewModel from "../../shared/models/user/UserSimplifiedViewModel";
+import UserSimplified from "../../shared/models/user/UserSimplified";
 import Quiz from "../../shared/models/quiz/Quiz";
+import QuizSearch from "../../shared/models/quiz/QuizSearch";
 
 export interface State {
   title: string;
@@ -12,7 +13,8 @@ export interface State {
   authorized: boolean | undefined;
   myProfileSimplified?: ProfileSimplifiedViewModel;
   user?: User;
-  searchUsers: UserSimplifiedViewModel[];
+  searchUsers: UserSimplified[];
+  searchQuizes: QuizSearch[];
   quiz?: Quiz;
   userQuizList: Quiz[];
 }
@@ -22,6 +24,7 @@ const initialState: State = {
   appSnackbarMessage: {} as AppSnackbarMessage,
   authorized: undefined,
   searchUsers: [],
+  searchQuizes: [],
   userQuizList: [],
 };
 
@@ -57,6 +60,11 @@ export const Reducer = (state = initialState, action: AnyAction): State => {
       return {
         ...state,
         searchUsers: action.users,
+      };
+    case ActionTypes.SET_SEARCH_QUIZES:
+      return {
+        ...state,
+        searchQuizes: action.searchQuizes,
       };
     case ActionTypes.SET_QUIZ:
       return {

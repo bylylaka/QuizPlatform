@@ -65,6 +65,18 @@
 		}
 
 		[Authorize]
+		[HttpGet]
+		[Route("[action]/{searchWord}")]
+		public async Task<IActionResult> SearchByWord([FromRoute] string searchWord)
+		{
+			var quizes = await _quizService.GetQuizesBySearchWord(searchWord);
+
+			var quizesModels = quizes.Select(quiz => _mapper.Map<QuizSearchViewModel>(quiz));
+
+			return Ok(quizesModels	);
+		}
+
+		[Authorize]
 		[HttpPost]
 		[Route("[action]")]
 		public async Task<IActionResult> CreateQuiz([FromBody] QuizViewModel quizModel)

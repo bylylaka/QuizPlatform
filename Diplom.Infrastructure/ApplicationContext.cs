@@ -33,7 +33,7 @@
 				.OnDelete(DeleteBehavior.Cascade);
 
 			modelBuilder.Entity<Quiz>()
-				.HasOne<User>()
+				.HasOne(q => q.User)
 				.WithMany(u => u.Quizes)
 				.HasForeignKey(x => x.UserId)
 				.OnDelete(DeleteBehavior.Cascade);

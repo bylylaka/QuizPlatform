@@ -1,6 +1,9 @@
 import React, { FunctionComponent } from "react";
 import createStyles from "./styles";
-import { ISearchListItemProps, ISearchListItemCallProps } from "./props";
+import {
+  ISearchListUserItemProps,
+  ISearchListUserItemCallProps,
+} from "./props";
 import Card from "@material-ui/core/Card";
 import Avatar from "@material-ui/core/Avatar";
 import ListItem from "@material-ui/core/ListItem";
@@ -8,8 +11,9 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import { Link } from "react-router-dom";
 
-const SearchListItem: FunctionComponent<ISearchListItemProps &
-  ISearchListItemCallProps> = props => {
+const SearchListUserItem: FunctionComponent<
+  ISearchListUserItemProps & ISearchListUserItemCallProps
+> = (props) => {
   const { item } = props;
 
   const classes = createStyles();
@@ -22,15 +26,15 @@ const SearchListItem: FunctionComponent<ISearchListItemProps &
             <Avatar
               src={item.avatar}
               classes={{
-                root: classes.avatar
+                root: classes.avatar,
               }}
             />
           </ListItemAvatar>
-          <ListItemText primary={item.title} secondary={item.subtitle} />
+          <ListItemText primary={item.title} />
         </ListItem>
       </Link>
     </Card>
   );
 };
 
-export default SearchListItem;
+export default SearchListUserItem;

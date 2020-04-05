@@ -28,6 +28,9 @@ export const Apis = {
   searchUsers(string: string) {
     return Axios.get(`api/account/searchByWord/${string}`);
   },
+  searchQuizes(string: string) {
+    return Axios.get(`api/quiz/searchByWord/${string}`);
+  },
   getQuiz(id: number) {
     return Axios.get(`api/quiz/getQuiz/${id}`);
   },

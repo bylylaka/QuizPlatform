@@ -44,6 +44,13 @@
 				.FirstOrDefaultAsync();
 		}
 
+		public IQueryable<Quiz> FindQuizesTrackable()
+		{
+			return _appContext.Quiz
+				.AsQueryable()
+				.Include(q => q.User);
+		}
+
 		public async Task<List<Quiz>> FindUserQuizList(int userId)
 		{
 			return await _appContext.Quiz

@@ -7,10 +7,11 @@ import { AxiosResponse } from "axios";
 import User from "../../../shared/models/user/User";
 import { AppSnackbarMessage } from "../../../GUI/shared/AppSnackbar/props";
 import ProfileSimplifiedViewModel from "../../../shared/models/profile/ProfileSimplifiedViewModel";
-import UserSimplifiedViewModel from "../../../shared/models/user/UserSimplifiedViewModel";
+import UserSimplified from "../../../shared/models/user/UserSimplified";
 import Quiz from "../../../shared/models/quiz/Quiz";
 import ActionTypes from "../../actionTypes/actionTypes";
 import { createBrowserHistory } from "history";
+import QuizSearch from "../../../shared/models/quiz/QuizSearch";
 
 export const Sagas = {
   *loginSaga(action: ReturnType<typeof Actions.login>) {
@@ -88,11 +89,16 @@ export const Sagas = {
       yield put(Actions.setSearchUsers([]));
       return;
     }
-    const response: AxiosResponse<UserSimplifiedViewModel[]> = yield call(
+    const responseUsers: AxiosResponse<UserSimplified[]> = yield call(
       Apis.searchUsers,
       action.string
     );
-    yield put(Actions.setSearchUsers(response.data));
+    const responseQuizes: AxiosResponse<QuizSearch[]> = yield call(
+      Apis.searchQuizes,
+      action.string
+    );
+    yield put(Actions.setSearchUsers(responseUsers.data));
+    yield put(Actions.setSearchQuizes(responseQuizes.data));
   },
 
   *getQuizSaga(action: ReturnType<typeof Actions.getQuiz>) {

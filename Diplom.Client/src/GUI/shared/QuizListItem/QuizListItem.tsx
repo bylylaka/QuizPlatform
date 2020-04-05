@@ -12,24 +12,24 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 export const QuizListItem: React.FunctionComponent<
   IQuizListItemProps & IQuizListItemCallProps
 > = (props) => {
-  const { quiz, user } = props;
+  const { item } = props;
 
   const classes = createStyles();
 
   const history = useHistory();
 
   const answerQuiz = () => {
-    history.push(`/anwserQuiz/${quiz.id}`);
+    history.push(`/anwserQuiz/${item.quizId}`);
   };
 
   const onUserNameClick = () => {
-    history.push(`/user/${user.id}`);
+    history.push(`/user/${item.user.id}`);
   };
 
   const userLink = () => {
     return (
       <span onClick={onUserNameClick} className={classes.link}>
-        {user.name}
+        {item.user.name}
       </span>
     );
   };
@@ -39,13 +39,13 @@ export const QuizListItem: React.FunctionComponent<
       <ListItem>
         <ListItemAvatar>
           <Avatar
-            src={(user.avatar as string) || ""}
+            src={(item.user.avatar as string) || ""}
             classes={{
               root: classes.avatar,
             }}
           />
         </ListItemAvatar>
-        <ListItemText primary={quiz.title} secondary={userLink()} />
+        <ListItemText primary={item.title} secondary={userLink()} />
         <Typography
           color="primary"
           onClick={answerQuiz}

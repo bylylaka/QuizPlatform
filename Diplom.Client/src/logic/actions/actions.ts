@@ -2,9 +2,10 @@ import ActionTypes from "../actionTypes/actionTypes";
 import { AppSnackbarMessage } from "../../GUI/shared/AppSnackbar/props";
 import User from "../../shared/models/user/User";
 import ProfileSimplifiedViewModel from "../../shared/models/profile/ProfileSimplifiedViewModel";
-import UserSimplifiedViewModel from "../../shared/models/user/UserSimplifiedViewModel";
+import UserSimplified from "../../shared/models/user/UserSimplified";
 import Quiz from "../../shared/models/quiz/Quiz";
 import Answer from "../../shared/models/quiz/Answer";
+import QuizSearch from "../../shared/models/quiz/QuizSearch";
 
 const Actions = {
   //store actions
@@ -42,10 +43,17 @@ const Actions = {
     };
   },
 
-  setSearchUsers(users: UserSimplifiedViewModel[]) {
+  setSearchUsers(users: UserSimplified[]) {
     return {
       type: ActionTypes.SET_SEARCH_USERS,
       users,
+    };
+  },
+
+  setSearchQuizes(searchQuizes: QuizSearch[]) {
+    return {
+      type: ActionTypes.SET_SEARCH_QUIZES,
+      searchQuizes,
     };
   },
 

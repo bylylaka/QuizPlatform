@@ -62,6 +62,16 @@
 			return await _quizRepository.FindUserQuizList(userId);
 		}
 
+		public async Task<List<Quiz>> GetQuizesBySearchWord(string word)
+		{
+			var quizesAsQuery = _quizRepository.FindQuizesTrackable();
+			var filteredQuizes = await quizesAsQuery
+				.Where(q => q.Title.Contains(word))
+				.ToListAsync();
+
+			return filteredQuizes;
+		}
+
 		public async Task ProcessAnswers(List<Answer> answers)
 		{
 			var questionsIds = answers

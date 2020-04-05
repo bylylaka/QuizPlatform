@@ -1,8 +1,8 @@
-class UserSimplifiedViewModel {
+class UserSimplified {
   id?: number;
   name?: string;
   email?: string;
   avatar?: string;
 }
 
-export default UserSimplifiedViewModel;
+export default UserSimplified;

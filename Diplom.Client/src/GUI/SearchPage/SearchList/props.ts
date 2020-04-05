@@ -1,7 +1,9 @@
-import UserSimplifiedViewModel from "../../../shared/models/user/UserSimplifiedViewModel";
+import UserSimplified from "../../../shared/models/user/UserSimplified";
+import QuizSearch from "../../../shared/models/quiz/QuizSearch";
 
 export interface ISearchListProps {
-  users: UserSimplifiedViewModel[];
+  users: UserSimplified[];
+  quizes: QuizSearch[];
 }
 
 export interface ISearchListCallProps {}

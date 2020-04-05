@@ -36,6 +36,8 @@
 			CreateMap<Quiz, QuizViewModel>()
 				.ReverseMap();
 
+			CreateMap<Quiz, QuizSearchViewModel>();
+
 			CreateMap<Option, OptionViewModel>()
 				.ReverseMap();
 
