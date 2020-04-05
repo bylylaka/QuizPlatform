@@ -32,6 +32,7 @@ const customSelectField = (props: ICustomSelectProps) => {
           disabled: classNames.disabled
         }}
       >
+        <option value="" />
         {children}
       </Select>
     </FormControl>

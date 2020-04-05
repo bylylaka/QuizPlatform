@@ -4,6 +4,7 @@ import { AnyAction } from "redux";
 import User from "../../shared/models/user/User";
 import ProfileSimplifiedViewModel from "../../shared/models/profile/ProfileSimplifiedViewModel";
 import UserSimplifiedViewModel from "../../shared/models/user/UserSimplifiedViewModel";
+import Quiz from "../../shared/models/quiz/Quiz";
 
 export interface State {
   title: string;
@@ -12,6 +13,7 @@ export interface State {
   myProfileSimplified?: ProfileSimplifiedViewModel;
   user?: User;
   searchUsers: UserSimplifiedViewModel[];
+  quiz?: Quiz;
 }
 
 const initialState: State = {
@@ -53,6 +55,11 @@ export const Reducer = (state = initialState, action: AnyAction): State => {
       return {
         ...state,
         searchUsers: action.users
+      };
+    case ActionTypes.SET_QUIZ:
+      return {
+        ...state,
+        quiz: action.quiz
       };
     default:
       return state;

@@ -5,9 +5,10 @@ import FormNames from "../../shared/Form/FormNames";
 import AddQuestion from "./../AddQuestion/AddQuestion";
 import Container from "@material-ui/core/Container";
 import EditQuestion from "../EditQuestion/EditQuestion";
-import { FieldArray, reduxForm } from "redux-form";
+import { FieldArray, reduxForm, Field } from "redux-form";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import customTextField from "../../shared/Form/Fields/CustomTextField";
 
 const renderQuestions = (params: any) => {
   const classes = createStyles();
@@ -44,10 +45,19 @@ export const CreateQuizForm: FunctionComponent<ICreateQuizFormProps &
   return (
     <form onSubmit={handleSubmit}>
       <Container component="main" maxWidth="lg">
+        <Field
+          required
+          name="title"
+          label="Наименование опроса"
+          fullWidth
+          component={customTextField}
+          variant="outlined"
+          className={classes.titleField}
+        />
         <FieldArray name="questions" component={renderQuestions} />
       </Container>
 
-      {formValues && formValues.questions.length > 0 && (
+      {formValues && formValues.questions && formValues.questions.length > 0 && (
         <Grid container justify="center">
           <Button type="submit" variant="contained" color="primary">
             Подтвердить
@@ -59,6 +69,6 @@ export const CreateQuizForm: FunctionComponent<ICreateQuizFormProps &
 };
 
 export default reduxForm({
-  form: FormNames.createQuizForm.name,
+  form: FormNames.CreateQuizForm.name,
   enableReinitialize: true
 })(CreateQuizForm as any) as any;

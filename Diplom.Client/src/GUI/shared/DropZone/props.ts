@@ -1,5 +1,6 @@
 export interface IDropZoneProps {
   initialPicture: string;
+  defaultPictire?: string;
   disabled?: boolean;
 }
 

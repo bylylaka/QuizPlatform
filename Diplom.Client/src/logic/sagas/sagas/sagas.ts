@@ -8,6 +8,9 @@ import User from "../../../shared/models/user/User";
 import { AppSnackbarMessage } from "../../../GUI/shared/AppSnackbar/props";
 import ProfileSimplifiedViewModel from "../../../shared/models/profile/ProfileSimplifiedViewModel";
 import UserSimplifiedViewModel from "../../../shared/models/user/UserSimplifiedViewModel";
+import Quiz from "../../../shared/models/quiz/Quiz";
+import ActionTypes from "../../actionTypes/actionTypes";
+import { createBrowserHistory } from "history";
 
 export const Sagas = {
   *loginSaga(action: ReturnType<typeof Actions.login>) {
@@ -92,12 +95,33 @@ export const Sagas = {
     yield put(Actions.setSearchUsers(response.data));
   },
 
+  *getQuizSaga(action: ReturnType<typeof Actions.getQuiz>) {
+    const response: AxiosResponse<Quiz> = yield call(Apis.getQuiz, action.id);
+    if (response.status != 200) {
+      return;
+    }
+    yield put(Actions.setQuiz(response.data));
+  },
+
   *createQuizSaga(action: ReturnType<typeof Actions.createQuiz>) {
     const response: AxiosResponse<boolean> = yield call(
       Apis.createQuiz,
       action.quiz
     );
+
+    let message = new AppSnackbarMessage("Опрос успешно создан!", "success");
+    yield put(Actions.setAppSnackbarMessage(message));
+  },
+
+  *answerQuizSaga(action: ReturnType<typeof Actions.answerQuiz>) {
+    const response: AxiosResponse = yield call(Apis.answerQuiz, action.answers);
     console.log(response);
+
+    const snackbarMessage = new AppSnackbarMessage(
+      "Данные успешно обновлены.",
+      "success"
+    );
+    yield put(Actions.setAppSnackbarMessage(snackbarMessage));
   },
 
   *checkAuthorizedSaga(action: ReturnType<typeof Actions.checkAuthorized>) {

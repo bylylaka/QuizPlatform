@@ -2,11 +2,13 @@ namespace Diplom
 {
 	using AutoMapper;
 	using Diplom.Domain.Files.Services;
+	using Diplom.Domain.Quiz.Services;
 	using Diplom.Domain.Team.Models;
 	using Diplom.Domain.Team.Services;
 	using Diplom.Domain.Team.Validators;
 	using Diplom.Domain.utils.Countries;
 	using Diplom.Infrastructure;
+	using Diplom.Infrastructure.Qiuz;
 	using Diplom.Infrastructure.Team.Repositories;
 	using Diplom.Server.WebApi.Middleware;
 	using FluentValidation.AspNetCore;
@@ -50,8 +52,10 @@ namespace Diplom
 			services.AddScoped<IUserService, UserService>();
 			services.AddScoped<IRoleService, RoleService>();
 			services.AddScoped<IFileService, FileService>();
+			services.AddScoped<IQuizService, QuizService>();
 			services.AddScoped<IUserRepository, UserRepository>();
 			services.AddScoped<IRoleRepository, RoleRepository>();
+			services.AddScoped<IQuizRepository, QuizRepository>();
 			services.AddScoped<CountriesHelper>();
 
 			services.AddSpaStaticFiles(configuration =>

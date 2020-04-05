@@ -22,7 +22,7 @@ const EditOptions = (params: any) => {
                 (params["fields"] as any).remove(index);
               };
               return (
-                <Grid container alignItems="center">
+                <Grid container alignItems="center" key={index}>
                   <Grid
                     container
                     spacing={3}

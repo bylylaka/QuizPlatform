@@ -4,6 +4,7 @@ import User from "../../shared/models/user/User";
 import ProfileSimplifiedViewModel from "../../shared/models/profile/ProfileSimplifiedViewModel";
 import UserSimplifiedViewModel from "../../shared/models/user/UserSimplifiedViewModel";
 import Quiz from "../../shared/models/quiz/Quiz";
+import Answer from "../../shared/models/quiz/Answer";
 
 const Actions = {
   //store actions
@@ -45,6 +46,13 @@ const Actions = {
     return {
       type: ActionTypes.SET_SEARCH_USERS,
       users
+    };
+  },
+
+  setQuiz(quiz: Quiz) {
+    return {
+      type: ActionTypes.SET_QUIZ,
+      quiz
     };
   },
 
@@ -102,10 +110,24 @@ const Actions = {
     };
   },
 
+  getQuiz(id: number) {
+    return {
+      type: ActionTypes.GET_QUIZ,
+      id
+    };
+  },
+
   createQuiz(quiz: Quiz) {
     return {
       type: ActionTypes.CREATE_QUIZ,
       quiz
+    };
+  },
+
+  answerQuiz(answers: Answer[]) {
+    return {
+      type: ActionTypes.ANSWER_QUIZ,
+      answers
     };
   }
 };

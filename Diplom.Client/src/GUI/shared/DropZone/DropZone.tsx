@@ -7,7 +7,13 @@ import Avatar from "@material-ui/core/Avatar";
 
 const DropZone: FunctionComponent<IDropZoneProps &
   IDropZoneCallProps> = props => {
-  const { handleDrop, initialPicture, disabled } = props;
+  const {
+    handleDrop,
+    initialPicture,
+    disabled,
+    defaultPictire,
+    ...otherProps
+  } = props;
 
   const [files, setFiles] = useState([] as any);
 
@@ -45,7 +51,7 @@ const DropZone: FunctionComponent<IDropZoneProps &
     if (!files.length && initialPicture) {
       return initialPicture.replace("\\", "\\\\");
     }
-    return "images\\\\social_network.jpg";
+    return defaultPictire ? defaultPictire : "images\\\\social_network.jpg";
   };
 
   return (
@@ -59,6 +65,7 @@ const DropZone: FunctionComponent<IDropZoneProps &
               classes={{
                 root: classes.image
               }}
+              {...otherProps}
             />
           </div>
         </aside>

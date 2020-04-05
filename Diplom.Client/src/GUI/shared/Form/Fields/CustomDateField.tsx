@@ -8,7 +8,7 @@ export interface IDateFieldProps extends BaseTextFieldProps, WrappedFieldProps {
   customProps?: any;
 }
 
-const CustomDateFoeld = (props: IDateFieldProps) => {
+const CustomDateField = (props: IDateFieldProps) => {
   const { meta, error, input, customProps } = props;
 
   const classNames = createStyles();
@@ -32,4 +32,4 @@ const CustomDateFoeld = (props: IDateFieldProps) => {
   );
 };
 
-export default CustomDateFoeld;
+export default CustomDateField;

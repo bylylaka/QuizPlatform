@@ -5,6 +5,7 @@ import UserPageContainer from "../../UserPage/UserPageContainer";
 import createStyles from "./styles";
 import SearchPageContainer from "../../SearchPage/SearchPageContainer";
 import CreateQuizPageContainer from "../../CreateQuizPage/CreateQuizPageContainer";
+import AnswerQuizPageContainer from "../../AnswerQuizPage/AnswerQuizPageContainer";
 
 const AppRouter: FunctionComponent = () => {
   const classes = createStyles();
@@ -14,6 +15,8 @@ const AppRouter: FunctionComponent = () => {
       <Route exact path="/user/:id" component={UserPageContainer} />
       <Route exact path="/search" component={SearchPageContainer} />
       <Route exact path="/createQuiz" component={CreateQuizPageContainer} />
+      <Route exact path="/createQuiz" component={CreateQuizPageContainer} />
+      <Route exact path="/anwserQuiz/:id" component={AnswerQuizPageContainer} />
       <Route component={NotFountPage} />
     </Switch>
   );

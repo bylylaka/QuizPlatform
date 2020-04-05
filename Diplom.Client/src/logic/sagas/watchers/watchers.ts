@@ -37,8 +37,16 @@ function* searchWatcher() {
   yield takeLatest(ActionTypes.SEARCH, Sagas.searchSaga);
 }
 
+function* getQuizWatcher() {
+  yield takeLatest(ActionTypes.GET_QUIZ, Sagas.getQuizSaga);
+}
+
 function* createQuizWatcher() {
   yield takeLatest(ActionTypes.CREATE_QUIZ, Sagas.createQuizSaga);
+}
+
+function* answerQuizWatcher() {
+  yield takeLatest(ActionTypes.ANSWER_QUIZ, Sagas.answerQuizSaga);
 }
 
 export default function* watchers() {
@@ -51,6 +59,8 @@ export default function* watchers() {
     getUserWatcher(),
     updateProfileWatcher(),
     searchWatcher(),
-    createQuizWatcher()
+    getQuizWatcher(),
+    createQuizWatcher(),
+    answerQuizWatcher()
   ]);
 }

@@ -1,6 +1,7 @@
 import Axios from "axios";
 import User from "../../../shared/models/user/User";
 import Quiz from "../../../shared/models/quiz/Quiz";
+import Answer from "../../../shared/models/quiz/Answer";
 
 export const Apis = {
   login(values: FormData) {
@@ -27,8 +28,14 @@ export const Apis = {
   searchUsers(string: string) {
     return Axios.get(`api/account/searchByWord/${string}`);
   },
+  getQuiz(id: number) {
+    return Axios.get(`api/quiz/getQuiz/${id}`);
+  },
   createQuiz(quiz: Quiz) {
-    return Axios.post(`api/quiz`, quiz);
+    return Axios.post(`api/quiz/createQuiz`, quiz);
+  },
+  answerQuiz(answers: Answer[]) {
+    return Axios.post(`api/quiz/answer`, answers);
   }
 };
 

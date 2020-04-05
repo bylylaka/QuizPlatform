@@ -10,6 +10,8 @@
 
 		public QuestionType Type { get; set; }
 
+		public int QuizId { get; set; }
+
 		public List<Option> Options { get; set; }
 	}
 }

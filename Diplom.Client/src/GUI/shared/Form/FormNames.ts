@@ -27,8 +27,11 @@ const FormNames = {
       country: "country"
     }
   },
-  createQuizForm: {
+  CreateQuizForm: {
     name: "createQuizForm"
+  },
+  AnswerQuizForm: {
+    name: "answerQuizForm"
   }
 };
 

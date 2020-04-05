@@ -10,7 +10,7 @@ import Quiz from "../../shared/models/quiz/Quiz";
 
 const mapStateToProps = (state: RootState): ICreateQuizPageProps => {
   return {
-    formValues: getFormValues(FormNames.createQuizForm.name)(state)
+    formValues: getFormValues(FormNames.CreateQuizForm.name)(state)
   };
 };
 
