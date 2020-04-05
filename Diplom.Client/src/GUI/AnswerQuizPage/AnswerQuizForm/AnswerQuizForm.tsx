@@ -17,8 +17,9 @@ import Option from "../../../shared/models/quiz/Option";
 import CustomDateField from "../../shared/Form/Fields/CustomDateField";
 import CustomDropZoneField from "../../shared/Form/Fields/CustomDropZoneField";
 
-export const AnswerQuizForm: FunctionComponent<IAnswerQuizFormProps &
-  IAnswerQuizFormCallProps> = props => {
+export const AnswerQuizForm: FunctionComponent<
+  IAnswerQuizFormProps & IAnswerQuizFormCallProps
+> = (props) => {
   const { handleSubmit, quiz } = props;
 
   const classes = createStyles();
@@ -38,6 +39,21 @@ export const AnswerQuizForm: FunctionComponent<IAnswerQuizFormProps &
             />
           </>
         );
+      case QuestionType.Number:
+        return (
+          <>
+            <Typography>{question.title}</Typography>
+            <Field
+              required
+              name={`${question.id}`}
+              label="Ваш ответ"
+              fullWidth
+              type="number"
+              component={customTextField}
+              parse={(value: string) => (value ? Number(value) : null)}
+            />
+          </>
+        );
       case QuestionType.Checkbox:
         return (
           <Field
@@ -47,19 +63,6 @@ export const AnswerQuizForm: FunctionComponent<IAnswerQuizFormProps &
             fullWidth
             component={CustomCheckboxField}
           />
-        );
-      case QuestionType.File:
-        return (
-          <>
-            <Typography>{question.title}</Typography>
-            <Field
-              name={`${question.id}`}
-              label="Файл"
-              component={CustomDropZoneField}
-              defaultPictire="images\\\\dropZoneDefault.png"
-              type="file"
-            />
-          </>
         );
       case QuestionType.Date:
         return (
@@ -87,7 +90,7 @@ export const AnswerQuizForm: FunctionComponent<IAnswerQuizFormProps &
                 value ? Number(value) : (question.options as Option[])[0].id
               }
             >
-              {(question.options as Option[]).map(o => (
+              {(question.options as Option[]).map((o) => (
                 <option value={o.id}>{o.title}</option>
               ))}
             </Field>
@@ -99,7 +102,7 @@ export const AnswerQuizForm: FunctionComponent<IAnswerQuizFormProps &
   };
 
   const renderQuestions = (): JSX.Element[] => {
-    return (quiz.questions as Question[]).map(q => {
+    return (quiz.questions as Question[]).map((q) => {
       return (
         <Grid container alignItems="center">
           <Card className={classes.card}>
@@ -134,5 +137,5 @@ export const AnswerQuizForm: FunctionComponent<IAnswerQuizFormProps &
 
 export default reduxForm({
   form: FormNames.AnswerQuizForm.name,
-  enableReinitialize: true
+  enableReinitialize: true,
 })(AnswerQuizForm as any) as any;

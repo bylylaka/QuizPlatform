@@ -25,7 +25,11 @@ export const AnswerQuizPage: FunctionComponent<
   const submitHandler = (values: any[]) => {
     let answers: Answer[] = Object.keys(values).map(
       (key) =>
-        new Answer((quiz as Quiz).id as number, Number(key), values[key as any])
+        new Answer(
+          (quiz as Quiz).id as number,
+          Number(key),
+          JSON.stringify(values[key as any]) as any
+        )
     );
     submitAnswers(answers);
   };

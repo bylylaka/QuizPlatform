@@ -3,9 +3,9 @@
 	public enum QuestionType
 	{
 		Text,
+		Number,
 		Select,
 		Checkbox,
-		Date,
-		File
+		Date
 	}
 }

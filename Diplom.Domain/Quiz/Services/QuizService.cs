@@ -2,7 +2,9 @@
 {
 	using Diplom.Domain.Exceptions;
 	using Diplom.Domain.Quiz.Models;
+	using System;
 	using System.Collections.Generic;
+	using System.Linq;
 	using System.Threading.Tasks;
 
 	public class QuizService : IQuizService
@@ -40,6 +42,35 @@
 			}
 
 			return quiz;
+		}
+
+		public async Task ProcessAnswers(List<Answer> answers)
+		{
+			var questionsIds = answers
+				.Select(answer => answer.QuestionId)
+				.ToList();
+
+			var questions = await GetQuestionsByIdList(questionsIds);
+
+			foreach (var question in questions)
+			{
+				var answer = answers.First(a => a.QuestionId == question.Id);
+
+				switch (question.Type)
+				{
+					case QuestionType.Text:
+						break;
+					case QuestionType.Checkbox:
+						break;
+					case QuestionType.Number:
+						break;
+					case QuestionType.Date:
+						answer.Value = DateTime.Parse((string)answer.Value);
+						break;
+					case QuestionType.Select:
+						break;
+				}
+			}
 		}
 	}
 }

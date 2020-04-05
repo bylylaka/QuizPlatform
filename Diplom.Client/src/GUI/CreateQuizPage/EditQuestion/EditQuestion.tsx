@@ -12,8 +12,9 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 import EditOptions from "./EditOpions/EditOptions";
 
-export const EditQuestion: FunctionComponent<IEditQuestionProps &
-  IEditQuestionCallProps> = props => {
+export const EditQuestion: FunctionComponent<
+  IEditQuestionProps & IEditQuestionCallProps
+> = (props) => {
   const { fieldPrefix, question, fields, index } = props;
 
   const classes = createStyles();
@@ -65,10 +66,10 @@ export const EditQuestion: FunctionComponent<IEditQuestionProps &
               parse={(value: string) => (value ? Number(value) : 0)}
             >
               <option value={QuestionType.Text}>Текстовое поле</option>
+              <option value={QuestionType.Number}>Числовое поле</option>
               <option value={QuestionType.Select}>Список</option>
               <option value={QuestionType.Checkbox}>Чекбокс</option>
               <option value={QuestionType.Date}>Дата</option>
-              <option value={QuestionType.File}>Файл</option>
             </Field>
           </Grid>
           {renderOptionalFields()}

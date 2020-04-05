@@ -13,5 +13,7 @@
 		Task<List<Question>> GetQuestionsByIdList(List<int> ids);
 
 		Task AddAnswers(List<Answer> answers);
+
+		Task ProcessAnswers(List<Answer> answers);
 	}
 }

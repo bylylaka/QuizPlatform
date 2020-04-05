@@ -63,52 +63,11 @@
 		[Route("[action]")]
 		public async Task<IActionResult> Answer([FromBody] List<AnswerViewModel> answerModels)
 		{
-			var questionsIds = answerModels
-				.Select(answer => answer.QuestionId)
-				.ToList();
-
-			var questions = await _quizService.GetQuestionsByIdList(questionsIds);
-
 			var answers = answerModels
 				.Select(am => _mapper.Map<Answer>(am))
 				.ToList();
 
-			foreach (var question in questions)
-			{
-				var answer = answers.First(a => a.QuestionId == question.Id);
-
-				switch (question.Type)
-				{
-					case QuestionType.Text:
-						break;
-					case QuestionType.Checkbox:
-						break;
-					case QuestionType.File:
-						try
-						{
-							var path = await _fileService.SaveFile((IFormFile)answer.Value);
-						}
-						catch (Exception e)
-						{
-							throw e;
-						}
-						break;
-					case QuestionType.Date:
-						answer.Value = DateTime.Parse((string) answer.Value);
-						break;
-					case QuestionType.Select:
-						break;
-				}
-			}
-			
-
-			//var dt = DateTime.Parse("1111-11-11");
-			//var a = new JObject(answerModels[0].Value);
-
-			//var a1 = answerModels[0].Value;
-
-
-
+			await _quizService.ProcessAnswers(answers);
 			await _quizService.AddAnswers(answers);
 
 			return Ok();
