@@ -14,13 +14,15 @@ export interface State {
   user?: User;
   searchUsers: UserSimplifiedViewModel[];
   quiz?: Quiz;
+  userQuizList: Quiz[];
 }
 
 const initialState: State = {
   title: "",
   appSnackbarMessage: {} as AppSnackbarMessage,
   authorized: undefined,
-  searchUsers: []
+  searchUsers: [],
+  userQuizList: [],
 };
 
 export const Reducer = (state = initialState, action: AnyAction): State => {
@@ -28,38 +30,43 @@ export const Reducer = (state = initialState, action: AnyAction): State => {
     case ActionTypes.SET_TITLE:
       return {
         ...state,
-        title: action.title
+        title: action.title,
       };
     case ActionTypes.SET_APPSNACKBAR_MESSAGE:
       return {
         ...state,
-        appSnackbarMessage: action.message
+        appSnackbarMessage: action.message,
       };
     case ActionTypes.SET_AUTHORIZED:
       return {
         ...state,
-        authorized: action.authorized
+        authorized: action.authorized,
       };
     case ActionTypes.SET_MY_PROFILE_SIMPLIFIED: {
       return {
         ...state,
-        myProfileSimplified: action.profile
+        myProfileSimplified: action.profile,
       };
     }
     case ActionTypes.SET_USER:
       return {
         ...state,
-        user: action.user
+        user: action.user,
       };
     case ActionTypes.SET_SEARCH_USERS:
       return {
         ...state,
-        searchUsers: action.users
+        searchUsers: action.users,
       };
     case ActionTypes.SET_QUIZ:
       return {
         ...state,
-        quiz: action.quiz
+        quiz: action.quiz,
+      };
+    case ActionTypes.SET_USER_QUIZ_LIST:
+      return {
+        ...state,
+        userQuizList: action.quizList,
       };
     default:
       return state;

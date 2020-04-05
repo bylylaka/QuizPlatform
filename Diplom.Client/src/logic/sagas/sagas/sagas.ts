@@ -21,7 +21,7 @@ export const Sagas = {
     if (response.status != 200) {
       yield put(
         stopSubmit(FormNames.LoginForm.name, {
-          errorMessage: "Неверная комбинация емейла или пароля."
+          errorMessage: "Неверная комбинация емейла или пароля.",
         })
       );
     } else {
@@ -37,7 +37,7 @@ export const Sagas = {
     if (response.status != 200) {
       yield put(
         stopSubmit(FormNames.RegistrationForm.name, {
-          errorMessage: "Пользователь с таким емейлом уже существует."
+          errorMessage: "Пользователь с таким емейлом уже существует.",
         })
       );
     } else {
@@ -115,8 +115,6 @@ export const Sagas = {
 
   *answerQuizSaga(action: ReturnType<typeof Actions.answerQuiz>) {
     const response: AxiosResponse = yield call(Apis.answerQuiz, action.answers);
-    console.log(response);
-
     const snackbarMessage = new AppSnackbarMessage(
       "Данные успешно обновлены.",
       "success"
@@ -127,5 +125,13 @@ export const Sagas = {
   *checkAuthorizedSaga(action: ReturnType<typeof Actions.checkAuthorized>) {
     const response: AxiosResponse<boolean> = yield call(Apis.IsAuthorized);
     yield put(Actions.setAuthorized(response.data));
-  }
+  },
+
+  *loadUserQuizListSaga(action: ReturnType<typeof Actions.loadUserQuizList>) {
+    const response: AxiosResponse<Quiz[]> = yield call(
+      Apis.getUserQuizList,
+      action.userId
+    );
+    yield put(Actions.setUserQuizList(response.data));
+  },
 };

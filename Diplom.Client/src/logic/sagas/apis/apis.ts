@@ -36,7 +36,10 @@ export const Apis = {
   },
   answerQuiz(answers: Answer[]) {
     return Axios.post(`api/quiz/answer`, answers);
-  }
+  },
+  getUserQuizList(userId: number) {
+    return Axios.get(`api/quiz/getUserQuizList/${userId}`);
+  },
 };
 
 export default Apis;

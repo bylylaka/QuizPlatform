@@ -2,6 +2,8 @@
 {
 	using Microsoft.AspNetCore.Identity;
 	using System;
+	using System.Collections.Generic;
+	using Diplom.Domain.Quiz.Models;
 
 	public class User : IdentityUser<int>
 	{
@@ -34,5 +36,9 @@
 		public bool? Study { get; set; }
 
 		public int? Salary { get; set; }
+
+		public List<Quiz> Quizes { get; set; }
+
+		public List<Answer> Answers { get; set; }
 	}
 }

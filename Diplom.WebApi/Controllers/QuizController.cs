@@ -4,10 +4,12 @@
     using Diplom.Domain.Files.Services;
     using Diplom.Domain.Quiz.Models;
 	using Diplom.Domain.Quiz.Services;
+	using Diplom.Domain.Team.Models;
 	using Diplom.WebApi.Models.Quiz;
 	using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Mvc;
+	using Microsoft.AspNetCore.Identity;
+	using Microsoft.AspNetCore.Mvc;
 	using Newtonsoft.Json;
 	using Newtonsoft.Json.Linq;
 	using System;
@@ -20,16 +22,20 @@
 	{
 		private readonly IMapper _mapper;
 
+		private readonly UserManager<User> _userManager;
+
 		private readonly IQuizService _quizService;
 
 		private readonly IFileService _fileService;
 
 		public QuizController(
 			IMapper mapper,
+			UserManager<User> userManager,
 			IQuizService quizService,
 			IFileService fileService)
 		{
 			_mapper = mapper;
+			_userManager = userManager;
 			_quizService = quizService;
 			_fileService = fileService;
 		}
@@ -47,11 +53,26 @@
 		}
 
 		[Authorize]
+		[HttpGet]
+		[Route("[action]/{id}")]
+		public async Task<IActionResult> GetUserQuizList([FromRoute] int id)
+		{
+			var quizList = await _quizService.GetUserQuizList(id);
+
+			var quizListModel = quizList.Select(q => _mapper.Map<QuizViewModel>(q));
+
+			return Ok(quizListModel);
+		}
+
+		[Authorize]
 		[HttpPost]
 		[Route("[action]")]
 		public async Task<IActionResult> CreateQuiz([FromBody] QuizViewModel quizModel)
 		{
+			var user = await _userManager.GetUserAsync(User);
+
 			var quiz = _mapper.Map<Quiz>(quizModel);
+			quiz.UserId = user.Id;
 
 			await _quizService.AddQuiz(quiz);
 
@@ -63,9 +84,11 @@
 		[Route("[action]")]
 		public async Task<IActionResult> Answer([FromBody] List<AnswerViewModel> answerModels)
 		{
+			var user = await _userManager.GetUserAsync(User);
 			var answers = answerModels
 				.Select(am => _mapper.Map<Answer>(am))
 				.ToList();
+			answers.ForEach(a => a.UserId = user.Id);
 
 			await _quizService.ProcessAnswers(answers);
 			await _quizService.AddAnswers(answers);

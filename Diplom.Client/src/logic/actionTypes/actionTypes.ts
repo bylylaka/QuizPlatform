@@ -7,6 +7,7 @@ const ActionTypes = {
   SET_TITLE: "SET_TITLE",
   SET_SEARCH_USERS: "SET_SEARCH_USERS",
   SET_QUIZ: "SET_QUIZ",
+  SET_USER_QUIZ_LIST: "SET_USER_QUIZ_LIST",
 
   //saga actions
   LOGIN: "LOGIN",
@@ -19,7 +20,8 @@ const ActionTypes = {
   SEARCH: "SEARCH",
   GET_QUIZ: "GET_QUIZ",
   CREATE_QUIZ: "CREATE_QUIZ",
-  ANSWER_QUIZ: "ANSWER_QUIZ"
+  ANSWER_QUIZ: "ANSWER_QUIZ",
+  LOAD_USER_QUIZ_LIST: "LOAD_USER_QUIZ_LIST",
 };
 
 export default ActionTypes;

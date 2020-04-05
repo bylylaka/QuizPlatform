@@ -2,6 +2,9 @@
 {
 	using Diplom.Domain.Exceptions;
 	using Diplom.Domain.Quiz.Models;
+	using Diplom.Domain.Team.Models;
+	using Microsoft.AspNetCore.Identity;
+	using Microsoft.EntityFrameworkCore;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -9,11 +12,15 @@
 
 	public class QuizService : IQuizService
 	{
+		private readonly UserManager<User> _userManager;
+
 		private readonly IQuizRepository _quizRepository;
 
 		public QuizService(
+			UserManager<User> userManager,
 			IQuizRepository quizRepository)
 		{
+			_userManager = userManager;
 			_quizRepository = quizRepository;
 		}
 
@@ -42,6 +49,17 @@
 			}
 
 			return quiz;
+		}
+
+		public async Task<List<Quiz>> GetUserQuizList(int userId)
+		{
+			var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
+			if (user == null)
+			{
+				throw new BadRequestException();
+			}
+
+			return await _quizRepository.FindUserQuizList(userId);
 		}
 
 		public async Task ProcessAnswers(List<Answer> answers)

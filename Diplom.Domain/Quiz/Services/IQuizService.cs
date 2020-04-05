@@ -10,6 +10,8 @@
 
 		Task<Quiz> GetQuizById(int id);
 
+		Task<List<Quiz>> GetUserQuizList(int userId);
+
 		Task<List<Question>> GetQuestionsByIdList(List<int> ids);
 
 		Task AddAnswers(List<Answer> answers);

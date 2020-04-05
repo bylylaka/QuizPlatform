@@ -32,6 +32,12 @@
 				.HasForeignKey(x => x.QuizId)
 				.OnDelete(DeleteBehavior.Cascade);
 
+			modelBuilder.Entity<Quiz>()
+				.HasOne<User>()
+				.WithMany(u => u.Quizes)
+				.HasForeignKey(x => x.UserId)
+				.OnDelete(DeleteBehavior.Cascade);
+
 			modelBuilder.Entity<Question>()
 				.HasMany(q => q.Options)
 				.WithOne()
@@ -42,6 +48,12 @@
 				.HasOne<Question>()
 				.WithMany()
 				.HasForeignKey(x => x.QuestionId)
+				.OnDelete(DeleteBehavior.Cascade);
+
+			modelBuilder.Entity<Answer>()
+				.HasOne<User>()
+				.WithMany(u => u.Answers)
+				.HasForeignKey(x => x.UserId)
 				.OnDelete(DeleteBehavior.Cascade);
 
 			modelBuilder.Entity<Answer>()

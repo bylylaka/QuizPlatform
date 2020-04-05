@@ -15,7 +15,6 @@ import CustomCheckboxField from "../../shared/Form/Fields/CustomCheckboxField";
 import customSelectField from "../../shared/Form/Fields/CustomSelectField";
 import Option from "../../../shared/models/quiz/Option";
 import CustomDateField from "../../shared/Form/Fields/CustomDateField";
-import CustomDropZoneField from "../../shared/Form/Fields/CustomDropZoneField";
 
 export const AnswerQuizForm: FunctionComponent<
   IAnswerQuizFormProps & IAnswerQuizFormCallProps

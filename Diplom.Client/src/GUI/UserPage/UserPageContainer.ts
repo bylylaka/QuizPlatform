@@ -7,14 +7,18 @@ import Actions from "../../logic/actions/actions";
 
 const mapStateToProps = (state: RootState): IUserPageProps => {
   return {
-    user: state.reducer.user
+    user: state.reducer.user,
+    isMyProfile:
+      (state.reducer.user && state.reducer.user.id) ===
+      (state.reducer.myProfileSimplified &&
+        state.reducer.myProfileSimplified.id),
   };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): IUserPageCallProps => {
   return {
     getUser: (id: number) => dispatch(Actions.getUser(id)),
-    setTitle: title => dispatch(Actions.setTitle(title))
+    setTitle: (title) => dispatch(Actions.setTitle(title)),
   };
 };
 

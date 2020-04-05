@@ -49,6 +49,10 @@ function* answerQuizWatcher() {
   yield takeLatest(ActionTypes.ANSWER_QUIZ, Sagas.answerQuizSaga);
 }
 
+function* loadUserQuizListWatcher() {
+  yield takeLatest(ActionTypes.LOAD_USER_QUIZ_LIST, Sagas.loadUserQuizListSaga);
+}
+
 export default function* watchers() {
   yield all([
     loginWatcher(),
@@ -61,6 +65,7 @@ export default function* watchers() {
     searchWatcher(),
     getQuizWatcher(),
     createQuizWatcher(),
-    answerQuizWatcher()
+    answerQuizWatcher(),
+    loadUserQuizListWatcher(),
   ]);
 }

@@ -43,5 +43,12 @@
 				.Where(q => q.Id == id)
 				.FirstOrDefaultAsync();
 		}
+
+		public async Task<List<Quiz>> FindUserQuizList(int userId)
+		{
+			return await _appContext.Quiz
+				.Where(q => q.UserId == userId)
+				.ToListAsync();
+		}
 	}
 }

@@ -11,48 +11,55 @@ const Actions = {
   setTitle(title: string) {
     return {
       type: ActionTypes.SET_TITLE,
-      title
+      title,
     };
   },
   setAppSnackbarMessage(message: AppSnackbarMessage) {
     return {
       type: ActionTypes.SET_APPSNACKBAR_MESSAGE,
-      message
+      message,
     };
   },
 
   setAuthorized(authorized: boolean) {
     return {
       type: ActionTypes.SET_AUTHORIZED,
-      authorized
+      authorized,
     };
   },
 
   setMyProfileSimplified(profile: ProfileSimplifiedViewModel) {
     return {
       type: ActionTypes.SET_MY_PROFILE_SIMPLIFIED,
-      profile
+      profile,
     };
   },
 
   setUser(user: User) {
     return {
       type: ActionTypes.SET_USER,
-      user
+      user,
     };
   },
 
   setSearchUsers(users: UserSimplifiedViewModel[]) {
     return {
       type: ActionTypes.SET_SEARCH_USERS,
-      users
+      users,
     };
   },
 
   setQuiz(quiz: Quiz) {
     return {
       type: ActionTypes.SET_QUIZ,
-      quiz
+      quiz,
+    };
+  },
+
+  setUserQuizList(quizList: Quiz[]) {
+    return {
+      type: ActionTypes.SET_USER_QUIZ_LIST,
+      quizList,
     };
   },
 
@@ -60,76 +67,83 @@ const Actions = {
   login(values: FormData) {
     return {
       type: ActionTypes.LOGIN,
-      values
+      values,
     };
   },
 
   register(values: FormData) {
     return {
       type: ActionTypes.REGISTER,
-      values
+      values,
     };
   },
 
   logout() {
     return {
-      type: ActionTypes.LOGOUT
+      type: ActionTypes.LOGOUT,
     };
   },
 
   getMyProfileSimplified() {
     return {
-      type: ActionTypes.GET_MY_PROFILE_SIMPLIFIED
+      type: ActionTypes.GET_MY_PROFILE_SIMPLIFIED,
     };
   },
 
   getUser(id: number) {
     return {
       type: ActionTypes.GET_USER,
-      id
+      id,
     };
   },
 
   checkAuthorized() {
     return {
-      type: ActionTypes.CHECK_AUTHORIZED
+      type: ActionTypes.CHECK_AUTHORIZED,
     };
   },
 
   updateProfile(profile: User) {
     return {
       type: ActionTypes.UPDATE_PROFILE,
-      profile
+      profile,
     };
   },
 
   search(string: string) {
     return {
       type: ActionTypes.SEARCH,
-      string
+      string,
     };
   },
 
   getQuiz(id: number) {
     return {
       type: ActionTypes.GET_QUIZ,
-      id
+      id,
     };
   },
 
   createQuiz(quiz: Quiz) {
     return {
       type: ActionTypes.CREATE_QUIZ,
-      quiz
+      quiz,
     };
   },
 
   answerQuiz(answers: Answer[]) {
     return {
       type: ActionTypes.ANSWER_QUIZ,
-      answers
+      answers,
     };
-  }
+  },
+
+  loadUserQuizList(userId: number) {
+    return {
+      type: ActionTypes.LOAD_USER_QUIZ_LIST,
+      userId,
+    };
+  },
 };
 
 export default Actions;

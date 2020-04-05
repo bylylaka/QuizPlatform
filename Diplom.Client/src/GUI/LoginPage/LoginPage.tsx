@@ -10,8 +10,9 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 
-export const LoginPage: FunctionComponent<ILoginPageProps &
-  ILoginPageCallProps> = props => {
+export const LoginPage: FunctionComponent<
+  ILoginPageProps & ILoginPageCallProps
+> = (props) => {
   const { login } = props;
 
   const classes = createStyles();

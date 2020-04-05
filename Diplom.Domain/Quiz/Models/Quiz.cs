@@ -8,6 +8,9 @@
 
 		public string Title { get; set; }
 
+		public int UserId { get; set; }
+
 		public List<Question> Questions { get; set; }
+
 	}
 }
