@@ -56,11 +56,11 @@ export const AnswerQuizForm: FunctionComponent<
       case QuestionType.Checkbox:
         return (
           <Field
-            required
             name={`${question.id}`}
             label={question.title}
             fullWidth
             component={CustomCheckboxField}
+            parse={(value: boolean) => Boolean(value)}
           />
         );
       case QuestionType.Date:

@@ -6,6 +6,7 @@ import ProfileSimplifiedViewModel from "../../shared/models/profile/ProfileSimpl
 import UserSimplified from "../../shared/models/user/UserSimplified";
 import Quiz from "../../shared/models/quiz/Quiz";
 import QuizSearch from "../../shared/models/quiz/QuizSearch";
+import StatisticQuiz from "../../shared/models/quiz/StatisticQuiz";
 
 export interface State {
   title: string;
@@ -17,6 +18,7 @@ export interface State {
   searchQuizes: QuizSearch[];
   quiz?: Quiz;
   userQuizList: Quiz[];
+  quizStatistic: StatisticQuiz;
 }
 
 const initialState: State = {
@@ -26,6 +28,7 @@ const initialState: State = {
   searchUsers: [],
   searchQuizes: [],
   userQuizList: [],
+  quizStatistic: {} as any,
 };
 
 export const Reducer = (state = initialState, action: AnyAction): State => {
@@ -75,6 +78,11 @@ export const Reducer = (state = initialState, action: AnyAction): State => {
       return {
         ...state,
         userQuizList: action.quizList,
+      };
+    case ActionTypes.SET_QUIZ_STATISTIC:
+      return {
+        ...state,
+        quizStatistic: action.statistic,
       };
     default:
       return state;

@@ -12,6 +12,7 @@ import Quiz from "../../../shared/models/quiz/Quiz";
 import QuizSearch from "../../../shared/models/quiz/QuizSearch";
 import customHistory from "../../../GUI/routes/CustomHistory";
 import Selectors from "../selectors/selectors";
+import StatisticQuiz from "../../../shared/models/quiz/StatisticQuiz";
 
 export const Sagas = {
   *loginSaga(action: ReturnType<typeof Actions.login>) {
@@ -131,6 +132,7 @@ export const Sagas = {
       "success"
     );
     yield put(Actions.setAppSnackbarMessage(snackbarMessage));
+    customHistory.goBack();
   },
 
   *checkAuthorizedSaga(action: ReturnType<typeof Actions.checkAuthorized>) {
@@ -144,5 +146,13 @@ export const Sagas = {
       action.userId
     );
     yield put(Actions.setUserQuizList(response.data));
+  },
+
+  *loadQuizStatisticSaga(action: ReturnType<typeof Actions.loadQuizStatistic>) {
+    const response: AxiosResponse<StatisticQuiz> = yield call(
+      Apis.loadQuizStatistic,
+      action.quizId
+    );
+    yield put(Actions.setQuizStatistic(response.data));
   },
 };

@@ -1,4 +1,6 @@
-﻿namespace Diplom.Domain.Quiz.Models
+﻿using Diplom.Domain.Team.Models;
+
+namespace Diplom.Domain.Quiz.Models
 {
 	public class Answer
 	{
@@ -11,5 +13,7 @@
 		public object Value { get; set; }
 
 		public int UserId { get; set; }
+
+		public User User { get; set; }
 	}
 }

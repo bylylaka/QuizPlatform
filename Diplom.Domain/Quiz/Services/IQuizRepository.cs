@@ -7,6 +7,10 @@
 
 	public interface IQuizRepository
 	{
+		Task<Quiz> GetQuiz(int id);
+
+		Task<List<Answer>> FindQuizAnswers(int quizId);
+
 		Task AddQuiz(Quiz quiz);
 
 		Task<Quiz> FindQuizById(int id);

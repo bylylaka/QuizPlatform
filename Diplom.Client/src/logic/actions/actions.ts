@@ -6,6 +6,8 @@ import UserSimplified from "../../shared/models/user/UserSimplified";
 import Quiz from "../../shared/models/quiz/Quiz";
 import Answer from "../../shared/models/quiz/Answer";
 import QuizSearch from "../../shared/models/quiz/QuizSearch";
+import StatisticQuestion from "../../shared/models/quiz/StatisticQuestion";
+import StatisticQuiz from "../../shared/models/quiz/StatisticQuiz";
 
 const Actions = {
   //store actions
@@ -68,6 +70,13 @@ const Actions = {
     return {
       type: ActionTypes.SET_USER_QUIZ_LIST,
       quizList,
+    };
+  },
+
+  setQuizStatistic(statistic: StatisticQuiz) {
+    return {
+      type: ActionTypes.SET_QUIZ_STATISTIC,
+      statistic,
     };
   },
 
@@ -150,6 +159,13 @@ const Actions = {
     return {
       type: ActionTypes.LOAD_USER_QUIZ_LIST,
       userId,
+    };
+  },
+
+  loadQuizStatistic(quizId: number) {
+    return {
+      type: ActionTypes.LOAD_QUIZ_STATISTIC,
+      quizId,
     };
   },
 };

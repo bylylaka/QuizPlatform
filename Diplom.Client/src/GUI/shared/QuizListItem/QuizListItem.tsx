@@ -20,11 +20,11 @@ export const QuizListItem: React.FunctionComponent<
   const history = useHistory();
 
   const answerQuiz = () => {
-    history.push(`/anwserQuiz/${item.quizId}`);
+    history.push(`/answerQuiz/${item.quizId}`);
   };
 
   const retQuizResults = () => {
-    history.push(`/quizResults/${item.quizId}`);
+    history.push(`/quizStatistic/${item.quizId}`);
   };
 
   const onUserNameClick = () => {

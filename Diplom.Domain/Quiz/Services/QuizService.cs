@@ -100,5 +100,17 @@
 				}
 			}
 		}
+
+		public async Task<List<Answer>> GetQuizAnswers(int quizId)
+		{
+			var quiz = await _quizRepository.FindQuizById(quizId);
+
+			if (quiz == null)
+			{
+				throw new BadRequestException();
+			}
+
+			return await _quizRepository.FindQuizAnswers(quizId);
+		}
 	}
 }

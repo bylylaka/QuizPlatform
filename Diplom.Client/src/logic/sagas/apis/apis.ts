@@ -43,6 +43,9 @@ export const Apis = {
   getUserQuizList(userId: number) {
     return Axios.get(`api/quiz/getUserQuizList/${userId}`);
   },
+  loadQuizStatistic(quizId: number) {
+    return Axios.get(`api/quiz/statistic/${quizId}`);
+  },
 };
 
 export default Apis;

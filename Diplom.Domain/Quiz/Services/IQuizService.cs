@@ -1,6 +1,7 @@
 ﻿namespace Diplom.Domain.Quiz.Services
 {
 	using Diplom.Domain.Quiz.Models;
+	using Diplom.Domain.Team.Models;
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
 
@@ -11,6 +12,8 @@
 		Task<Quiz> GetQuizById(int id);
 
 		Task<List<Quiz>> GetUserQuizList(int userId);
+
+		Task<List<Answer>> GetQuizAnswers(int quizId);
 
 		Task<List<Question>> GetQuestionsByIdList(List<int> ids);
 

@@ -2,10 +2,12 @@
 {
 	using Diplom.Domain.Quiz.Models;
 	using Diplom.Domain.Quiz.Services;
-	using System.Threading.Tasks;
-	using System.Linq;
 	using Microsoft.EntityFrameworkCore;
-	using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using System;
+    using System.Collections.Generic;
+	using System.Linq;
+	using System.Threading.Tasks;
 
 	public class QuizRepository : IQuizRepository
 	{
@@ -55,6 +57,20 @@
 		{
 			return await _appContext.Quiz
 				.Where(q => q.UserId == userId)
+				.ToListAsync();
+		}
+
+		public async Task<Quiz> GetQuiz(int id)
+		{
+			return await _appContext.Quiz
+				.FirstOrDefaultAsync(q => q.Id == id);
+		}
+
+		public async Task<List<Answer>> FindQuizAnswers(int quizId)
+		{
+			return await _appContext.Answers
+				.Include(a => a.User)
+				.Where(a => a.QuizId == quizId)
 				.ToListAsync();
 		}
 	}

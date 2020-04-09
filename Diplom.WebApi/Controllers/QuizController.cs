@@ -1,13 +1,14 @@
 ﻿namespace Diplom.WebApi.Controllers
 {
 	using AutoMapper;
-    using Diplom.Domain.Files.Services;
-    using Diplom.Domain.Quiz.Models;
+	using Diplom.Domain.Files.Services;
+	using Diplom.Domain.Quiz.Models;
 	using Diplom.Domain.Quiz.Services;
 	using Diplom.Domain.Team.Models;
 	using Diplom.WebApi.Models.Quiz;
+	using Diplom.WebApi.Models.User;
 	using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Http;
+	using Microsoft.AspNetCore.Http;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.AspNetCore.Mvc;
 	using Newtonsoft.Json;
@@ -73,7 +74,7 @@
 
 			var quizesModels = quizes.Select(quiz => _mapper.Map<QuizSearchViewModel>(quiz));
 
-			return Ok(quizesModels	);
+			return Ok(quizesModels);
 		}
 
 		[Authorize]
@@ -106,6 +107,35 @@
 			await _quizService.AddAnswers(answers);
 
 			return Ok();
+		}
+
+		[Authorize]
+		[HttpGet]
+		[Route("statistic/{id}")]
+		public async Task<IActionResult> GetStatistic([FromRoute] int id)
+		{
+			var quiz = await _quizService.GetQuizById(id);
+			var quizAnswers = await _quizService.GetQuizAnswers(id);
+
+			var quizStatistic = new StatisticQuizViewModel()
+			{
+				Title = quiz.Title,
+				Questions = quiz.Questions.Select(q =>
+				{
+					var questionAnswers = quizAnswers.Where(a => a.QuestionId == q.Id);
+
+					return new StatisticQuestionViewModel()
+					{
+						Title = quiz.Title,
+						Type = q.Type,
+						Answers = questionAnswers.Select(a => _mapper.Map<StatisticAnswerViewModel>(a))
+						.ToList()
+					};
+				})
+				.ToList()
+			};
+
+			return Ok(quizStatistic);
 		}
 	}
 }

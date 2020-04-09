@@ -53,6 +53,13 @@ function* loadUserQuizListWatcher() {
   yield takeLatest(ActionTypes.LOAD_USER_QUIZ_LIST, Sagas.loadUserQuizListSaga);
 }
 
+function* loadQuizStatisticWatcher() {
+  yield takeLatest(
+    ActionTypes.LOAD_QUIZ_STATISTIC,
+    Sagas.loadQuizStatisticSaga
+  );
+}
+
 export default function* watchers() {
   yield all([
     loginWatcher(),
@@ -67,5 +74,6 @@ export default function* watchers() {
     createQuizWatcher(),
     answerQuizWatcher(),
     loadUserQuizListWatcher(),
+    loadQuizStatisticWatcher(),
   ]);
 }

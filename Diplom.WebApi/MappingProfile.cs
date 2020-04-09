@@ -6,10 +6,10 @@
 	using Diplom.WebApi.Models.Profile;
 	using Diplom.WebApi.Models.Quiz;
 	using Diplom.WebApi.Models.User;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
+	using Newtonsoft.Json;
+	using Newtonsoft.Json.Linq;
 
-    public class MappingProfile : Profile
+	public class MappingProfile : Profile
 	{
 		public MappingProfile()
 		{
@@ -47,6 +47,9 @@
 			CreateMap<AnswerViewModel, Answer>()
 				.ForMember(answer => answer.Value,
 					opt => opt.MapFrom(model => JsonConvert.DeserializeObject(model.Value)))
+				.ReverseMap();
+
+			CreateMap<Answer, StatisticAnswerViewModel>()
 				.ReverseMap();
 		}
 	}

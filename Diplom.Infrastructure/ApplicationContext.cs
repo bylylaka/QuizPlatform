@@ -5,6 +5,8 @@
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore;
+	using Newtonsoft.Json;
+	using Newtonsoft.Json.Linq;
 
 	public class ApplicationContext : IdentityDbContext<User, Role, int, IdentityUserClaim<int>, IdentityUserRole<int>,
 		IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>
@@ -51,7 +53,7 @@
 				.OnDelete(DeleteBehavior.Cascade);
 
 			modelBuilder.Entity<Answer>()
-				.HasOne<User>()
+				.HasOne(a => a.User)
 				.WithMany(u => u.Answers)
 				.HasForeignKey(x => x.UserId)
 				.OnDelete(DeleteBehavior.Cascade);
@@ -64,7 +66,9 @@
 
 			modelBuilder.Entity<Answer>()
 				.Property(a => a.Value)
-				.HasColumnType("jsonb");
+				.HasConversion(
+					v => JsonConvert.SerializeObject(v),
+					v => JsonConvert.DeserializeObject(v));
 		}
 	}
 }
