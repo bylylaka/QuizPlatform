@@ -9,9 +9,9 @@ import { AppSnackbarMessage } from "../../../GUI/shared/AppSnackbar/props";
 import ProfileSimplifiedViewModel from "../../../shared/models/profile/ProfileSimplifiedViewModel";
 import UserSimplified from "../../../shared/models/user/UserSimplified";
 import Quiz from "../../../shared/models/quiz/Quiz";
-import ActionTypes from "../../actionTypes/actionTypes";
-import { createBrowserHistory } from "history";
 import QuizSearch from "../../../shared/models/quiz/QuizSearch";
+import customHistory from "../../../GUI/routes/CustomHistory";
+import Selectors from "../selectors/selectors";
 
 export const Sagas = {
   *loginSaga(action: ReturnType<typeof Actions.login>) {
@@ -117,6 +117,11 @@ export const Sagas = {
 
     let message = new AppSnackbarMessage("Опрос успешно создан!", "success");
     yield put(Actions.setAppSnackbarMessage(message));
+
+    const profile: ProfileSimplifiedViewModel = yield select(
+      Selectors.myProfileSimplified
+    );
+    customHistory.push(`/user/${profile.id}`);
   },
 
   *answerQuizSaga(action: ReturnType<typeof Actions.answerQuiz>) {

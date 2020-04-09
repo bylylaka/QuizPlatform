@@ -8,6 +8,7 @@ import Avatar from "@material-ui/core/Avatar";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Grid from "@material-ui/core/Grid";
 
 export const QuizListItem: React.FunctionComponent<
   IQuizListItemProps & IQuizListItemCallProps
@@ -20,6 +21,10 @@ export const QuizListItem: React.FunctionComponent<
 
   const answerQuiz = () => {
     history.push(`/anwserQuiz/${item.quizId}`);
+  };
+
+  const retQuizResults = () => {
+    history.push(`/quizResults/${item.quizId}`);
   };
 
   const onUserNameClick = () => {
@@ -46,13 +51,22 @@ export const QuizListItem: React.FunctionComponent<
           />
         </ListItemAvatar>
         <ListItemText primary={item.title} secondary={userLink()} />
-        <Typography
-          color="primary"
-          onClick={answerQuiz}
-          className={classes.link}
-        >
-          Принять участие
-        </Typography>
+        <Grid>
+          <Typography
+            color="primary"
+            onClick={answerQuiz}
+            className={classes.link}
+          >
+            Принять участие
+          </Typography>
+          <Typography
+            color="primary"
+            onClick={retQuizResults}
+            className={classes.link}
+          >
+            Смотреть результаты
+          </Typography>
+        </Grid>
       </ListItem>
     </Card>
   );
