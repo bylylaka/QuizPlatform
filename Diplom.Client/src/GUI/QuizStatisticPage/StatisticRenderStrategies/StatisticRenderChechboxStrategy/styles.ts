@@ -1,13 +1,13 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 const createStyles = makeStyles((theme) => ({
-  questionsBlock: {
-    marginTop: theme.spacing(2),
+  inline: {
+    display: "inline-block",
   },
-  card: {
-    flexGrow: 1,
-    padding: theme.spacing(2),
-    marginBottom: theme.spacing(3),
+  answersBlock: {},
+  cardContent: {},
+  answerCountBlock: {
+    marginLeft: theme.spacing(1),
   },
 }));
 

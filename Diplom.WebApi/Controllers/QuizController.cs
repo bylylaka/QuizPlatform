@@ -126,7 +126,7 @@
 
 					return new StatisticQuestionViewModel()
 					{
-						Title = quiz.Title,
+						Title = q.Title,
 						Type = q.Type,
 						Answers = questionAnswers.Select(a => _mapper.Map<StatisticAnswerViewModel>(a))
 						.ToList()
