@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TextField, { BaseTextFieldProps } from "@material-ui/core/TextField";
 import { WrappedFieldProps } from "redux-form";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -16,10 +16,16 @@ const CustomCheckboxField = (props: ICheckboxFieldProps) => {
 
   const classNames = createStyles();
 
+  useEffect(() => {
+    if (!meta.initial) {
+      input.onChange(false);
+    }
+  }, []);
+
   return (
     <FormControlLabel
       classes={{
-        disabled: classNames.disabled
+        disabled: classNames.disabled,
       }}
       control={
         <Checkbox

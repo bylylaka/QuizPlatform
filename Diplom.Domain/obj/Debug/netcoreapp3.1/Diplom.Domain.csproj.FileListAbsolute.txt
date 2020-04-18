@@ -14,3 +14,12 @@ D:\Diplom\Diplom.Domain\obj\Debug\netcoreapp3.1\Diplom.Domain.AssemblyInfoInputs
 D:\Diplom\Diplom.Domain\obj\Debug\netcoreapp3.1\Diplom.Domain.AssemblyInfo.cs
 D:\Diplom\Diplom.Domain\obj\Debug\netcoreapp3.1\Diplom.Domain.dll
 D:\Diplom\Diplom.Domain\obj\Debug\netcoreapp3.1\Diplom.Domain.pdb
+C:\Users\marslanov\Documents\Diplom\Diplom.Domain\bin\Debug\netcoreapp3.1\Diplom.Domain.deps.json
+C:\Users\marslanov\Documents\Diplom\Diplom.Domain\bin\Debug\netcoreapp3.1\Diplom.Domain.dll
+C:\Users\marslanov\Documents\Diplom\Diplom.Domain\bin\Debug\netcoreapp3.1\Diplom.Domain.pdb
+C:\Users\marslanov\Documents\Diplom\Diplom.Domain\obj\Debug\netcoreapp3.1\Diplom.Domain.csprojAssemblyReference.cache
+C:\Users\marslanov\Documents\Diplom\Diplom.Domain\obj\Debug\netcoreapp3.1\Diplom.Domain.csproj.CoreCompileInputs.cache
+C:\Users\marslanov\Documents\Diplom\Diplom.Domain\obj\Debug\netcoreapp3.1\Diplom.Domain.AssemblyInfoInputs.cache
+C:\Users\marslanov\Documents\Diplom\Diplom.Domain\obj\Debug\netcoreapp3.1\Diplom.Domain.AssemblyInfo.cs
+C:\Users\marslanov\Documents\Diplom\Diplom.Domain\obj\Debug\netcoreapp3.1\Diplom.Domain.dll
+C:\Users\marslanov\Documents\Diplom\Diplom.Domain\obj\Debug\netcoreapp3.1\Diplom.Domain.pdb

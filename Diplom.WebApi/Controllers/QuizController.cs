@@ -116,6 +116,7 @@
 		{
 			var quiz = await _quizService.GetQuizById(id);
 			var quizAnswers = await _quizService.GetQuizAnswers(id);
+			var quizOptions = await _quizService.GetQuizOptions(id);
 
 			var quizStatistic = new StatisticQuizViewModel()
 			{
@@ -129,6 +130,8 @@
 						Title = q.Title,
 						Type = q.Type,
 						Answers = questionAnswers.Select(a => _mapper.Map<StatisticAnswerViewModel>(a))
+						.ToList(),
+						Options = quizOptions.Select(o => _mapper.Map<OptionViewModel>(o))
 						.ToList()
 					};
 				})

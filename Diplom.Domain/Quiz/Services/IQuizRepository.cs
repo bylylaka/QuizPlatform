@@ -11,6 +11,8 @@
 
 		Task<List<Answer>> FindQuizAnswers(int quizId);
 
+		Task<List<Option>> FindQuizOptions(int quizId);
+
 		Task AddQuiz(Quiz quiz);
 
 		Task<Quiz> FindQuizById(int id);

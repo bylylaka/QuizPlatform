@@ -17,6 +17,7 @@ import StatisticRenderTextStrategy from "./StatisticRenderStrategies/StatisticRe
 import StatisticRenderNumberStrategy from "./StatisticRenderStrategies/StatisticRenderNumberStrategy/StatisticRenderNumberStrategy";
 import StatisticRenderDateStrategy from "./StatisticRenderStrategies/StatisticRenderDateStrategy/StatisticRenderDateStrategy";
 import StatisticRenderCheckboxStrategy from "./StatisticRenderStrategies/StatisticRenderChechboxStrategy/StatisticRenderNumberStrategy";
+import StatisticRenderSelectStrategy from "./StatisticRenderStrategies/StatisticRenderSelectStrategy/StatisticRenderSelectStrategy";
 
 export const QuizStatisticsPage: FunctionComponent<
   IQuizStatisticsPageProps & IQuizStatisticsPageCallProps
@@ -47,7 +48,7 @@ export const QuizStatisticsPage: FunctionComponent<
       case QuestionType.Number:
         return <StatisticRenderNumberStrategy question={question} />;
       case QuestionType.Select:
-        return <p>{question.title}</p>;
+        return <StatisticRenderSelectStrategy question={question} />;
       case QuestionType.Checkbox:
         return <StatisticRenderCheckboxStrategy question={question} />;
       case QuestionType.Date:

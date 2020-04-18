@@ -10,5 +10,7 @@
 		public QuestionType Type { get; set; }
 
 		public List<StatisticAnswerViewModel> Answers { get; set; }
+
+		public List<OptionViewModel> Options { get; set; }
 	}
 }

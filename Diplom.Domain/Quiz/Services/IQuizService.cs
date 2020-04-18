@@ -15,6 +15,8 @@
 
 		Task<List<Answer>> GetQuizAnswers(int quizId);
 
+		Task<List<Option>> GetQuizOptions(int quizId);
+
 		Task<List<Question>> GetQuestionsByIdList(List<int> ids);
 
 		Task<List<Quiz>> GetQuizesBySearchWord(string word);

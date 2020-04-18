@@ -1,26 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Diplom\\Diplom.Infrastructure\\Diplom.Infrastructure.csproj": {}
+    "C:\\Users\\marslanov\\Documents\\Diplom\\Diplom.Infrastructure\\Diplom.Infrastructure.csproj": {}
   },
   "projects": {
-    "D:\\Diplom\\Diplom.Domain\\Diplom.Domain.csproj": {
+    "C:\\Users\\marslanov\\Documents\\Diplom\\Diplom.Domain\\Diplom.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Diplom\\Diplom.Domain\\Diplom.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\marslanov\\Documents\\Diplom\\Diplom.Domain\\Diplom.Domain.csproj",
         "projectName": "Diplom.Domain",
-        "projectPath": "D:\\Diplom\\Diplom.Domain\\Diplom.Domain.csproj",
-        "packagesPath": "C:\\Users\\Максим\\.nuget\\packages\\",
-        "outputPath": "D:\\Diplom\\Diplom.Domain\\obj\\",
+        "projectPath": "C:\\Users\\marslanov\\Documents\\Diplom\\Diplom.Domain\\Diplom.Domain.csproj",
+        "packagesPath": "C:\\Users\\marslanov\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\marslanov\\Documents\\Diplom\\Diplom.Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Максим\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\marslanov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -82,23 +77,18 @@
         }
       }
     },
-    "D:\\Diplom\\Diplom.Infrastructure\\Diplom.Infrastructure.csproj": {
+    "C:\\Users\\marslanov\\Documents\\Diplom\\Diplom.Infrastructure\\Diplom.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Diplom\\Diplom.Infrastructure\\Diplom.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\marslanov\\Documents\\Diplom\\Diplom.Infrastructure\\Diplom.Infrastructure.csproj",
         "projectName": "Diplom.Infrastructure",
-        "projectPath": "D:\\Diplom\\Diplom.Infrastructure\\Diplom.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\Максим\\.nuget\\packages\\",
-        "outputPath": "D:\\Diplom\\Diplom.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\marslanov\\Documents\\Diplom\\Diplom.Infrastructure\\Diplom.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\marslanov\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\marslanov\\Documents\\Diplom\\Diplom.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Максим\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\marslanov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -110,8 +100,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\Diplom\\Diplom.Domain\\Diplom.Domain.csproj": {
-                "projectPath": "D:\\Diplom\\Diplom.Domain\\Diplom.Domain.csproj"
+              "C:\\Users\\marslanov\\Documents\\Diplom\\Diplom.Domain\\Diplom.Domain.csproj": {
+                "projectPath": "C:\\Users\\marslanov\\Documents\\Diplom\\Diplom.Domain\\Diplom.Domain.csproj"
               }
             }
           }

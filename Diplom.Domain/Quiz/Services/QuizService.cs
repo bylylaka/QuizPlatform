@@ -112,5 +112,17 @@
 
 			return await _quizRepository.FindQuizAnswers(quizId);
 		}
+
+		public async Task<List<Option>> GetQuizOptions(int quizId)
+		{
+			var quiz = await _quizRepository.FindQuizById(quizId);
+
+			if (quiz == null)
+			{
+				throw new BadRequestException();
+			}
+
+			return await _quizRepository.FindQuizOptions(quizId);
+		}
 	}
 }

@@ -73,5 +73,15 @@
 				.Where(a => a.QuizId == quizId)
 				.ToListAsync();
 		}
+
+		public async Task<List<Option>> FindQuizOptions(int quizId)
+		{
+			return await _appContext.Quiz
+				.Include(q => q.Questions)
+				.ThenInclude(q => q.Options)
+				.SelectMany(q => q.Questions)
+				.SelectMany(q => q.Options)
+				.ToListAsync();
+		}
 	}
 }
