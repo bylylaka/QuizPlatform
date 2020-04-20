@@ -89,7 +89,6 @@
 
 			currentProfile.Email = profile.Email;
 			currentProfile.UserName = profile.Name;
-			currentProfile.Age = profile.Age;
 			currentProfile.Gender = profile.Gender;
 			currentProfile.Avatar = filePath;
 			currentProfile.ChildsCount = profile.ChildsCount;

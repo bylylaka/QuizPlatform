@@ -27,18 +27,14 @@
 
 		private readonly IQuizService _quizService;
 
-		private readonly IFileService _fileService;
-
 		public QuizController(
 			IMapper mapper,
 			UserManager<User> userManager,
-			IQuizService quizService,
-			IFileService fileService)
+			IQuizService quizService)
 		{
 			_mapper = mapper;
 			_userManager = userManager;
 			_quizService = quizService;
-			_fileService = fileService;
 		}
 
 		[Authorize]
@@ -103,7 +99,6 @@
 				.ToList();
 			answers.ForEach(a => a.UserId = user.Id);
 
-			await _quizService.ProcessAnswers(answers);
 			await _quizService.AddAnswers(answers);
 
 			return Ok();

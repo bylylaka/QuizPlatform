@@ -7,8 +7,6 @@
 
 	public class User : IdentityUser<int>
 	{
-		public int Age { get; set; }
-
 		public Gender? Gender { get; set; }
 
 		public DateTime? Birth { get; set; }

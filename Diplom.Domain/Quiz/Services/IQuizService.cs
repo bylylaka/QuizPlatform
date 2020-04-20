@@ -22,7 +22,5 @@
 		Task<List<Quiz>> GetQuizesBySearchWord(string word);
 
 		Task AddAnswers(List<Answer> answers);
-
-		Task ProcessAnswers(List<Answer> answers);
 	}
 }

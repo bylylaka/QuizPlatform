@@ -6,7 +6,6 @@ class User {
   id?: number;
   name?: string;
   email?: string;
-  age?: number;
   gender?: Gender;
   avatar?: File | string;
   birth?: Date;

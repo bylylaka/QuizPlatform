@@ -73,6 +73,8 @@ export const QuizStatisticsPage: FunctionComponent<
     });
   };
 
+  console.log(statistic)
+
   return (
     <Container component="main" maxWidth="lg">
       <Grid className={classes.questionsBlock}>{renderQuestions()}</Grid>

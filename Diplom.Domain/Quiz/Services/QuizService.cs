@@ -26,6 +26,7 @@
 
 		public async Task AddAnswers(List<Answer> answers)
 		{
+			await ProcessAnswers(answers);
 			await _quizRepository.AddAnswers(answers);
 		}
 
@@ -65,14 +66,15 @@
 		public async Task<List<Quiz>> GetQuizesBySearchWord(string word)
 		{
 			var quizesAsQuery = _quizRepository.FindQuizesTrackable();
+
 			var filteredQuizes = await quizesAsQuery
-				.Where(q => q.Title.Contains(word))
+				.Where(q => q.Title.ToLower().Contains(word.ToLower()))
 				.ToListAsync();
 
 			return filteredQuizes;
 		}
 
-		public async Task ProcessAnswers(List<Answer> answers)
+		private async Task ProcessAnswers(List<Answer> answers)
 		{
 			var questionsIds = answers
 				.Select(answer => answer.QuestionId)
