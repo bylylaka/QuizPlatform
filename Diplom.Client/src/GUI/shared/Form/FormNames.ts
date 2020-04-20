@@ -32,6 +32,12 @@ const FormNames = {
   },
   AnswerQuizForm: {
     name: "answerQuizForm"
+  },
+  filterAnswers: {
+    name: "filterAnswers",
+    fieldNames: {
+      country: "country"
+    }
   }
 };
 

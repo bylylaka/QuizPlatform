@@ -7,4 +7,5 @@ export interface IQuizStatisticsPageProps {
 export interface IQuizStatisticsPageCallProps {
   setTitle: (title: string) => void;
   loadStatistic: (quizId: number) => void;
+  setActiveHeaderComponents: (components: JSX.Element[]) => void;
 }

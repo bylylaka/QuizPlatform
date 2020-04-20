@@ -11,6 +11,9 @@ const createStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.leavingScreen
     })
   },
+  title: {
+    flexGrow: 1
+  },
   drawer: {
     width: 240,
     flexShrink: 0,

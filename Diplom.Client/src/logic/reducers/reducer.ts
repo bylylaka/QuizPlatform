@@ -10,6 +10,7 @@ import StatisticQuiz from "../../shared/models/quiz/StatisticQuiz";
 
 export interface State {
   title: string;
+  activeHeaderComponents: JSX.Element[];
   appSnackbarMessage: AppSnackbarMessage;
   authorized: boolean | undefined;
   myProfileSimplified?: ProfileSimplifiedViewModel;
@@ -23,6 +24,7 @@ export interface State {
 
 const initialState: State = {
   title: "",
+  activeHeaderComponents: [],
   appSnackbarMessage: {} as AppSnackbarMessage,
   authorized: undefined,
   searchUsers: [],
@@ -38,6 +40,11 @@ export const Reducer = (state = initialState, action: AnyAction): State => {
         ...state,
         title: action.title,
       };
+    case ActionTypes.SET_ACTIVE_HEADER_COMPONENTS:
+      return {
+        ...state,
+        activeHeaderComponents: action.components
+      }
     case ActionTypes.SET_APPSNACKBAR_MESSAGE:
       return {
         ...state,

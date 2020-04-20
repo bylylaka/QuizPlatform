@@ -17,11 +17,14 @@ import createStyles from "./styles";
 import { IAppLayoutProps, IAppLayoutCallProps } from "./props";
 import Grid from "@material-ui/core/Grid";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
-import { Link, BrowserRouter as Router, useHistory } from "react-router-dom";
+import { BrowserRouter, useHistory } from "react-router-dom";
+
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const AppLayout: FunctionComponent<IAppLayoutProps &
   IAppLayoutCallProps> = props => {
-  const { title, logout, loadMyProfileSimplified, profileId } = props;
+  const { title, activeHeaderComponents, logout, loadMyProfileSimplified, profileId } = props;
 
   const classes = createStyles();
   let history = useHistory();
@@ -47,9 +50,10 @@ const AppLayout: FunctionComponent<IAppLayoutProps &
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <Typography variant="h6" noWrap>
+          <Typography variant="h6" noWrap className={classes.title}>
             {title}
           </Typography>
+          {activeHeaderComponents}
         </Toolbar>
       </AppBar>
       <Drawer

@@ -17,6 +17,12 @@ const Actions = {
       title,
     };
   },
+  setActiveHederComponents(components: JSX.Element[]){
+    return {
+      type: ActionTypes.SET_ACTIVE_HEADER_COMPONENTS,
+      components
+    }
+  },
   setAppSnackbarMessage(message: AppSnackbarMessage) {
     return {
       type: ActionTypes.SET_APPSNACKBAR_MESSAGE,

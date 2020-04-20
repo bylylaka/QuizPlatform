@@ -8,7 +8,7 @@ import createStyles from "./styles";
 import { Field, reduxForm, InjectedFormProps } from "redux-form";
 import { IUserInfoFormProps, IUserInfoFormCallProps } from "./props";
 import CustomTextField from "../../shared/Form/Fields/CustomTextField";
-import CutomSelectField from "../../shared/Form/Fields/CustomSelectField";
+import CustomSelectField from "../../shared/Form/Fields/CustomSelectField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import FormNames from "../../shared/Form/FormNames";
@@ -128,18 +128,10 @@ const UserInfoForm: FunctionComponent<IUserInfoFormProps &
           }}
         >
           <Field
-            name="age"
-            label="Возраст"
-            component={CustomTextField}
-            disabled={!canEdit}
-            type="number"
-            parse={(value: string) => (value ? Number(value) : null)}
-          />
-          <Field
             name="gender"
             label="Пол"
             disabled={!canEdit}
-            component={CutomSelectField}
+            component={CustomSelectField}
             parse={(value: string) => (value ? Number(value) : null)}
           >
             <option value={Gender.Male}>М</option>
@@ -149,7 +141,7 @@ const UserInfoForm: FunctionComponent<IUserInfoFormProps &
             name="country"
             label="Страна"
             disabled={!canEdit}
-            component={CutomSelectField}
+            component={CustomSelectField}
           >
             <option>Выберите страну</option>
             {getCountriesOptions()}
@@ -159,7 +151,7 @@ const UserInfoForm: FunctionComponent<IUserInfoFormProps &
               name="city"
               disabled={!canEdit}
               label="Город"
-              component={CutomSelectField}
+              component={CustomSelectField}
             >
               <option>Выберите город</option>
               {getCitiesOptions()}
@@ -178,7 +170,7 @@ const UserInfoForm: FunctionComponent<IUserInfoFormProps &
             name="education"
             label="Образование"
             disabled={!canEdit}
-            component={CutomSelectField}
+            component={CustomSelectField}
           >
             <option>Выберите ваш уровень образования</option>
             {getEdicationOptions()}
@@ -187,7 +179,7 @@ const UserInfoForm: FunctionComponent<IUserInfoFormProps &
             name="maritalStatus"
             disabled={!canEdit}
             label="Семейное положение"
-            component={CutomSelectField}
+            component={CustomSelectField}
           >
             <option>Выберите ваше семейное положение</option>
             {getMaritalStatusOptions()}

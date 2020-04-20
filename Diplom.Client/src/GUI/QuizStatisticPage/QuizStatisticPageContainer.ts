@@ -19,6 +19,7 @@ const mapDispatchToProps = (
 ): IQuizStatisticsPageCallProps => {
   return {
     setTitle: (title: string) => dispatch(Actions.setTitle(title)),
+    setActiveHeaderComponents: (components: JSX.Element[]) => dispatch(Actions.setActiveHederComponents(components)),
     loadStatistic: (quizId: number) =>
       dispatch(Actions.loadQuizStatistic(quizId)),
   };

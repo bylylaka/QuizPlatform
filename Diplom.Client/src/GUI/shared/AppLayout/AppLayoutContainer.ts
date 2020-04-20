@@ -4,12 +4,14 @@ import { RootState } from "../../../logic/reducers/rootReducer";
 import AppLayout from "./AppLayout";
 import Actions from "../../../logic/actions/actions";
 import { Dispatch } from "redux";
+import Selectors from "../../../logic/sagas/selectors/selectors";
 
 const mapStateToProps = (state: RootState): IAppLayoutProps => {
   return {
     profileId:
       state.reducer.myProfileSimplified && state.reducer.myProfileSimplified.id,
-    title: state.reducer.title
+    title: state.reducer.title,
+    activeHeaderComponents: Selectors.activeHeaderComponents(state)
   };
 };
 
