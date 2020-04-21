@@ -16,6 +16,7 @@ import Education from "../../../../shared/models/user/Education";
 import MaritialStatus from "../../../../shared/models/user/MaritalStatus";
 import CustomCheckboxField from "../../../shared/Form/Fields/CustomCheckboxField";
 import ChildsCount from "../../../../shared/models/user/ChildsCount";
+import ActivationFieldContainer from "../../../shared/Form/Fields/ActivationField/ActivationFieldContainer";
 
 export const QuizStatisticsFilterForm: FunctionComponent<
   IQuizStatisticsFilterFormProps &
@@ -154,7 +155,19 @@ export const QuizStatisticsFilterForm: FunctionComponent<
           {getChildsCountOptions()}
         </Field>
         <Field name="work" label="Работает" component={CustomCheckboxField} />
-        <Field name="study" label="Учится" component={CustomCheckboxField} />
+
+
+
+
+
+        <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
+          <Field name="study" label="Учится" component={CustomCheckboxField} />
+        </ActivationFieldContainer>
+
+
+
+
+
         <Field
           name="salary"
           label="Ежемесячная зарплата"

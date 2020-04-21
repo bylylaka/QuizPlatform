@@ -22,8 +22,7 @@ const createStyles = makeStyles((theme) => ({
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginRight: -300,
+    })
   }
 }));
 

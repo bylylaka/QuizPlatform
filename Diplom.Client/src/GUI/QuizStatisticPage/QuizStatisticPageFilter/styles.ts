@@ -5,11 +5,11 @@ const createStyles = makeStyles((theme) => ({
     padding: 24
   },
   drawer: {
-    width: 300,
+    width: 350,
     flexShrink: 0,
   },
   drawerPaper: {
-    width: 300,
+    width: 350,
   },
   drawerHeader: {
     display: 'flex',
