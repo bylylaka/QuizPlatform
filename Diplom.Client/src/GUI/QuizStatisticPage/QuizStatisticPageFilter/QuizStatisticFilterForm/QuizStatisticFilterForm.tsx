@@ -9,9 +9,13 @@ import CustomRangeField from "../../../shared/Form/Fields/CustomRangeField";
 import { reduxForm, Field, InjectedFormProps } from "redux-form";
 import Typography from "@material-ui/core/Typography";
 import CustomSelectField from "../../../shared/Form/Fields/CustomSelectField";
+import CustomMultipleSelectField from "../../../shared/Form/Fields/CustomMultipleSelectField";
 import Gender from "../../../../shared/models/user/Gender";
 import CountrySateCity from "country-state-city";
 import Education from "../../../../shared/models/user/Education";
+import MaritialStatus from "../../../../shared/models/user/MaritalStatus";
+import CustomCheckboxField from "../../../shared/Form/Fields/CustomCheckboxField";
+import ChildsCount from "../../../../shared/models/user/ChildsCount";
 
 export const QuizStatisticsFilterForm: FunctionComponent<
   IQuizStatisticsFilterFormProps &
@@ -41,21 +45,48 @@ export const QuizStatisticsFilterForm: FunctionComponent<
         Среднее профессиональное
       </option>,
       <option value={Education.Bachelor}>Бакалавр</option>,
-      <option value={Education.Magister}>Магистр</option>
+      <option value={Education.Magister}>Магистр</option>,
     ];
   };
-  
+
+  const getMaritalStatusOptions = (): JSX.Element[] => {
+    return [
+      <option value={MaritialStatus.Single}>Одиночка</option>,
+      <option value={MaritialStatus.Meeting}>Встречаюсь</option>,
+      <option value={MaritialStatus.Married}>В замужестве</option>,
+      <option value={MaritialStatus.Divorced}>После развода</option>,
+    ];
+  };
+
+  const getChildsCountOptions = (): JSX.Element[] => {
+    return [
+      <option value={ChildsCount.None}>Нет детей</option>,
+      <option value={ChildsCount.One}>1</option>,
+      <option value={ChildsCount.Two}>2</option>,
+      <option value={ChildsCount.Three}>3</option>,
+      <option value={ChildsCount.Four}>4</option>,
+      <option value={ChildsCount.MoreFive}>5+</option>,
+    ];
+  };
+
+  const getSalaryOptions = (): JSX.Element[] => {
+    return [
+      <option value={ChildsCount.None}>Не имеет работы</option>,
+      <option value={ChildsCount.One}>До 10 000</option>,
+      <option value={ChildsCount.Two}>От 10 000 до 30 000</option>,
+      <option value={ChildsCount.Three}>От 30 000 до 70 000</option>,
+      <option value={ChildsCount.Four}>от 70 000 до 150 000</option>,
+      <option value={ChildsCount.MoreFive}>Свыше 150 000</option>,
+    ];
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <Typography variant="h5" align="center">
         Фильтр
       </Typography>
-      <Grid item>
-        <Field
-          name="birth"
-          label="Дата рождения"
-          component={CustomRangeField}
-        />
+      <Grid item container direction="column">
+        <Field name="age" label="Возраст" component={CustomRangeField} />
         <Field
           name="gender"
           label="Пол"
@@ -93,6 +124,43 @@ export const QuizStatisticsFilterForm: FunctionComponent<
         >
           <option>Выберите уровень образования</option>
           {getEdicationOptions()}
+        </Field>
+        <Field
+          name="maritalStatus"
+          label="Семейное положение"
+          component={CustomMultipleSelectField}
+          customProps={{
+            container: {
+              style: {
+                width: "100%",
+              },
+            },
+          }}
+        >
+          {getMaritalStatusOptions()}
+        </Field>
+        <Field
+          name="loveAnimals"
+          label="Любит животных"
+          component={CustomCheckboxField}
+        />
+        <Field name="smoke" label="Курит" component={CustomCheckboxField} />
+        <Field name="drink" label="Выпивает" component={CustomCheckboxField} />
+        <Field
+          name="childsCount"
+          label="Количество детей"
+          component={CustomMultipleSelectField}
+        >
+          {getChildsCountOptions()}
+        </Field>
+        <Field name="work" label="Работает" component={CustomCheckboxField} />
+        <Field name="study" label="Учится" component={CustomCheckboxField} />
+        <Field
+          name="salary"
+          label="Ежемесячная зарплата"
+          component={CustomMultipleSelectField}
+        >
+          {getSalaryOptions()}
         </Field>
       </Grid>
     </form>
