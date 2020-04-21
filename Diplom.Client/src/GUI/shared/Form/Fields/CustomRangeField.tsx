@@ -19,8 +19,6 @@ const CustomRangeField = (props: ITextFieldProps) => {
     return `${value}°C`;
   };
 
-  // const [value, setValue] = React.useState([20, 37]);
-
   const handleChange = (event: any, newValue: number[]) => {
     input.onChange(newValue);
   };

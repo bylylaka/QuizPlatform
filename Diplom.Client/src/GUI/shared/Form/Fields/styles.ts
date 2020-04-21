@@ -5,7 +5,7 @@ const createStyles = makeStyles(theme => ({
     color: "black!important"
   },
   slider: {
-    paddingTop: theme.spacing(3)
+    width: '100%'
   },
   multipleSelectMargin: {
     marginTop: theme.spacing(2),
@@ -20,6 +20,9 @@ const createStyles = makeStyles(theme => ({
   displayContents: {
     display: "contents"
   },
+  fullWidth: {
+    width: '100%'
+  }
 }));
 
 export default createStyles;

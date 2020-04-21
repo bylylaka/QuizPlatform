@@ -7,10 +7,12 @@ import { Dispatch } from "redux";
 import QuizStatisticsPage from "./QuizStatisticsPage";
 import Actions from "../../logic/actions/actions";
 import { RootState } from "../../logic/reducers/rootReducer";
+import FormNames from "../shared/Form/FormNames";
 
 const mapStateToProps = (state: RootState): IQuizStatisticsPageProps => {
   return {
     statistic: state.reducer.quizStatistic,
+    formValues: state.form[FormNames.filterAnswers.name] && state.form[FormNames.filterAnswers.name].values
   };
 };
 

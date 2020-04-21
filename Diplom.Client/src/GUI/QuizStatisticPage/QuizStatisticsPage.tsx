@@ -29,6 +29,7 @@ export const QuizStatisticsPage: FunctionComponent<
     setActiveHeaderComponents,
     loadStatistic,
     statistic,
+    formValues,
   } = props;
 
   const classes = createStyles();
@@ -45,6 +46,16 @@ export const QuizStatisticsPage: FunctionComponent<
   }, [statistic]);
 
   useEffect(() => {
+    let filtered = false;
+    if (formValues) {
+      for (let [key, value] of Object.entries(formValues)) {
+        // console.log(`${key}: ${value}`);
+        if (value != null && key != "age") {
+          filtered = true;
+        }
+      }
+    }
+
     const activeHeaderComponents = [
       <Tooltip title="фильтр">
         <IconButton
@@ -53,13 +64,13 @@ export const QuizStatisticsPage: FunctionComponent<
           edge="end"
           onClick={toggleDrawer}
         >
-          <FilterListIcon />
+          {filtered ? <FilterListIcon color={"error"} /> : <FilterListIcon />}
         </IconButton>
       </Tooltip>,
     ];
 
     setActiveHeaderComponents(activeHeaderComponents);
-  }, [open]);
+  }, [open, formValues]);
 
   useEffect(() => {
     if (id) {

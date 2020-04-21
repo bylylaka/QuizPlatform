@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Children, useState } from "react";
+import React, { FunctionComponent, Children, useState, useEffect } from "react";
 import createStyles from "./styles";
 import { IActivationFieldProps, IActivationFieldCallProps } from "./props";
 import Grid from "@material-ui/core/Grid";
@@ -16,9 +16,15 @@ const ActivationField: FunctionComponent<
 
   const classes = createStyles();
 
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(false);
 
   const [lastValue, setLastValue] = useState(null);
+
+  useEffect(() => {
+    if (fieldProps.name != "age") {
+      change(fieldProps.name, null);
+    }
+  }, []);
 
   const toggleActive = () => {
     if (active) {
@@ -26,15 +32,15 @@ const ActivationField: FunctionComponent<
       unregisterField(fieldProps.name);
       change(fieldProps.name, null);
     } else {
-      change(fieldProps.name, lastValue);
+      lastValue !== null && change(fieldProps.name, lastValue);
     }
     setActive(!active);
   };
 
   return (
-    <Grid container alignItems="center" justify="space-between">
+    <Grid container alignItems="center" justify="space-between" wrap="nowrap">
       {!active && <Typography>{fieldProps.label}</Typography>}
-      <Grid style={{ visibility: active ? "visible" : "hidden" }}>
+      <Grid style={{ display: active ? "flex" : "none", flexGrow: 1 }}>
         {children}
       </Grid>
       <Grid>

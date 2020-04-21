@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
+import React, { FunctionComponent } from "react";
 import {
   IQuizStatisticsFilterFormProps,
   IQuizStatisticsFilterFormCallProps,
@@ -87,94 +87,129 @@ export const QuizStatisticsFilterForm: FunctionComponent<
         Фильтр
       </Typography>
       <Grid item container direction="column">
-        <Field name="age" label="Возраст" component={CustomRangeField} />
-        <Field
-          name="gender"
-          label="Пол"
-          component={CustomSelectField}
-          style={{ width: "100%" }}
-          parse={(value: string) => (value ? Number(value) : null)}
-        >
-          <option value={Gender.Male}>М</option>
-          <option value={Gender.Female}>Ж</option>
-        </Field>
-        <Field
-          name="country"
-          label="Страна"
-          style={{ width: "100%" }}
-          component={CustomSelectField}
-        >
-          <option>Выберите страну</option>
-          {getCountriesOptions()}
-        </Field>
-        {selectedCountry && (
+        <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
           <Field
-            name="city"
+            name="age"
             style={{ width: "100%" }}
-            label="Город"
+            label="Возраст"
+            component={CustomRangeField}
+          />
+        </ActivationFieldContainer>
+
+        <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
+          <Field
+            name="gender"
+            label="Пол"
+            component={CustomSelectField}
+            style={{ width: "100%" }}
+            parse={(value: string) => (value ? Number(value) : null)}
+          >
+            <option value={Gender.Male}>М</option>
+            <option value={Gender.Female}>Ж</option>
+          </Field>
+        </ActivationFieldContainer>
+
+        <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
+          <Field
+            name="country"
+            label="Страна"
+            style={{ width: "100%" }}
             component={CustomSelectField}
           >
-            <option>Выберите город</option>
-            {getCitiesOptions()}
+            <option>Выберите страну</option>
+            {getCountriesOptions()}
           </Field>
+        </ActivationFieldContainer>
+
+        {selectedCountry && (
+          <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
+            <Field
+              name="city"
+              style={{ width: "100%" }}
+              label="Город"
+              component={CustomSelectField}
+            >
+              <option>Выберите город</option>
+              {getCitiesOptions()}
+            </Field>
+          </ActivationFieldContainer>
         )}
-        <Field
-          name="education"
-          label="Образование"
-          component={CustomSelectField}
-        >
-          <option>Выберите уровень образования</option>
-          {getEdicationOptions()}
-        </Field>
-        <Field
-          name="maritalStatus"
-          label="Семейное положение"
-          component={CustomMultipleSelectField}
-          customProps={{
-            container: {
-              style: {
-                width: "100%",
+
+        <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
+          <Field
+            name="education"
+            label="Образование"
+            component={CustomSelectField}
+          >
+            <option>Выберите уровень образования</option>
+            {getEdicationOptions()}
+          </Field>
+        </ActivationFieldContainer>
+
+        <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
+          <Field
+            name="maritalStatus"
+            label="Семейное положение"
+            component={CustomMultipleSelectField}
+            customProps={{
+              container: {
+                style: {
+                  width: "100%",
+                },
               },
-            },
-          }}
-        >
-          {getMaritalStatusOptions()}
-        </Field>
-        <Field
-          name="loveAnimals"
-          label="Любит животных"
-          component={CustomCheckboxField}
-        />
-        <Field name="smoke" label="Курит" component={CustomCheckboxField} />
-        <Field name="drink" label="Выпивает" component={CustomCheckboxField} />
-        <Field
-          name="childsCount"
-          label="Количество детей"
-          component={CustomMultipleSelectField}
-        >
-          {getChildsCountOptions()}
-        </Field>
-        <Field name="work" label="Работает" component={CustomCheckboxField} />
+            }}
+          >
+            {getMaritalStatusOptions()}
+          </Field>
+        </ActivationFieldContainer>
 
+        <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
+          <Field
+            name="loveAnimals"
+            label="Любит животных"
+            component={CustomCheckboxField}
+          />
+        </ActivationFieldContainer>
 
+        <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
+          <Field name="smoke" label="Курит" component={CustomCheckboxField} />
+        </ActivationFieldContainer>
 
+        <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
+          <Field
+            name="drink"
+            label="Выпивает"
+            component={CustomCheckboxField}
+          />
+        </ActivationFieldContainer>
 
+        <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
+          <Field
+            name="childsCount"
+            label="Количество детей"
+            component={CustomMultipleSelectField}
+          >
+            {getChildsCountOptions()}
+          </Field>
+        </ActivationFieldContainer>
+
+        <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
+          <Field name="work" label="Работает" component={CustomCheckboxField} />
+        </ActivationFieldContainer>
 
         <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
           <Field name="study" label="Учится" component={CustomCheckboxField} />
         </ActivationFieldContainer>
 
-
-
-
-
-        <Field
-          name="salary"
-          label="Ежемесячная зарплата"
-          component={CustomMultipleSelectField}
-        >
-          {getSalaryOptions()}
-        </Field>
+        <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
+          <Field
+            name="salary"
+            label="Ежемесячная зарплата"
+            component={CustomMultipleSelectField}
+          >
+            {getSalaryOptions()}
+          </Field>
+        </ActivationFieldContainer>
       </Grid>
     </form>
   );
