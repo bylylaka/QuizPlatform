@@ -8,6 +8,8 @@ import QuizStatisticsFilter from "./QuizStatisticFilter";
 import { RootState } from "../../../logic/reducers/rootReducer";
 import FormNames from "../../shared/Form/FormNames";
 import { formValueSelector } from "redux-form";
+import Actions from "../../../logic/actions/actions";
+import StatisticFilter from "../../../shared/models/quiz/Filter/StatusticFilter";
 
 type ContainerProps = Pick<IQuizStatisticsFilterProps & IQuizStatisticsFilterCallProps, "open">
 
@@ -23,6 +25,7 @@ const mapDispatchToProps = (
   dispatch: Dispatch
 ): Omit<IQuizStatisticsFilterCallProps, keyof ContainerProps> => {
   return {
+    submitFilter: (filter: StatisticFilter) => dispatch(Actions.filterQuizStatistic(filter))
   };
 };
 

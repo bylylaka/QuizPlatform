@@ -60,6 +60,13 @@ function* loadQuizStatisticWatcher() {
   );
 }
 
+function* filterQuizStatisticWatcher() {
+  yield takeLatest(
+    ActionTypes.FILTER_QUIZ_STATISTIC,
+    Sagas.filterQuizStatisticSaga
+  );
+}
+
 export default function* watchers() {
   yield all([
     loginWatcher(),
@@ -75,5 +82,6 @@ export default function* watchers() {
     answerQuizWatcher(),
     loadUserQuizListWatcher(),
     loadQuizStatisticWatcher(),
+    filterQuizStatisticWatcher()
   ]);
 }

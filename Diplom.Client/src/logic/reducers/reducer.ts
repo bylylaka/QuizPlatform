@@ -20,6 +20,7 @@ export interface State {
   quiz?: Quiz;
   userQuizList: Quiz[];
   quizStatistic: StatisticQuiz;
+  quizFilteredStatistic: StatisticQuiz;
 }
 
 const initialState: State = {
@@ -31,6 +32,7 @@ const initialState: State = {
   searchQuizes: [],
   userQuizList: [],
   quizStatistic: {} as any,
+  quizFilteredStatistic: {} as any
 };
 
 export const Reducer = (state = initialState, action: AnyAction): State => {
@@ -91,6 +93,11 @@ export const Reducer = (state = initialState, action: AnyAction): State => {
         ...state,
         quizStatistic: action.statistic,
       };
+    case ActionTypes.SET_QUIZ_FILTERED_STATISTIC:
+      return {
+        ...state,
+        quizFilteredStatistic: action.statistic
+      }
     default:
       return state;
   }

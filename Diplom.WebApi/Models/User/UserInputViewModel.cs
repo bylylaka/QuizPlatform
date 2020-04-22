@@ -26,17 +26,17 @@
 
 		public MaritalStatus? MaritalStatus { get; set; }
 
-		public bool? LoveAnimals { get; set; }
+		public bool LoveAnimals { get; set; }
 
-		public bool? Smoke { get; set; }
+		public bool Smoke { get; set; }
 
-		public bool? Drink { get; set; }
+		public bool Drink { get; set; }
 
 		public int? ChildsCount { get; set; }
 
-		public bool? Work { get; set; }
+		public bool Work { get; set; }
 
-		public bool? Study { get; set; }
+		public bool Study { get; set; }
 
 		public int? Salary { get; set; }
 	}

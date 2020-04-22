@@ -28,6 +28,26 @@
 		{
 			base.OnModelCreating(modelBuilder);
 
+			modelBuilder.Entity<User>()
+				.Property(u => u.LoveAnimals)
+				.HasDefaultValue(false);
+
+			modelBuilder.Entity<User>()
+				.Property(u => u.Smoke)
+				.HasDefaultValue(false);
+
+			modelBuilder.Entity<User>()
+				.Property(u => u.Drink)
+				.HasDefaultValue(false);
+
+			modelBuilder.Entity<User>()
+				.Property(u => u.Work)
+				.HasDefaultValue(false);
+
+			modelBuilder.Entity<User>()
+				.Property(u => u.Study)
+				.HasDefaultValue(false);
+
 			modelBuilder.Entity<Quiz>()
 				.HasMany(x => x.Questions)
 				.WithOne()

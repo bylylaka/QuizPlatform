@@ -15,7 +15,8 @@ import CountrySateCity from "country-state-city";
 import Education from "../../../../shared/models/user/Education";
 import MaritialStatus from "../../../../shared/models/user/MaritalStatus";
 import CustomCheckboxField from "../../../shared/Form/Fields/CustomCheckboxField";
-import ChildsCount from "../../../../shared/models/user/ChildsCount";
+import ChildsCount from "../../../../shared/models/quiz/Filter/ChildsCount";
+import Salary from "../../../../shared/models/quiz/Filter/Salary";
 import ActivationFieldContainer from "../../../shared/Form/Fields/ActivationField/ActivationFieldContainer";
 
 export const QuizStatisticsFilterForm: FunctionComponent<
@@ -72,12 +73,12 @@ export const QuizStatisticsFilterForm: FunctionComponent<
 
   const getSalaryOptions = (): JSX.Element[] => {
     return [
-      <option value={ChildsCount.None}>Не имеет работы</option>,
-      <option value={ChildsCount.One}>До 10 000</option>,
-      <option value={ChildsCount.Two}>От 10 000 до 30 000</option>,
-      <option value={ChildsCount.Three}>От 30 000 до 70 000</option>,
-      <option value={ChildsCount.Four}>от 70 000 до 150 000</option>,
-      <option value={ChildsCount.MoreFive}>Свыше 150 000</option>,
+      <option value={Salary.None}>Не имеет работы</option>,
+      <option value={Salary.Before10}>До 10 000</option>,
+      <option value={Salary.Before30}>От 10 000 до 30 000</option>,
+      <option value={Salary.Before70}>От 30 000 до 70 000</option>,
+      <option value={Salary.Before150}>от 70 000 до 150 000</option>,
+      <option value={Salary.More150}>Свыше 150 000</option>,
     ];
   };
 

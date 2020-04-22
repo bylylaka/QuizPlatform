@@ -12,7 +12,7 @@ import Container from "@material-ui/core/Container";
 export const QuizStatisticsFilter: FunctionComponent<
   IQuizStatisticsFilterProps & IQuizStatisticsFilterCallProps
 > = (props) => {
-  const { open, selectedCountry } = props;
+  const { open, selectedCountry, submitFilter } = props;
 
   const classes = createStyles();
 
@@ -30,7 +30,7 @@ export const QuizStatisticsFilter: FunctionComponent<
       <Divider />
       <Container className={classes.container}>
         <QuizStatisticsFilterForm
-          onSubmit={(e: any) => console.log(e)}
+          onSubmit={submitFilter}
           selectedCountry={selectedCountry}
         />
       </Container>

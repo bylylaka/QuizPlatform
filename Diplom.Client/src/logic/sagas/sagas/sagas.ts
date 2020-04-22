@@ -13,6 +13,14 @@ import QuizSearch from "../../../shared/models/quiz/QuizSearch";
 import customHistory from "../../../GUI/routes/CustomHistory";
 import Selectors from "../selectors/selectors";
 import StatisticQuiz from "../../../shared/models/quiz/StatisticQuiz";
+import _ from "lodash";
+import StatisticQuestion from "../../../shared/models/quiz/StatisticQuestion";
+import StatisticAnswer from "../../../shared/models/quiz/StatisticAnswer";
+import StatisticFilter from "../../../shared/models/quiz/Filter/StatusticFilter";
+import { userInfo } from "os";
+import ChildsCount from "../../../shared/models/quiz/Filter/ChildsCount";
+import Salary from "../../../shared/models/quiz/Filter/Salary";
+import moment from "moment";
 
 export const Sagas = {
   *loginSaga(action: ReturnType<typeof Actions.login>) {
@@ -154,5 +162,195 @@ export const Sagas = {
       action.quizId
     );
     yield put(Actions.setQuizStatistic(response.data));
+    yield put(Actions.setQuizFilteredStatistic(response.data));
+  },
+
+  *filterQuizStatisticSaga(
+    action: ReturnType<typeof Actions.filterQuizStatistic>
+  ) {
+    const statistic: StatisticQuiz = yield select(Selectors.quizStatistic);
+    const filteredStatistic = _.cloneDeep(statistic);
+
+    if (!filteredStatistic.questions) {
+      return;
+    }
+
+    const participants = _.uniqBy(
+      filteredStatistic.questions
+        .map((question: StatisticQuestion) => {
+          return question.answers.map(
+            (answer: StatisticAnswer) => answer.participant
+          );
+        })
+        .flat(),
+      (participant: User) => participant.id
+    );
+
+    var allowedParticipants = participants.filter((participant: User) =>
+      Sagas.filterStatisticParticipant(participant, action.filter)
+    );
+
+    filteredStatistic.questions.forEach((question: StatisticQuestion) => {
+      question.answers = question.answers.filter((answer: StatisticAnswer) => {
+        return allowedParticipants.map(p => p.id).includes(answer.participant.id);
+      });
+    });
+
+    yield put(Actions.setQuizFilteredStatistic(filteredStatistic));
+  },
+
+  filterStatisticParticipant(participant: User, filter: StatisticFilter) {
+    //age
+    if (filter.age && (filter.age[0] != 0 || filter.age[1] != 100)) {
+      if (participant.birth == null) {
+        return false;
+      }
+      let participantAge = moment().diff(moment(participant.birth), "y");
+      if (!(participantAge > filter.age[0] && participantAge < filter.age[1])) {
+        return false;
+      }
+    }
+    //gender
+    if (!Sagas.compareFilterProperty("gender", participant, filter)) {
+      return false;
+    }
+    //country
+    if (!Sagas.compareFilterProperty("country", participant, filter)) {
+      return false;
+    }
+    //city
+    if (!Sagas.compareFilterProperty("city", participant, filter)) {
+      return false;
+    }
+    //education
+    if (!Sagas.compareFilterProperty("education", participant, filter)) {
+      return false;
+    }
+    //maritalStatus
+    if (filter.maritalStatus != null) {
+      if (!filter.maritalStatus.includes(participant.maritalStatus as any)) {
+        return false;
+      }
+    }
+    //loveAnimals
+    if (!Sagas.compareFilterProperty("loveAnimals", participant, filter)) {
+      return false;
+    }
+    //smoke
+    if (!Sagas.compareFilterProperty("smoke", participant, filter)) {
+      return false;
+    }
+    //drink
+    if (!Sagas.compareFilterProperty("drink", participant, filter)) {
+      return false;
+    }
+    //childsCount
+    if (filter.childsCount != null) {
+      if (participant.childsCount == null) {
+        return false;
+      }
+      if (
+        participant.childsCount === 0 &&
+        !filter.childsCount.includes(ChildsCount.None)
+      ) {
+        return false;
+      }
+      if (
+        participant.childsCount === 1 &&
+        !filter.childsCount.includes(ChildsCount.One)
+      ) {
+        return false;
+      }
+      if (
+        participant.childsCount === 2 &&
+        !filter.childsCount.includes(ChildsCount.Two)
+      ) {
+        return false;
+      }
+      if (
+        participant.childsCount === 3 &&
+        !filter.childsCount.includes(ChildsCount.Three)
+      ) {
+        return false;
+      }
+      if (
+        participant.childsCount === 4 &&
+        !filter.childsCount.includes(ChildsCount.Four)
+      ) {
+        return false;
+      }
+      if (
+        participant.childsCount >= 5 &&
+        !filter.childsCount.includes(ChildsCount.MoreFive)
+      ) {
+        return false;
+      }
+    }
+    //work
+    if (!Sagas.compareFilterProperty("work", participant, filter)) {
+      return false;
+    }
+    //study
+    if (!Sagas.compareFilterProperty("study", participant, filter)) {
+      return false;
+    }
+    //salary
+    if (filter.salary != null) {
+      if (participant.salary == null) {
+        return false;
+      }
+      if (participant.salary === 0 && !filter.salary.includes(Salary.None)) {
+        return false;
+      }
+      if (
+        participant.salary >= 0 &&
+        participant.salary <= 10000 &&
+        !filter.salary.includes(Salary.Before10)
+      ) {
+        return false;
+      }
+      if (
+        participant.salary >= 10000 &&
+        participant.salary <= 30000 &&
+        !filter.salary.includes(Salary.Before30)
+      ) {
+        return false;
+      }
+      if (
+        participant.salary >= 30000 &&
+        participant.salary <= 70000 &&
+        !filter.salary.includes(Salary.Before70)
+      ) {
+        return false;
+      }
+      if (
+        participant.salary >= 70000 &&
+        participant.salary <= 150000 &&
+        !filter.salary.includes(Salary.Before150)
+      ) {
+        return false;
+      }
+      if (
+        participant.salary >= 150000 &&
+        !filter.salary.includes(Salary.More150)
+      ) {
+        return false;
+      }
+    }
+
+    return true;
+  },
+
+  compareFilterProperty(
+    propertyName: string,
+    participant: User,
+    filter: StatisticFilter
+  ) {
+    if ((filter as any)[propertyName] != null) {
+      if ((participant as any)[propertyName] != (filter as any)[propertyName]) {
+        return false;
+      }
+    }
+    return true;
   },
 };

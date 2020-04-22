@@ -6,8 +6,8 @@ import UserSimplified from "../../shared/models/user/UserSimplified";
 import Quiz from "../../shared/models/quiz/Quiz";
 import Answer from "../../shared/models/quiz/Answer";
 import QuizSearch from "../../shared/models/quiz/QuizSearch";
-import StatisticQuestion from "../../shared/models/quiz/StatisticQuestion";
 import StatisticQuiz from "../../shared/models/quiz/StatisticQuiz";
+import StatisticFilter from "../../shared/models/quiz/Filter/StatusticFilter";
 
 const Actions = {
   //store actions
@@ -84,6 +84,13 @@ const Actions = {
       type: ActionTypes.SET_QUIZ_STATISTIC,
       statistic,
     };
+  },
+  
+  setQuizFilteredStatistic(statistic: StatisticQuiz) {
+    return {
+      type: ActionTypes.SET_QUIZ_FILTERED_STATISTIC,
+      statistic
+    }
   },
 
   //saga actions
@@ -174,6 +181,13 @@ const Actions = {
       quizId,
     };
   },
+
+  filterQuizStatistic(filter: StatisticFilter) {
+    return {
+      type: ActionTypes.FILTER_QUIZ_STATISTIC,
+      filter
+    }
+  }
 };
 
 export default Actions;

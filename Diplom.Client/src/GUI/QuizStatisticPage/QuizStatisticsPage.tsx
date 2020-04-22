@@ -20,6 +20,7 @@ import IconButton from "@material-ui/core/IconButton";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import QuizStatisticsFilterContainer from "./QuizStatisticPageFilter/QuizStatisticFilterContainer";
 import Tooltip from "@material-ui/core/Tooltip";
+import Typography from "@material-ui/core/Typography";
 
 export const QuizStatisticsPage: FunctionComponent<
   IQuizStatisticsPageProps & IQuizStatisticsPageCallProps
@@ -98,6 +99,25 @@ export const QuizStatisticsPage: FunctionComponent<
       return [] as any;
     }
     return statistic.questions.map((q) => {
+      if (!q.answers.length) {
+        return (
+          <Card className={classes.card}>
+              <Grid item container xs={12} spacing={1} direction="column">
+                <Grid item>
+                  <Typography component="h1" variant="h5" align="center">
+                    {q.title}
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography align="center" color="textSecondary">
+                    Ответов пока нет.
+                  </Typography>
+                </Grid>
+            </Grid>
+          </Card>
+        );
+      }
+
       return (
         <Card className={classes.card}>
           <Grid container spacing={3}>

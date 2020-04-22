@@ -6,6 +6,12 @@ const Selectors = {
   },
   activeHeaderComponents(state: RootState) {
     return state.reducer.activeHeaderComponents
+  },
+  quizStatistic(state: RootState) {
+    return state.reducer.quizStatistic
+  },
+  quizFilteredStatistic(state: RootState) {
+    return state.reducer.quizFilteredStatistic
   }
 };
 
