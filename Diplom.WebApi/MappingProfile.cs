@@ -1,11 +1,13 @@
 ﻿namespace Diplom.WebApi
 {
     using AutoMapper;
+    using Diplom.Application.Contexts.Quiz.Models;
+    using Diplom.Application.Contexts.Quiz.UseCases.Commands.CreateQuiz;
+    using Diplom.Application.Contexts.Quiz.UseCases.Queries.SearchByWord;
     using Diplom.Application.Contexts.Team.Models;
     using Diplom.Application.Contexts.Team.UseCases.Queries.GetUser;
     using Diplom.Domain.Contexts.Quiz.Models;
     using Diplom.Domain.Contexts.Team.Models;
-    using Diplom.WebApi.Contexts.Quiz.Models;
     using Newtonsoft.Json;
 
     public class MappingProfile : Profile
@@ -34,7 +36,10 @@
             CreateMap<Quiz, QuizViewModel>()
                 .ReverseMap();
 
-            CreateMap<Quiz, QuizSearchViewModel>()
+            CreateMap<CreateQuiz, Quiz>()
+                .ReverseMap();
+
+            CreateMap<Quiz, SearchByWordResult>()
                 .ForMember(model => model.QuizId,
                 opt => opt.MapFrom(q => q.Id));
 

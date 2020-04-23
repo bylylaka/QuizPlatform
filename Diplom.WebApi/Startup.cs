@@ -1,6 +1,11 @@
 namespace Diplom
 {
 	using AutoMapper;
+    using Diplom.Application.Contexts.Quiz.UseCases.Commands.AnswerQuiz;
+    using Diplom.Application.Contexts.Quiz.UseCases.Commands.CreateQuiz;
+    using Diplom.Application.Contexts.Quiz.UseCases.Queries.GetQuiz;
+    using Diplom.Application.Contexts.Quiz.UseCases.Queries.GetStatistic;
+    using Diplom.Application.Contexts.Quiz.UseCases.Queries.GetUserQuizList;
     using Diplom.Application.Contexts.Team.UseCases.Commands.Login;
     using Diplom.Application.Contexts.Team.UseCases.Commands.Logout;
     using Diplom.Application.Contexts.Team.UseCases.Commands.Register;
@@ -65,7 +70,14 @@ namespace Diplom
 				typeof(UpdateProfileHandler).Assembly,
 				typeof(GetMyProfileSimplifiedHandler).Assembly,
 				typeof(GetUserHandler).Assembly,
-				typeof(SearchByWordHandler).Assembly);
+				typeof(SearchByWordHandler).Assembly,
+
+				typeof(AnswerQuizHandler).Assembly,
+				typeof(CreateQuizHandler).Assembly,
+				typeof(GetQuizHandler).Assembly,
+				typeof(GetStatisticHandler).Assembly,
+				typeof(GetUserQuizListHandler).Assembly,
+				typeof(Application.Contexts.Quiz.UseCases.Queries.SearchByWord.SearchByWordHandler).Assembly);
 
 			services.AddScoped<IUserService, UserService>();
 			services.AddScoped<IFileService, FileService>();

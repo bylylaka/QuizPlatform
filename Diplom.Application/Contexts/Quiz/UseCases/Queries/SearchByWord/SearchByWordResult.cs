@@ -1,8 +1,8 @@
-﻿namespace Diplom.WebApi.Contexts.Quiz.Models
+﻿namespace Diplom.Application.Contexts.Quiz.UseCases.Queries.SearchByWord
 {
     using Diplom.Application.Contexts.Team.Models;
 
-    public class QuizSearchViewModel
+    public class SearchByWordResult
     {
         public int QuizId { get; set; }
 

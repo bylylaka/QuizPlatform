@@ -38,7 +38,7 @@ export const Apis = {
     return Axios.post(`api/quiz/createQuiz`, quiz);
   },
   answerQuiz(answers: Answer[]) {
-    return Axios.post(`api/quiz/answer`, answers);
+    return Axios.post(`api/quiz/answerQuiz`, answers);
   },
   getUserQuizList(userId: number) {
     return Axios.get(`api/quiz/getUserQuizList/${userId}`);

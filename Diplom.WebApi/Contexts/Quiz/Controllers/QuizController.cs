@@ -1,133 +1,91 @@
 ﻿namespace Diplom.WebApi.Contexts.Quiz.Controllers
 {
-	using AutoMapper;
-	using Diplom.Domain.Contexts.Team.Models;
-	using Microsoft.AspNetCore.Authorization;
-	using Microsoft.AspNetCore.Identity;
-	using Microsoft.AspNetCore.Mvc;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Threading.Tasks;
-    using Diplom.Domain.Contexts.Quiz.Models;
-    using Diplom.WebApi.Contexts.Quiz.Models;
-    using Diplom.Domain.Contexts.Quiz.Services;
+    using Diplom.Application.Contexts.Quiz.Models;
+    using Diplom.Application.Contexts.Quiz.UseCases.Commands.AnswerQuiz;
+    using Diplom.Application.Contexts.Quiz.UseCases.Commands.CreateQuiz;
+    using Diplom.Application.Contexts.Quiz.UseCases.Queries.GetQuiz;
+    using Diplom.Application.Contexts.Quiz.UseCases.Queries.GetStatistic;
+    using Diplom.Application.Contexts.Quiz.UseCases.Queries.GetUserQuizList;
+    using Diplom.Application.Contexts.Quiz.UseCases.Queries.SearchByWord;
+    using MediatR;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     [Route("api/[controller]")]
-	public class QuizController : Controller
-	{
-		private readonly IMapper _mapper;
+    public class QuizController : Controller
+    {
+        private readonly IMediator _mediator;
 
-		private readonly UserManager<User> _userManager;
+        public QuizController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
 
-		private readonly IQuizService _quizService;
+        [Authorize]
+        [HttpGet]
+        [Route("[action]/{id}")]
+        public async Task<IActionResult> GetQuiz([FromRoute] int id)
+        {
+            var result = await _mediator.Send(new GetQuiz(id));
 
-		public QuizController(
-			IMapper mapper,
-			UserManager<User> userManager,
-			IQuizService quizService)
-		{
-			_mapper = mapper;
-			_userManager = userManager;
-			_quizService = quizService;
-		}
+            return Ok(result);
+        }
 
-		[Authorize]
-		[HttpGet]
-		[Route("[action]/{id}")]
-		public async Task<IActionResult> GetQuiz([FromRoute] int id)
-		{
-			var quiz = await _quizService.GetQuizById(id);
+        [Authorize]
+        [HttpGet]
+        [Route("[action]/{id}")]
+        public async Task<IActionResult> GetUserQuizList([FromRoute] int id)
+        {
+            var query = new GetUserQuizList(id);
+            var result = await _mediator.Send(query);
 
-			var quizModel = _mapper.Map<QuizViewModel>(quiz);
+            return Ok(result);
+        }
 
-			return Ok(quizModel);
-		}
+        [Authorize]
+        [HttpGet]
+        [Route("[action]/{word}")]
+        public async Task<IActionResult> SearchByWord([FromRoute] string word)
+        {
+            var query = new SearchByWord(word);
+            var result = await _mediator.Send(query);
 
-		[Authorize]
-		[HttpGet]
-		[Route("[action]/{id}")]
-		public async Task<IActionResult> GetUserQuizList([FromRoute] int id)
-		{
-			var quizList = await _quizService.GetUserQuizList(id);
+            return Ok(result);
+        }
 
-			var quizListModel = quizList.Select(q => _mapper.Map<QuizViewModel>(q));
+        [Authorize]
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult> CreateQuiz([FromBody] CreateQuiz command)
+        {
+            command.Principal = User;
+            await _mediator.Send(command);
 
-			return Ok(quizListModel);
-		}
+            return Ok();
+        }
 
-		[Authorize]
-		[HttpGet]
-		[Route("[action]/{searchWord}")]
-		public async Task<IActionResult> SearchByWord([FromRoute] string searchWord)
-		{
-			var quizes = await _quizService.GetQuizesBySearchWord(searchWord);
+        [Authorize]
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult> AnswerQuiz([FromBody] List<AnswerViewModel> answerModels)
+        {
+            var command = new AnswerQuiz(User, answerModels);
+            await _mediator.Send(command);
 
-			var quizesModels = quizes.Select(quiz => _mapper.Map<QuizSearchViewModel>(quiz));
+            return Ok();
+        }
 
-			return Ok(quizesModels);
-		}
+        [Authorize]
+        [HttpGet]
+        [Route("statistic/{id}")]
+        public async Task<IActionResult> GetStatistic([FromRoute] int id)
+        {
+            var query = new GetStatistic(id);
+            var result = await _mediator.Send(query);
 
-		[Authorize]
-		[HttpPost]
-		[Route("[action]")]
-		public async Task<IActionResult> CreateQuiz([FromBody] QuizViewModel quizModel)
-		{
-			var user = await _userManager.GetUserAsync(User);
-
-			var quiz = _mapper.Map<Quiz>(quizModel);
-			quiz.UserId = user.Id;
-
-			await _quizService.AddQuiz(quiz);
-
-			return Ok();
-		}
-
-		[Authorize]
-		[HttpPost]
-		[Route("[action]")]
-		public async Task<IActionResult> Answer([FromBody] List<AnswerViewModel> answerModels)
-		{
-			var user = await _userManager.GetUserAsync(User);
-			var answers = answerModels
-				.Select(am => _mapper.Map<Answer>(am))
-				.ToList();
-			answers.ForEach(a => a.UserId = user.Id);
-
-			await _quizService.AddAnswers(answers);
-
-			return Ok();
-		}
-
-		[Authorize]
-		[HttpGet]
-		[Route("statistic/{id}")]
-		public async Task<IActionResult> GetStatistic([FromRoute] int id)
-		{
-			var quiz = await _quizService.GetQuizById(id);
-			var quizAnswers = await _quizService.GetQuizAnswers(id);
-			var quizOptions = await _quizService.GetQuizOptions(id);
-
-			var quizStatistic = new StatisticQuizViewModel()
-			{
-				Title = quiz.Title,
-				Questions = quiz.Questions.Select(q =>
-				{
-					var questionAnswers = quizAnswers.Where(a => a.QuestionId == q.Id);
-
-					return new StatisticQuestionViewModel()
-					{
-						Title = q.Title,
-						Type = q.Type,
-						Answers = questionAnswers.Select(a => _mapper.Map<StatisticAnswerViewModel>(a))
-						.ToList(),
-						Options = quizOptions.Select(o => _mapper.Map<OptionViewModel>(o))
-						.ToList()
-					};
-				})
-				.ToList()
-			};
-
-			return Ok(quizStatistic);
-		}
-	}
+            return Ok(result);
+        }
+    }
 }
