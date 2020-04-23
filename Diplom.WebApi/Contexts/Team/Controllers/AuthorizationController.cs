@@ -1,50 +1,33 @@
 ﻿namespace Diplom.WebApi.Contexts.Team.Controllers
 {
-	using AutoMapper;
-    using Diplom.Domain.Contexts.Team.Models;
-    using Diplom.WebApi.Contexts.Team.Models.Profile;
-    using Microsoft.AspNetCore.Identity;
+    using Diplom.Application.Contexts.Team.UseCases.Login;
+	using Diplom.Application.Contexts.Team.UseCases.Logout;
+	using Diplom.Application.Contexts.Team.UseCases.Register;
+	using MediatR;
 	using Microsoft.AspNetCore.Mvc;
 	using System.Threading.Tasks;
 
 	[Route("api/[controller]")]
 	public class AuthorizationController : Controller
 	{
-		private readonly IMapper _mapper;
-
-		private readonly UserManager<User> _userManager;
-
-		private readonly SignInManager<User> _signInManager;
+		private readonly IMediator _mediator;
 
 		public AuthorizationController(
-			IMapper mapper,
-			UserManager<User> userManager,
-			SignInManager<User> signInManager)
+			IMediator mediator)
 		{
-			_mapper = mapper;
-			_userManager = userManager;
-			_signInManager = signInManager;
+			_mediator = mediator;
 		}
 
 		[HttpPost]
 		[Route("[action]")]
-		public async Task<IActionResult> Login([FromBody] LoginModel model)
+		public async Task<IActionResult> Login([FromBody] Login command)
 		{
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
 
-			var loginResult =
-				await _signInManager.PasswordSignInAsync(model.Email, model.Password, true, false);
-
-			if (!loginResult.Succeeded)
-			{
-				return Unauthorized();
-			}
-
-			var currentProfile = await _userManager.FindByEmailAsync(model.Email);
-			var result = _mapper.Map<ProfileSimplifiedViewModel>(currentProfile);
+			var result = await _mediator.Send(command);
 
 			return Ok(result);
 		}
@@ -58,28 +41,14 @@
 
 		[HttpPost]
 		[Route("[action]")]
-		public async Task<IActionResult> Register([FromBody] RegistrationModel model)
+		public async Task<IActionResult> Register([FromBody] Register command)
 		{
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
 
-			var user = new User { Email = model.Email, UserName = model.Email };
-			var registerResult = await _userManager.CreateAsync(user, model.Password);
-
-
-			await _userManager.AddToRoleAsync(user, "user");
-
-			if (!registerResult.Succeeded)
-			{
-				return BadRequest(registerResult.Errors);
-			}
-
-			await _signInManager.SignInAsync(user, false);
-
-			var currentProfile = await _userManager.FindByEmailAsync(model.Email);
-			var result = _mapper.Map<ProfileSimplifiedViewModel>(currentProfile);
+			var result = await _mediator.Send(command);
 
 			return Ok(result);
 		}
@@ -88,7 +57,8 @@
 		[Route("[action]")]
 		public async Task<IActionResult> Logout()
 		{
-			await _signInManager.SignOutAsync();
+			await _mediator.Send(new Logout());
+
 			return Ok();
 		}
 	}

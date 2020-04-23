@@ -4,6 +4,9 @@ C:\Users\marslanov\Documents\Diplom\Diplom.Application\obj\Debug\netcoreapp3.1\D
 C:\Users\marslanov\Documents\Diplom\Diplom.Application\obj\Debug\netcoreapp3.1\Diplom.Application.AssemblyInfoInputs.cache
 C:\Users\marslanov\Documents\Diplom\Diplom.Application\obj\Debug\netcoreapp3.1\Diplom.Application.AssemblyInfo.cs
 C:\Users\marslanov\Documents\Diplom\Diplom.Application\bin\Debug\netcoreapp3.1\Diplom.Application.pdb
-C:\Users\marslanov\Documents\Diplom\Diplom.Application\obj\Debug\netcoreapp3.1\Diplom.Application.csproj.CoreCompileInputs.cache
 C:\Users\marslanov\Documents\Diplom\Diplom.Application\obj\Debug\netcoreapp3.1\Diplom.Application.dll
 C:\Users\marslanov\Documents\Diplom\Diplom.Application\obj\Debug\netcoreapp3.1\Diplom.Application.pdb
+C:\Users\marslanov\Documents\Diplom\Diplom.Application\bin\Debug\netcoreapp3.1\Diplom.Domain.dll
+C:\Users\marslanov\Documents\Diplom\Diplom.Application\bin\Debug\netcoreapp3.1\Diplom.Domain.pdb
+C:\Users\marslanov\Documents\Diplom\Diplom.Application\obj\Debug\netcoreapp3.1\Diplom.Application.csproj.CopyComplete
+C:\Users\marslanov\Documents\Diplom\Diplom.Application\obj\Debug\netcoreapp3.1\Diplom.Application.csproj.CoreCompileInputs.cache

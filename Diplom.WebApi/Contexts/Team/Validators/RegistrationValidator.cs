@@ -1,10 +1,10 @@
 ﻿namespace Diplom.WebApi.Contexts.Team.Validators
 {
-    using Diplom.WebApi.Contexts.Team.Models.Profile;
+    using Diplom.Application.Contexts.Team.UseCases.Register;
     using FluentValidation;
 	using System.Text.RegularExpressions;
 
-	public class RegistrationValidator : AbstractValidator<RegistrationModel>
+	public class RegistrationValidator : AbstractValidator<Register>
 	{
 		public RegistrationValidator()
 		{

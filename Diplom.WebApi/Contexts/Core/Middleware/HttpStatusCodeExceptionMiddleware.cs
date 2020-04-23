@@ -46,6 +46,12 @@
 							break;
 						}
 
+					case UnauthorizedException exception:
+						{
+							statusCode = 401;
+							break;
+						}
+
 					case BadRequestException exception:
 						{
 							statusCode = 400;

@@ -1,6 +1,9 @@
 namespace Diplom
 {
 	using AutoMapper;
+	using Diplom.Application.Contexts.Team.UseCases.Login;
+    using Diplom.Application.Contexts.Team.UseCases.Logout;
+    using Diplom.Application.Contexts.Team.UseCases.Register;
     using Diplom.Domain.Contexts.Core.Repositories;
     using Diplom.Domain.Contexts.Files.Services;
     using Diplom.Domain.Contexts.Quiz.Services;
@@ -14,6 +17,7 @@ namespace Diplom
     using Diplom.WebApi.Contexts.Core.Middleware;
     using Diplom.WebApi.Contexts.Team.Validators;
     using FluentValidation.AspNetCore;
+	using MediatR;
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.AspNetCore.Hosting;
 	using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -50,6 +54,10 @@ namespace Diplom
 
 			services.AddMvc()
 				.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<RegistrationValidator>());
+
+			services.AddMediatR(typeof(Login).Assembly,
+				typeof(RegisterHandler).Assembly,
+				typeof(Logout).Assembly);
 
 			services.AddScoped<IUserService, UserService>();
 			services.AddScoped<IFileService, FileService>();
