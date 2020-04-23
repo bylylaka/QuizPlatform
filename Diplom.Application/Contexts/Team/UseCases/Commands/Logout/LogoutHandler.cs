@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Diplom.Application.Contexts.Team.UseCases.Logout
+namespace Diplom.Application.Contexts.Team.UseCases.Commands.Logout
 {
     public class LogoutHandler : ICommandHandler<Logout>
     {

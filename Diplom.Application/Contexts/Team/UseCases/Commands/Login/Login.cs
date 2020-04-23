@@ -1,7 +1,7 @@
 ﻿using Diplom.Application.Contexts.Core.Mediator;
 using System.ComponentModel.DataAnnotations;
 
-namespace Diplom.Application.Contexts.Team.UseCases.Login
+namespace Diplom.Application.Contexts.Team.UseCases.Commands.Login
 {
     public class Login : ICommand<LoginResult>
     {

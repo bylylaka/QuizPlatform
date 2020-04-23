@@ -1,9 +1,14 @@
 namespace Diplom
 {
 	using AutoMapper;
-	using Diplom.Application.Contexts.Team.UseCases.Login;
-    using Diplom.Application.Contexts.Team.UseCases.Logout;
-    using Diplom.Application.Contexts.Team.UseCases.Register;
+    using Diplom.Application.Contexts.Team.UseCases.Commands.Login;
+    using Diplom.Application.Contexts.Team.UseCases.Commands.Logout;
+    using Diplom.Application.Contexts.Team.UseCases.Commands.Register;
+    using Diplom.Application.Contexts.Team.UseCases.Commands.UpdateProfile;
+	using Diplom.Application.Contexts.Team.UseCases.Queries.GetMyProfileSimplified;
+	using Diplom.Application.Contexts.Team.UseCases.Queries.GetUser;
+    using Diplom.Application.Contexts.Team.UseCases.Queries.SearchByWord;
+    using Diplom.Application.Contexts.Team.Validators;
     using Diplom.Domain.Contexts.Core.Repositories;
     using Diplom.Domain.Contexts.Files.Services;
     using Diplom.Domain.Contexts.Quiz.Services;
@@ -15,7 +20,6 @@ namespace Diplom
 	using Diplom.Infrastructure.Contexts.Quiz.Repositories;
     using Diplom.Infrastructure.Contexts.Team.Repositories;
     using Diplom.WebApi.Contexts.Core.Middleware;
-    using Diplom.WebApi.Contexts.Team.Validators;
     using FluentValidation.AspNetCore;
 	using MediatR;
 	using Microsoft.AspNetCore.Builder;
@@ -55,9 +59,13 @@ namespace Diplom
 			services.AddMvc()
 				.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<RegistrationValidator>());
 
-			services.AddMediatR(typeof(Login).Assembly,
+			services.AddMediatR(typeof(LoginHandler).Assembly,
 				typeof(RegisterHandler).Assembly,
-				typeof(Logout).Assembly);
+				typeof(LogoutHandler).Assembly,
+				typeof(UpdateProfileHandler).Assembly,
+				typeof(GetMyProfileSimplifiedHandler).Assembly,
+				typeof(GetUserHandler).Assembly,
+				typeof(SearchByWordHandler).Assembly);
 
 			services.AddScoped<IUserService, UserService>();
 			services.AddScoped<IFileService, FileService>();

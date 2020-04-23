@@ -1,6 +1,6 @@
-﻿namespace Diplom.WebApi.Contexts.Team.Validators
+﻿namespace Diplom.Application.Contexts.Team.Validators
 {
-    using Diplom.Application.Contexts.Team.UseCases.Register;
+    using Diplom.Application.Contexts.Team.UseCases.Commands.Register;
     using FluentValidation;
 	using System.Text.RegularExpressions;
 

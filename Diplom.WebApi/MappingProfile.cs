@@ -1,33 +1,32 @@
 ﻿namespace Diplom.WebApi
 {
     using AutoMapper;
-    using Diplom.Domain.Contexts.Team.Models;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
+    using Diplom.Application.Contexts.Team.Models;
+    using Diplom.Application.Contexts.Team.UseCases.Queries.GetUser;
     using Diplom.Domain.Contexts.Quiz.Models;
-    using Diplom.WebApi.Contexts.Team.Models.Profile;
+    using Diplom.Domain.Contexts.Team.Models;
     using Diplom.WebApi.Contexts.Quiz.Models;
+    using Newtonsoft.Json;
 
     public class MappingProfile : Profile
     {
         public MappingProfile()
         {
-            MapForUsers();
+            MapForUser();
             MapForQuiz();
         }
 
-        public void MapForUsers()
+        public void MapForUser()
         {
-            CreateMap<User, UserOutputViewModel>()
-                .ForMember(um => um.Name,
-                opt => opt.MapFrom(u => u.UserName));
-
-            CreateMap<User, ProfileSimplifiedViewModel>()
-                .ReverseMap();
+            CreateMap<User, GetUserResult>()
+              .ForMember(um => um.Name,
+              opt => opt.MapFrom(u => u.UserName));
 
             CreateMap<User, UserSimplifiedViewModel>()
                 .ForMember(um => um.Name,
                 opt => opt.MapFrom(u => u.UserName));
+
+            CreateMap<User, UserOutputViewModel>();
         }
 
         public void MapForQuiz()

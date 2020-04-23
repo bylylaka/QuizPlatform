@@ -1,4 +1,4 @@
-﻿namespace Diplom.WebApi.Contexts.Team.Models.Profile
+﻿namespace Diplom.Application.Contexts.Team.Models
 {
 	using Diplom.Domain.Contexts.Team.Models;
 	using System;

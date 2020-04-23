@@ -1,4 +1,4 @@
-﻿namespace Diplom.Application.Contexts.Team.UseCases.Login
+﻿namespace Diplom.Application.Contexts.Team.UseCases.Commands.Login
 {
     public class LoginResult
     {

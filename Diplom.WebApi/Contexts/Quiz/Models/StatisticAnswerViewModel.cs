@@ -1,4 +1,4 @@
-﻿using Diplom.WebApi.Contexts.Team.Models.Profile;
+﻿using Diplom.Application.Contexts.Team.Models;
 
 namespace Diplom.WebApi.Contexts.Quiz.Models
 {

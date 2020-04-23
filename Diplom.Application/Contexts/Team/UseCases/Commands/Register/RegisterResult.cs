@@ -1,4 +1,4 @@
-﻿namespace Diplom.Application.Contexts.Team.UseCases.Register
+﻿namespace Diplom.Application.Contexts.Team.UseCases.Commands.Register
 {
     public class RegisterResult
     {

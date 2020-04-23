@@ -1,8 +1,8 @@
 ﻿namespace Diplom.WebApi.Contexts.Team.Controllers
 {
-    using Diplom.Application.Contexts.Team.UseCases.Login;
-	using Diplom.Application.Contexts.Team.UseCases.Logout;
-	using Diplom.Application.Contexts.Team.UseCases.Register;
+    using Diplom.Application.Contexts.Team.UseCases.Commands.Login;
+    using Diplom.Application.Contexts.Team.UseCases.Commands.Logout;
+    using Diplom.Application.Contexts.Team.UseCases.Commands.Register;
 	using MediatR;
 	using Microsoft.AspNetCore.Mvc;
 	using System.Threading.Tasks;

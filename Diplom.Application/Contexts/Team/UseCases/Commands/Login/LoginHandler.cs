@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Diplom.Application.Contexts.Team.UseCases.Login
+namespace Diplom.Application.Contexts.Team.UseCases.Commands.Login
 {
     public class LoginHandler : ICommandHandler<Login, LoginResult>
     {
