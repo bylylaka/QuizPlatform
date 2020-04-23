@@ -1,17 +1,19 @@
 namespace Diplom
 {
 	using AutoMapper;
-	using Diplom.Domain.Files.Services;
-	using Diplom.Domain.Quiz.Services;
-	using Diplom.Domain.Team.Models;
-	using Diplom.Domain.Team.Services;
-	using Diplom.Domain.Team.Validators;
+    using Diplom.Domain.Contexts.Core.Repositories;
+    using Diplom.Domain.Contexts.Files.Services;
+    using Diplom.Domain.Contexts.Quiz.Services;
+    using Diplom.Domain.Contexts.Team.Models;
+	using Diplom.Domain.Contexts.Team.Services;
 	using Diplom.Domain.utils.Countries;
 	using Diplom.Infrastructure;
-	using Diplom.Infrastructure.Qiuz;
-	using Diplom.Infrastructure.Team.Repositories;
-	using Diplom.Server.WebApi.Middleware;
-	using FluentValidation.AspNetCore;
+	using Diplom.Infrastructure.Contexts.Core.Repositories;
+	using Diplom.Infrastructure.Contexts.Quiz.Repositories;
+    using Diplom.Infrastructure.Contexts.Team.Repositories;
+    using Diplom.WebApi.Contexts.Core.Middleware;
+    using Diplom.WebApi.Contexts.Team.Validators;
+    using FluentValidation.AspNetCore;
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.AspNetCore.Hosting;
 	using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -50,12 +52,11 @@ namespace Diplom
 				.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<RegistrationValidator>());
 
 			services.AddScoped<IUserService, UserService>();
-			services.AddScoped<IRoleService, RoleService>();
 			services.AddScoped<IFileService, FileService>();
 			services.AddScoped<IQuizService, QuizService>();
 			services.AddScoped<IUserRepository, UserRepository>();
-			services.AddScoped<IRoleRepository, RoleRepository>();
 			services.AddScoped<IQuizRepository, QuizRepository>();
+			services.AddScoped<IUnitOfWork, UnitOfWork>();
 			services.AddScoped<CountriesHelper>();
 
 			services.AddSpaStaticFiles(configuration =>

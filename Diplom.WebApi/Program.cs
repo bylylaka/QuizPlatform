@@ -1,7 +1,7 @@
 namespace Diplom
 {
 	using CustomIdentityApp;
-	using Diplom.Domain.Team.Models;
+	using Diplom.Domain.Contexts.Team.Models;
 	using Diplom.Infrastructure;
 	using Microsoft.AspNetCore.Hosting;
 	using Microsoft.AspNetCore.Identity;

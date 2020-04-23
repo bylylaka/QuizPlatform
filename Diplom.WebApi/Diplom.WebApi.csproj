@@ -11,6 +11,8 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="MediatR" Version="8.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
   </ItemGroup>
@@ -18,6 +20,13 @@
   <ItemGroup>
     <ProjectReference Include="..\Diplom.Domain\Diplom.Domain.csproj" />
     <ProjectReference Include="..\Diplom.Infrastructure\Diplom.Infrastructure.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Contexts\Core\Controllers\" />
+    <Folder Include="Contexts\Core\Models\" />
+    <Folder Include="Contexts\Core\Validators\" />
+    <Folder Include="Contexts\Quiz\Validators\" />
   </ItemGroup>
 
 

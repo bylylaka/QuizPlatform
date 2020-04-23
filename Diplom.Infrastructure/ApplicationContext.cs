@@ -1,7 +1,7 @@
 ﻿namespace Diplom.Infrastructure
 {
-	using Diplom.Domain.Quiz.Models;
-	using Diplom.Domain.Team.Models;
+    using Diplom.Domain.Contexts.Quiz.Models;
+    using Diplom.Domain.Contexts.Team.Models;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore;

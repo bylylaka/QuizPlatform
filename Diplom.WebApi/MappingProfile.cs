@@ -1,13 +1,12 @@
 ﻿namespace Diplom.WebApi
 {
     using AutoMapper;
-    using Diplom.Domain.Quiz.Models;
-    using Diplom.Domain.Team.Models;
-    using Diplom.WebApi.Models.Profile;
-    using Diplom.WebApi.Models.Quiz;
-    using Diplom.WebApi.Models.User;
+    using Diplom.Domain.Contexts.Team.Models;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
+    using Diplom.Domain.Contexts.Quiz.Models;
+    using Diplom.WebApi.Contexts.Team.Models.Profile;
+    using Diplom.WebApi.Contexts.Quiz.Models;
 
     public class MappingProfile : Profile
     {

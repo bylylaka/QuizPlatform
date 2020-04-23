@@ -1,0 +1,9 @@
+C:\Users\marslanov\Documents\Diplom\Diplom.Application\bin\Debug\netcoreapp3.1\Diplom.Application.deps.json
+C:\Users\marslanov\Documents\Diplom\Diplom.Application\bin\Debug\netcoreapp3.1\Diplom.Application.dll
+C:\Users\marslanov\Documents\Diplom\Diplom.Application\obj\Debug\netcoreapp3.1\Diplom.Application.csprojAssemblyReference.cache
+C:\Users\marslanov\Documents\Diplom\Diplom.Application\obj\Debug\netcoreapp3.1\Diplom.Application.AssemblyInfoInputs.cache
+C:\Users\marslanov\Documents\Diplom\Diplom.Application\obj\Debug\netcoreapp3.1\Diplom.Application.AssemblyInfo.cs
+C:\Users\marslanov\Documents\Diplom\Diplom.Application\bin\Debug\netcoreapp3.1\Diplom.Application.pdb
+C:\Users\marslanov\Documents\Diplom\Diplom.Application\obj\Debug\netcoreapp3.1\Diplom.Application.csproj.CoreCompileInputs.cache
+C:\Users\marslanov\Documents\Diplom\Diplom.Application\obj\Debug\netcoreapp3.1\Diplom.Application.dll
+C:\Users\marslanov\Documents\Diplom\Diplom.Application\obj\Debug\netcoreapp3.1\Diplom.Application.pdb

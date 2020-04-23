@@ -1,6 +1,6 @@
 ﻿namespace CustomIdentityApp
 {
-	using Diplom.Domain.Team.Models;
+	using Diplom.Domain.Contexts.Team.Models;
 	using Microsoft.AspNetCore.Identity;
 	using System.Threading.Tasks;
 
