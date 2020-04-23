@@ -3,7 +3,9 @@
     using AutoMapper;
     using Diplom.Application.Contexts.Core.Mediator;
     using Diplom.Domain.Contexts.Core.Exceptions;
-    using Diplom.Domain.Contexts.Team.Services;
+    using Diplom.Domain.Contexts.Team.Models;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -11,19 +13,19 @@
     {
         private readonly IMapper _mapper;
 
-        private readonly IUserService _userService;
+        private readonly UserManager<User> _userManager;
 
         public GetUserHandler(
             IMapper mapper,
-            IUserService userService)
+            UserManager<User> userManager)
         {
             _mapper = mapper;
-            _userService = userService;
+            _userManager = userManager;
         }
 
         public async Task<GetUserResult> Handle(GetUser request, CancellationToken cancellationToken)
         {
-            var user = await _userService.FindUserById(request.Id);
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == request.Id);
             if (user == null)
             {
                 throw new BadRequestException();

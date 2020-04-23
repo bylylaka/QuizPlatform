@@ -2,7 +2,7 @@
 {
     using AutoMapper;
     using Diplom.Application.Contexts.Core.Mediator;
-    using Diplom.Domain.Contexts.Quiz.Services;
+    using Diplom.Domain.Contexts.Core.Repositories;
     using Diplom.Domain.Contexts.Team.Models;
     using MediatR;
     using Microsoft.AspNetCore.Identity;
@@ -15,16 +15,16 @@
 
         private readonly UserManager<User> _userManager;
 
-        private readonly IQuizService _quizService;
+        private readonly IUnitOfWork _unitOfWork;
 
         public CreateQuizHandler(
             IMapper mapper,
             UserManager<User> userManager,
-            IQuizService quizService)
+            IUnitOfWork unitOfWork)
         {
             _mapper = mapper;
             _userManager = userManager;
-            _quizService = quizService;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<Unit> Handle(CreateQuiz request, CancellationToken cancellationToken)
@@ -34,7 +34,7 @@
             var quiz = _mapper.Map<Domain.Contexts.Quiz.Models.Quiz>(request);
             quiz.UserId = user.Id;
 
-            await _quizService.AddQuiz(quiz);
+            await _unitOfWork.Quizes.AddQuiz(quiz);
 
             return Unit.Value;
         }

@@ -3,7 +3,9 @@
     using AutoMapper;
     using Diplom.Application.Contexts.Core.Mediator;
     using Diplom.Application.Contexts.Team.Models;
+    using Diplom.Domain.Contexts.Core.Repositories;
     using Diplom.Domain.Contexts.Team.Services;
+    using Microsoft.EntityFrameworkCore;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -12,19 +14,21 @@
     {
         private readonly IMapper _mapper;
 
-        private readonly IUserService _userService;
-
-        public SearchByWordHandler(
-            IMapper mapper,
-            IUserService userService)
+        public SearchByWordHandler(IMapper mapper, IUnitOfWork unitOfWork)
         {
             _mapper = mapper;
-            _userService = userService;
+            _unitOfWork = unitOfWork;
         }
+
+        private readonly IUnitOfWork _unitOfWork;
 
         public async Task<SearchByWordResult> Handle(SearchByWord request, CancellationToken cancellationToken)
         {
-            var users = await _userService.GetUsersBySearchWord(request.Word);
+            var usersAsQuery = _unitOfWork.Users.FindUsersTrackable();
+            var users = await usersAsQuery
+                .Where(u => u.Email.Contains(request.Word) ||
+                u.UserName.Contains(request.Word))
+                .ToListAsync();
 
             var usersSimplified = users
                 .Select(u => _mapper.Map<UserSimplifiedViewModel>(u))

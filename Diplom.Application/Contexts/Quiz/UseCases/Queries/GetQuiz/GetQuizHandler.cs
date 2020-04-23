@@ -3,7 +3,8 @@
     using AutoMapper;
     using Diplom.Application.Contexts.Core.Mediator;
     using Diplom.Application.Contexts.Quiz.Models;
-    using Diplom.Domain.Contexts.Quiz.Services;
+    using Diplom.Domain.Contexts.Core.Exceptions;
+    using Diplom.Domain.Contexts.Core.Repositories;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -11,19 +12,25 @@
     {
         private readonly IMapper _mapper;
 
-        private readonly IQuizService _quizService;
+        private readonly IUnitOfWork _unitOfWork;
 
         public GetQuizHandler(
             IMapper mapper,
-            IQuizService quizService)
+            IUnitOfWork unitOfWork)
         {
             _mapper = mapper;
-            _quizService = quizService;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<QuizViewModel> Handle(GetQuiz request, CancellationToken cancellationToken)
         {
-            var quiz = await _quizService.GetQuizById(request.Id);
+            var quiz = await _unitOfWork.Quizes.FindQuizById(request.Id);
+
+            if (quiz == null)
+            {
+                throw new BadRequestException();
+            }
+
             var result = _mapper.Map<QuizViewModel>(quiz);
 
             return result;

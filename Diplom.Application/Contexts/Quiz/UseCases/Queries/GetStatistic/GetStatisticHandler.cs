@@ -3,7 +3,8 @@
     using AutoMapper;
     using Diplom.Application.Contexts.Core.Mediator;
     using Diplom.Application.Contexts.Quiz.Models;
-    using Diplom.Domain.Contexts.Quiz.Services;
+    using Diplom.Domain.Contexts.Core.Repositories;
+    using MediatR;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -12,21 +13,22 @@
     {
         private readonly IMapper _mapper;
 
-        private readonly IQuizService _quizService;
+        private readonly IMediator _mediator;
 
-        public GetStatisticHandler(
-            IMapper mapper,
-            IQuizService quizService)
+        private readonly IUnitOfWork _unitOfWork;
+
+        public GetStatisticHandler(IMapper mapper, IMediator mediator, IUnitOfWork unitOfWork)
         {
             _mapper = mapper;
-            _quizService = quizService;
+            _mediator = mediator;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<StatisticQuizViewModel> Handle(GetStatistic request, CancellationToken cancellationToken)
         {
-            var quiz = await _quizService.GetQuizById(request.Id);
-            var quizAnswers = await _quizService.GetQuizAnswers(request.Id);
-            var quizOptions = await _quizService.GetQuizOptions(request.Id);
+            var quiz = await _mediator.Send(new GetQuiz.GetQuiz(request.Id));
+            var quizAnswers = await _unitOfWork.Quizes.FindQuizAnswers(request.Id);
+            var quizOptions = await _unitOfWork.Quizes.FindQuizOptions(request.Id);
 
             var quizStatistic = new StatisticQuizViewModel()
             {
