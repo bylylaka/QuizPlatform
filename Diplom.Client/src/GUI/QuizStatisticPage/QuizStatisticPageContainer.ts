@@ -8,7 +8,7 @@ import QuizStatisticsPage from "./QuizStatisticsPage";
 import Actions from "../../logic/actions/actions";
 import { RootState } from "../../logic/reducers/rootReducer";
 import FormNames from "../shared/Form/FormNames";
-import Selectors from "../../logic/sagas/selectors/selectors";
+import Selectors from "../../logic/selectors/selectors";
 
 const mapStateToProps = (state: RootState): IQuizStatisticsPageProps => {
   return {

@@ -6,7 +6,6 @@
 	using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore;
 	using Newtonsoft.Json;
-	using Newtonsoft.Json.Linq;
 
 	public class ApplicationContext : IdentityDbContext<User, Role, int, IdentityUserClaim<int>, IdentityUserRole<int>,
 		IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>

@@ -1,6 +1,6 @@
 import Actions from "../../actions/actions";
 import { call, put, select } from "@redux-saga/core/effects";
-import Apis from "../apis/apis";
+import Apis from "../../apis/apis";
 import { stopSubmit } from "redux-form";
 import FormNames from "../../../GUI/shared/Form/FormNames";
 import { AxiosResponse } from "axios";
@@ -11,7 +11,7 @@ import UserSimplified from "../../../shared/models/user/UserSimplified";
 import Quiz from "../../../shared/models/quiz/Quiz";
 import QuizSearch from "../../../shared/models/quiz/QuizSearch";
 import customHistory from "../../../GUI/routes/CustomHistory";
-import Selectors from "../selectors/selectors";
+import Selectors from "../../selectors/selectors";
 import StatisticQuiz from "../../../shared/models/quiz/StatisticQuiz";
 import _ from "lodash";
 import StatisticQuestion from "../../../shared/models/quiz/StatisticQuestion";

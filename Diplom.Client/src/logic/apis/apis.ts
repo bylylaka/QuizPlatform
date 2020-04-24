@@ -1,7 +1,7 @@
 import Axios from "axios";
-import User from "../../../shared/models/user/User";
-import Quiz from "../../../shared/models/quiz/Quiz";
-import Answer from "../../../shared/models/quiz/Answer";
+import User from "../../shared/models/user/User";
+import Quiz from "../../shared/models/quiz/Quiz";
+import Answer from "../../shared/models/quiz/Answer";
 
 export const Apis = {
   login(values: FormData) {
