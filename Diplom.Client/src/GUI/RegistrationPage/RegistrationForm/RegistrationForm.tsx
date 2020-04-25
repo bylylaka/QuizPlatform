@@ -39,7 +39,7 @@ const RegistrationForm: FunctionComponent<IRegistrationFormProps &
         <Grid item xs={12}>
           <Field
             name="password"
-            label="Пароль"
+            label="Password"
             required
             component={CustomTextField}
             validate={[
@@ -70,10 +70,10 @@ const RegistrationForm: FunctionComponent<IRegistrationFormProps &
         <Grid item xs={12}>
           <Field
             name="confirmPassword"
-            label="Подтвердите пароль"
+            label="Confirm password"
             required
             component={CustomTextField}
-            validate={confirmation({ field: "password", fieldLabel: "Пароль" })}
+            validate={confirmation({ field: "password", fieldLabel: "Password" })}
             type="password"
             variant="outlined"
             fullWidth

@@ -30,7 +30,7 @@ const LoginForm: FunctionComponent<ILoginFormProps &
       />
       <Field
         name="password"
-        label="Пароль"
+        label="Password"
         required
         component={CustomTextField}
         type="password"

@@ -24,8 +24,6 @@
   
   <ItemGroup>
     <Folder Include="Contexts\Core\Controllers\" />
-    <Folder Include="Contexts\Core\Models\" />
-    <Folder Include="Contexts\Core\Validators\" />
   </ItemGroup>
 
 

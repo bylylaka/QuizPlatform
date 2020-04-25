@@ -41,7 +41,7 @@ const SearchField: FunctionComponent<ISearchFieldProps &
               fullWidth
               value={searchValue}
               onChange={handleChange}
-              placeholder="Введите имя пользователя или название опроса"
+              placeholder="Enter user name or quiz title"
               InputProps={{
                 disableUnderline: true,
                 className: classes.searchInput
@@ -55,7 +55,7 @@ const SearchField: FunctionComponent<ISearchFieldProps &
               color="primary"
               className={classes.searchButton}
             >
-              Поиск
+              Search
             </Button>
           </Grid>
         </Grid>

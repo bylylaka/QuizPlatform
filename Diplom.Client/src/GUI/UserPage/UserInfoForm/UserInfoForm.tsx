@@ -52,22 +52,22 @@ const UserInfoForm: FunctionComponent<IUserInfoFormProps &
 
   const getEdicationOptions = (): JSX.Element[] => {
     return [
-      <option value={Education.No}>Без образования</option>,
-      <option value={Education.middleCommon}>Среднее общее</option>,
+      <option value={Education.No}>No education</option>,
+      <option value={Education.middleCommon}>Associate Degrees</option>,
       <option value={Education.middleProfessional}>
-        Среднее профессиональное
+        Bachelor’s Degrees
       </option>,
-      <option value={Education.Bachelor}>Бакалавр</option>,
-      <option value={Education.Magister}>Магистр</option>
+      <option value={Education.Bachelor}>Master’s Degrees</option>,
+      <option value={Education.Magister}>Doctoral Degrees</option>
     ];
   };
 
   const getMaritalStatusOptions = (): JSX.Element[] => {
     return [
-      <option value={MaritialStatus.Single}>Одиночка</option>,
-      <option value={MaritialStatus.Meeting}>Встречаюсь</option>,
-      <option value={MaritialStatus.Married}>В замужестве</option>,
-      <option value={MaritialStatus.Divorced}>После развода</option>
+      <option value={MaritialStatus.Single}>Single</option>,
+      <option value={MaritialStatus.Meeting}>Date with someone</option>,
+      <option value={MaritialStatus.Married}>Married</option>,
+      <option value={MaritialStatus.Divorced}>Divorced</option>
     ];
   };
 
@@ -93,7 +93,7 @@ const UserInfoForm: FunctionComponent<IUserInfoFormProps &
         >
           <Field
             name="avatar"
-            label="avatar"
+            label="Avatar"
             component={CustomDropZoneField}
             disabled={!canEdit}
             type="file"
@@ -109,14 +109,14 @@ const UserInfoForm: FunctionComponent<IUserInfoFormProps &
         />
         <Field
           name="name"
-          label="Имя"
+          label="Name"
           disabled={!canEdit}
           required
           component={CustomTextField}
         />
         <ListItem button onClick={handleClick}>
           <ListItemText
-            secondary={open ? "Показать меньше" : "Показать больше"}
+            secondary={open ? "Show less" : "Show more"}
           />
           {open ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
@@ -129,37 +129,37 @@ const UserInfoForm: FunctionComponent<IUserInfoFormProps &
         >
           <Field
             name="gender"
-            label="Пол"
+            label="Gender"
             disabled={!canEdit}
             component={CustomSelectField}
             parse={(value: string) => (value ? Number(value) : null)}
           >
-            <option value={Gender.Male}>М</option>
-            <option value={Gender.Female}>Ж</option>
+            <option value={Gender.Male}>Male</option>
+            <option value={Gender.Female}>Female</option>
           </Field>
           <Field
             name="country"
-            label="Страна"
+            label="Country"
             disabled={!canEdit}
             component={CustomSelectField}
           >
-            <option>Выберите страну</option>
+            <option>Choose country</option>
             {getCountriesOptions()}
           </Field>
           {country && (
             <Field
               name="city"
               disabled={!canEdit}
-              label="Город"
+              label="City"
               component={CustomSelectField}
             >
-              <option>Выберите город</option>
+              <option>Choose city</option>
               {getCitiesOptions()}
             </Field>
           )}
           <Field
             name="birth"
-            label="Дата рождения"
+            label="Date of birth"
             component={CustomDateField}
             disabled={!canEdit}
             InputLabelProps={{
@@ -168,43 +168,43 @@ const UserInfoForm: FunctionComponent<IUserInfoFormProps &
           />
           <Field
             name="education"
-            label="Образование"
+            label="Education"
             disabled={!canEdit}
             component={CustomSelectField}
           >
-            <option>Выберите ваш уровень образования</option>
+            <option>Select academic degree level</option>
             {getEdicationOptions()}
           </Field>
           <Field
             name="maritalStatus"
             disabled={!canEdit}
-            label="Семейное положение"
+            label="Marital status"
             component={CustomSelectField}
           >
-            <option>Выберите ваше семейное положение</option>
+            <option>Select marital status</option>
             {getMaritalStatusOptions()}
           </Field>
           <Field
             name="loveAnimals"
             disabled={!canEdit}
-            label="Любите животных?"
+            label="Love animals?"
             component={CustomCheckboxField}
           />
           <Field
             name="smoke"
-            label="Курите?"
+            label="Smoke?"
             disabled={!canEdit}
             component={CustomCheckboxField}
           />
           <Field
             name="drink"
             disabled={!canEdit}
-            label="Выпиваете?"
+            label="Drink?"
             component={CustomCheckboxField}
           />
           <Field
             name="childsCount"
-            label="Сколько у вас детей?"
+            label="Childs count"
             component={CustomTextField}
             type="number"
             disabled={!canEdit}
@@ -212,19 +212,19 @@ const UserInfoForm: FunctionComponent<IUserInfoFormProps &
           />
           <Field
             name="work"
-            label="Работаете?"
+            label="Work?"
             disabled={!canEdit}
             component={CustomCheckboxField}
           />
           <Field
             name="study"
             disabled={!canEdit}
-            label="Учитесь?"
+            label="Study?"
             component={CustomCheckboxField}
           />
           <Field
             name="salary"
-            label="Сколько ежемесячно получаете?"
+            label="Monthly salary"
             disabled={!canEdit}
             component={CustomTextField}
             type="number"
@@ -238,7 +238,7 @@ const UserInfoForm: FunctionComponent<IUserInfoFormProps &
         className={classes.submitButton}
         disabled={!props.dirty}
       >
-        Сохранить изменения
+        Save changes
       </Button>
     </form>
   );

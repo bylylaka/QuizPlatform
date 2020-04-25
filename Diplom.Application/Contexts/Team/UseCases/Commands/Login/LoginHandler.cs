@@ -28,8 +28,10 @@ namespace Diplom.Application.Contexts.Team.UseCases.Commands.Login
 
         public async Task<LoginResult> Handle(Login request, CancellationToken cancellationToken)
         {
+            var user = await _userManager.FindByEmailAsync(request.Email);
+
             var loginResult =
-                 await _signInManager.PasswordSignInAsync(request.Email, request.Password, true, false);
+                 await _signInManager.PasswordSignInAsync(user.UserName, request.Password, true, false);
 
             if (!loginResult.Succeeded)
             {

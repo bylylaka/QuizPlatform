@@ -10,7 +10,7 @@ export const CreateQuizPage: FunctionComponent<ICreateQuizPageProps &
   const classes = createStyles();
 
   useEffect(() => {
-    setTitle("Создание опроса");
+    setTitle("Quiz creation");
   }, []);
 
   return <CreateQuizForm formValues={formValues} onSubmit={submitQuiz} />;

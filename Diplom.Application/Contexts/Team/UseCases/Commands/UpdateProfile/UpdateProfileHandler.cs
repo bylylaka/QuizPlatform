@@ -51,6 +51,7 @@
             currentProfile.MaritalStatus = request.MaritalStatus;
             currentProfile.Salary = request.Salary;
             currentProfile.Study = request.Study;
+            currentProfile.Smoke = request.Smoke;
             currentProfile.Work = request.Work;
             currentProfile.Birth = request.Birth;
 

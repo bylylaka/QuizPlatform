@@ -44,7 +44,7 @@ const SearchList: FunctionComponent<ISearchListProps & ISearchListCallProps> = (
     return (
       <div className={classes.contentWrapper}>
         <Typography color="textSecondary" align="center">
-          Результаты не обнаружены
+          No results found
         </Typography>
       </div>
     );
@@ -59,7 +59,7 @@ const SearchList: FunctionComponent<ISearchListProps & ISearchListCallProps> = (
           align="center"
           className={classes.searchListTitle}
         >
-          Пользователи
+          Users
         </Typography>
       )}
       {renderUsersList()}
@@ -70,7 +70,7 @@ const SearchList: FunctionComponent<ISearchListProps & ISearchListCallProps> = (
           align="center"
           className={classes.searchListTitle}
         >
-          Опросы
+          Quiz
         </Typography>
       )}
       {rendexQuizesList()}

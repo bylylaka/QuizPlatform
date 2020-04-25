@@ -13,7 +13,7 @@ const SearchPage: FunctionComponent<ISearchPageProps & ISearchPageCallProps> = (
   const classes = createStyles();
 
   useEffect(() => {
-    setTitle("Поиск");
+    setTitle("Search");
   }, []);
 
   return (

@@ -54,8 +54,7 @@ namespace Diplom
 
             services.AddIdentity<User, Role>(options =>
             {
-                options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZéöó" +
-                "êåíãøùçõúôûâàïğîëäæıÿ÷ñìèòüáşÉÖÓÊÅÍÃØÙÇÕÚÔÛÂÀÏĞÎËÄÆİß×ÑÌÈÒÜÁŞ0123456789-._@+";
+                options.User.AllowedUserNameCharacters = null;
             })
                 .AddEntityFrameworkStores<ApplicationContext>();
 

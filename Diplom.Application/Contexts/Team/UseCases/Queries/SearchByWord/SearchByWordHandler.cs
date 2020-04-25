@@ -4,7 +4,6 @@
     using Diplom.Application.Contexts.Core.Mediator;
     using Diplom.Application.Contexts.Team.Models;
     using Diplom.Domain.Contexts.Core.Repositories;
-    using Diplom.Domain.Contexts.Team.Services;
     using Microsoft.EntityFrameworkCore;
     using System.Linq;
     using System.Threading;
@@ -26,8 +25,8 @@
         {
             var usersAsQuery = _unitOfWork.Users.FindUsersTrackable();
             var users = await usersAsQuery
-                .Where(u => u.Email.Contains(request.Word) ||
-                u.UserName.Contains(request.Word))
+                .Where(u => u.Email.ToLower().Contains(request.Word.ToLower()) ||
+                u.UserName.ToLower().Contains(request.Word.ToLower()))
                 .ToListAsync();
 
             var usersSimplified = users

@@ -106,7 +106,7 @@ export const Sagas = {
       Apis.searchQuizes,
       action.string
     );
-    yield put(Actions.setSearchUsers(responseUsers.data));
+    yield put(Actions.setSearchUsers((responseUsers.data as any).users));
     yield put(Actions.setSearchQuizes(responseQuizes.data));
   },
 

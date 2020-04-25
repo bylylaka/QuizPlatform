@@ -57,14 +57,14 @@ export const QuizListItem: React.FunctionComponent<
             onClick={answerQuiz}
             className={classes.link}
           >
-            Принять участие
+            Participate
           </Typography>
           <Typography
             color="primary"
             onClick={retQuizResults}
             className={classes.link}
           >
-            Смотреть результаты
+            View results
           </Typography>
         </Grid>
       </ListItem>

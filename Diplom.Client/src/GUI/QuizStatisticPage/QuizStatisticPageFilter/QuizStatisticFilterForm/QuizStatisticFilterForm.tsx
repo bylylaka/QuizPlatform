@@ -41,28 +41,28 @@ export const QuizStatisticsFilterForm: FunctionComponent<
 
   const getEdicationOptions = (): JSX.Element[] => {
     return [
-      <option value={Education.No}>Без образования</option>,
-      <option value={Education.middleCommon}>Среднее общее</option>,
+      <option value={Education.No}>No education</option>,
+      <option value={Education.middleCommon}>Associate Degrees</option>,
       <option value={Education.middleProfessional}>
-        Среднее профессиональное
+        Bachelor’s Degrees
       </option>,
-      <option value={Education.Bachelor}>Бакалавр</option>,
-      <option value={Education.Magister}>Магистр</option>,
+      <option value={Education.Bachelor}>Master’s Degrees</option>,
+      <option value={Education.Magister}>Doctoral Degrees</option>
     ];
   };
 
   const getMaritalStatusOptions = (): JSX.Element[] => {
     return [
-      <option value={MaritialStatus.Single}>Одиночка</option>,
-      <option value={MaritialStatus.Meeting}>Встречаюсь</option>,
-      <option value={MaritialStatus.Married}>В замужестве</option>,
-      <option value={MaritialStatus.Divorced}>После развода</option>,
+      <option value={MaritialStatus.Single}>Single</option>,
+      <option value={MaritialStatus.Meeting}>Date with someone</option>,
+      <option value={MaritialStatus.Married}>Married</option>,
+      <option value={MaritialStatus.Divorced}>Divorced</option>
     ];
   };
 
   const getChildsCountOptions = (): JSX.Element[] => {
     return [
-      <option value={ChildsCount.None}>Нет детей</option>,
+      <option value={ChildsCount.None}>No childs</option>,
       <option value={ChildsCount.One}>1</option>,
       <option value={ChildsCount.Two}>2</option>,
       <option value={ChildsCount.Three}>3</option>,
@@ -73,26 +73,26 @@ export const QuizStatisticsFilterForm: FunctionComponent<
 
   const getSalaryOptions = (): JSX.Element[] => {
     return [
-      <option value={Salary.None}>Не имеет работы</option>,
-      <option value={Salary.Before10}>До 10 000</option>,
-      <option value={Salary.Before30}>От 10 000 до 30 000</option>,
-      <option value={Salary.Before70}>От 30 000 до 70 000</option>,
-      <option value={Salary.Before150}>от 70 000 до 150 000</option>,
-      <option value={Salary.More150}>Свыше 150 000</option>,
+      <option value={Salary.None}>Doesnt work</option>,
+      <option value={Salary.Before10}>To 10 000</option>,
+      <option value={Salary.Before30}>From 000 to 30 000</option>,
+      <option value={Salary.Before70}>From 30 000 to 70 000</option>,
+      <option value={Salary.Before150}>From 70 000 to 150 000</option>,
+      <option value={Salary.More150}>More then 150 000</option>,
     ];
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <Typography variant="h5" align="center">
-        Фильтр
+        Filter
       </Typography>
       <Grid item container direction="column">
         <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
           <Field
             name="age"
             style={{ width: "100%" }}
-            label="Возраст"
+            label="Age"
             component={CustomRangeField}
           />
         </ActivationFieldContainer>
@@ -100,24 +100,24 @@ export const QuizStatisticsFilterForm: FunctionComponent<
         <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
           <Field
             name="gender"
-            label="Пол"
+            label="Gender"
             component={CustomSelectField}
             style={{ width: "100%" }}
             parse={(value: string) => (value ? Number(value) : null)}
           >
-            <option value={Gender.Male}>М</option>
-            <option value={Gender.Female}>Ж</option>
+            <option value={Gender.Male}>Male</option>
+            <option value={Gender.Female}>Female</option>
           </Field>
         </ActivationFieldContainer>
 
         <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
           <Field
             name="country"
-            label="Страна"
+            label="Country"
             style={{ width: "100%" }}
             component={CustomSelectField}
           >
-            <option>Выберите страну</option>
+            <option>Country</option>
             {getCountriesOptions()}
           </Field>
         </ActivationFieldContainer>
@@ -127,10 +127,10 @@ export const QuizStatisticsFilterForm: FunctionComponent<
             <Field
               name="city"
               style={{ width: "100%" }}
-              label="Город"
+              label="City"
               component={CustomSelectField}
             >
-              <option>Выберите город</option>
+              {/* <option>Choose city</option> */}
               {getCitiesOptions()}
             </Field>
           </ActivationFieldContainer>
@@ -139,10 +139,10 @@ export const QuizStatisticsFilterForm: FunctionComponent<
         <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
           <Field
             name="education"
-            label="Образование"
+            label="Education"
             component={CustomSelectField}
           >
-            <option>Выберите уровень образования</option>
+            {/* <option>Choose education level</option> */}
             {getEdicationOptions()}
           </Field>
         </ActivationFieldContainer>
@@ -150,7 +150,7 @@ export const QuizStatisticsFilterForm: FunctionComponent<
         <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
           <Field
             name="maritalStatus"
-            label="Семейное положение"
+            label="Marital status"
             component={CustomMultipleSelectField}
             customProps={{
               container: {
@@ -167,19 +167,19 @@ export const QuizStatisticsFilterForm: FunctionComponent<
         <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
           <Field
             name="loveAnimals"
-            label="Любит животных"
+            label="Love animans"
             component={CustomCheckboxField}
           />
         </ActivationFieldContainer>
 
         <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
-          <Field name="smoke" label="Курит" component={CustomCheckboxField} />
+          <Field name="smoke" label="Smoke" component={CustomCheckboxField} />
         </ActivationFieldContainer>
 
         <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
           <Field
             name="drink"
-            label="Выпивает"
+            label="Drink"
             component={CustomCheckboxField}
           />
         </ActivationFieldContainer>
@@ -187,7 +187,7 @@ export const QuizStatisticsFilterForm: FunctionComponent<
         <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
           <Field
             name="childsCount"
-            label="Количество детей"
+            label="Childs count"
             component={CustomMultipleSelectField}
           >
             {getChildsCountOptions()}
@@ -195,17 +195,17 @@ export const QuizStatisticsFilterForm: FunctionComponent<
         </ActivationFieldContainer>
 
         <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
-          <Field name="work" label="Работает" component={CustomCheckboxField} />
+          <Field name="work" label="Work" component={CustomCheckboxField} />
         </ActivationFieldContainer>
 
         <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
-          <Field name="study" label="Учится" component={CustomCheckboxField} />
+          <Field name="study" label="Study" component={CustomCheckboxField} />
         </ActivationFieldContainer>
 
         <ActivationFieldContainer formName={FormNames.filterAnswers.name}>
           <Field
             name="salary"
-            label="Ежемесячная зарплата"
+            label="Mounth salary"
             component={CustomMultipleSelectField}
           >
             {getSalaryOptions()}

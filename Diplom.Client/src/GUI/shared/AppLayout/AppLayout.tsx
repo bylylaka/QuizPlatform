@@ -75,14 +75,14 @@ const AppLayout: FunctionComponent<IAppLayoutProps &
           >
             <Grid item className={classes.fitContent}>
               <ListItem button>
-                <Tooltip title="Мой профиль" onClick={profileRedirect}>
+                <Tooltip title="My profile" onClick={profileRedirect}>
                   <ListItemIcon>
                     <PersonIcon className={classes.listIcon} />
                   </ListItemIcon>
                 </Tooltip>
               </ListItem>
               <ListItem button>
-                <Tooltip title="Поиск" onClick={searchRedirect}>
+                <Tooltip title="Search" onClick={searchRedirect}>
                   <ListItemIcon>
                     <SearchIcon className={classes.listIcon} />
                   </ListItemIcon>
@@ -91,7 +91,7 @@ const AppLayout: FunctionComponent<IAppLayoutProps &
             </Grid>
             <Grid item className={classes.fitContent}>
               <ListItem button onClick={handleLogout}>
-                <Tooltip title="Выход">
+                <Tooltip title="Exit">
                   <ListItemIcon>
                     <PowerSettingsNewIcon
                       color="error"
