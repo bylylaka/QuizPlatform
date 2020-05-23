@@ -24,13 +24,13 @@ const mapStateToProps = (state: RootState): ContainerProps => {
       (state.reducer.myProfileSimplified &&
         state.reducer.myProfileSimplified.id) ==
         (state.reducer.user && state.reducer.user.id)
-    )
+    ),
   };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): IUserInfoFormCallProps => {
   return {
-    onSubmit: (profile: User) => dispatch(Actions.updateProfile(profile))
+    onSubmit: (profile: User) => dispatch(Actions.updateProfile(profile)),
   };
 };
 

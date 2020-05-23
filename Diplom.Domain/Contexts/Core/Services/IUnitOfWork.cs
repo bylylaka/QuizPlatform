@@ -1,6 +1,8 @@
-﻿using Diplom.Domain.Contexts.Quiz.Services;
+﻿using Diplom.Domain.Contexts.Notifications.Services;
+using Diplom.Domain.Contexts.Quiz.Services;
 using Diplom.Domain.Contexts.Team.Services;
 using System;
+using System.Threading.Tasks;
 
 namespace Diplom.Domain.Contexts.Core.Repositories
 {
@@ -10,6 +12,8 @@ namespace Diplom.Domain.Contexts.Core.Repositories
 
         public IUserRepository Users { get; }
 
-        public void Save();
+        public INotificationRepository Notifications { get; }
+
+        public Task SaveAsync();
     }
 }

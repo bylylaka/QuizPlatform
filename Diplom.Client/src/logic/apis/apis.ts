@@ -46,6 +46,15 @@ export const Apis = {
   loadQuizStatistic(quizId: number) {
     return Axios.get(`api/quiz/statistic/${quizId}`);
   },
+  getSubsctiptionStatus(producerId: number) {
+    return Axios.get(`api/notification/getSubscriptionStatus/${producerId}`);
+  },
+  changeSubscriptionStatus(producerId: number, status: boolean) {
+    return Axios.put(`api/notification/chagneSubsciptionStatus`, {
+      producerId: producerId,
+      subscribe: status,
+    });
+  },
 };
 
 export default Apis;

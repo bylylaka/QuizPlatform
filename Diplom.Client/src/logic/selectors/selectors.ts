@@ -5,14 +5,17 @@ const Selectors = {
     return state.reducer.myProfileSimplified;
   },
   activeHeaderComponents(state: RootState) {
-    return state.reducer.activeHeaderComponents
+    return state.reducer.activeHeaderComponents;
   },
   quizStatistic(state: RootState) {
-    return state.reducer.quizStatistic
+    return state.reducer.quizStatistic;
   },
   quizFilteredStatistic(state: RootState) {
-    return state.reducer.quizFilteredStatistic
-  }
+    return state.reducer.quizFilteredStatistic;
+  },
+  subscriptionStatus(state: RootState) {
+    return state.reducer.subscriptionStatus;
+  },
 };
 
 export default Selectors;

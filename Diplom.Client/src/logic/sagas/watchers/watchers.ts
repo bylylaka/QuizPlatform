@@ -67,6 +67,20 @@ function* filterQuizStatisticWatcher() {
   );
 }
 
+function* getSubsctiptionStatusWatcher() {
+  yield takeLatest(
+    ActionTypes.GET_SUBSCRIPTION_STATUS,
+    Sagas.getSubsctiptionStatusSaga
+  );
+}
+
+function* changeSubsctiptionStatusWatcher() {
+  yield takeLatest(
+    ActionTypes.CHANGE_SUBSCRIPTION_STATUS,
+    Sagas.changeSubsctiptionStatusSaga
+  );
+}
+
 export default function* watchers() {
   yield all([
     loginWatcher(),
@@ -82,6 +96,8 @@ export default function* watchers() {
     answerQuizWatcher(),
     loadUserQuizListWatcher(),
     loadQuizStatisticWatcher(),
-    filterQuizStatisticWatcher()
+    filterQuizStatisticWatcher(),
+    getSubsctiptionStatusWatcher(),
+    changeSubsctiptionStatusWatcher(),
   ]);
 }

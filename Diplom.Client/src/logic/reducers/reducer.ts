@@ -21,6 +21,7 @@ export interface State {
   userQuizList: Quiz[];
   quizStatistic: StatisticQuiz;
   quizFilteredStatistic: StatisticQuiz;
+  subscriptionStatus: boolean;
 }
 
 const initialState: State = {
@@ -32,7 +33,8 @@ const initialState: State = {
   searchQuizes: [],
   userQuizList: [],
   quizStatistic: {} as any,
-  quizFilteredStatistic: {} as any
+  quizFilteredStatistic: {} as any,
+  subscriptionStatus: false,
 };
 
 export const Reducer = (state = initialState, action: AnyAction): State => {
@@ -45,8 +47,8 @@ export const Reducer = (state = initialState, action: AnyAction): State => {
     case ActionTypes.SET_ACTIVE_HEADER_COMPONENTS:
       return {
         ...state,
-        activeHeaderComponents: action.components
-      }
+        activeHeaderComponents: action.components,
+      };
     case ActionTypes.SET_APPSNACKBAR_MESSAGE:
       return {
         ...state,
@@ -96,8 +98,13 @@ export const Reducer = (state = initialState, action: AnyAction): State => {
     case ActionTypes.SET_QUIZ_FILTERED_STATISTIC:
       return {
         ...state,
-        quizFilteredStatistic: action.statistic
-      }
+        quizFilteredStatistic: action.statistic,
+      };
+    case ActionTypes.SET_SUBSCRIPTION_STATUS:
+      return {
+        ...state,
+        subscriptionStatus: action.status,
+      };
     default:
       return state;
   }

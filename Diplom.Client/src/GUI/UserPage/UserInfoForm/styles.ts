@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const createStyles = makeStyles({
   root: {
-    width: "100%"
+    width: "100%",
   },
   avatarBlock: {
     width: "100%",
@@ -10,15 +10,15 @@ const createStyles = makeStyles({
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPositionY: "50%",
-    alignItems: "flex-end"
+    alignItems: "flex-end",
   },
   collapse: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
   },
   submitButton: {
-    marginTop: 20
-  }
+    marginTop: 20,
+  },
 });
 
 export default createStyles;

@@ -2,7 +2,7 @@ import React, {
   FunctionComponent,
   useCallback,
   useEffect,
-  useState
+  useState,
 } from "react";
 import createStyles from "./styles";
 import { Field, reduxForm, InjectedFormProps } from "redux-form";
@@ -25,8 +25,9 @@ import Education from "../../../shared/models/user/Education";
 import MaritialStatus from "../../../shared/models/user/MaritalStatus";
 import CustomCheckboxField from "../../shared/Form/Fields/CustomCheckboxField";
 
-const UserInfoForm: FunctionComponent<IUserInfoFormProps &
-  IUserInfoFormCallProps> = props => {
+const UserInfoForm: FunctionComponent<
+  IUserInfoFormProps & IUserInfoFormCallProps
+> = (props) => {
   const { handleSubmit, canEdit, avatar, country } = props;
 
   const classes = createStyles();
@@ -39,13 +40,13 @@ const UserInfoForm: FunctionComponent<IUserInfoFormProps &
 
   const getCountriesOptions = (): JSX.Element[] => {
     let countries = CountrySateCity.getAllCountries();
-    return countries.map(c => <option value={c.id}>{c.name}</option>);
+    return countries.map((c) => <option value={c.id}>{c.name}</option>);
   };
 
   const getCitiesOptions = (): JSX.Element[] => {
     if (country) {
       let cities = CountrySateCity.getStatesOfCountry(`${country}`);
-      return cities.map(c => <option value={c.id}>{c.name}</option>);
+      return cities.map((c) => <option value={c.id}>{c.name}</option>);
     }
     return [];
   };
@@ -54,11 +55,9 @@ const UserInfoForm: FunctionComponent<IUserInfoFormProps &
     return [
       <option value={Education.No}>No education</option>,
       <option value={Education.middleCommon}>Associate Degrees</option>,
-      <option value={Education.middleProfessional}>
-        Bachelor’s Degrees
-      </option>,
+      <option value={Education.middleProfessional}>Bachelor’s Degrees</option>,
       <option value={Education.Bachelor}>Master’s Degrees</option>,
-      <option value={Education.Magister}>Doctoral Degrees</option>
+      <option value={Education.Magister}>Doctoral Degrees</option>,
     ];
   };
 
@@ -67,7 +66,7 @@ const UserInfoForm: FunctionComponent<IUserInfoFormProps &
       <option value={MaritialStatus.Single}>Single</option>,
       <option value={MaritialStatus.Meeting}>Date with someone</option>,
       <option value={MaritialStatus.Married}>Married</option>,
-      <option value={MaritialStatus.Divorced}>Divorced</option>
+      <option value={MaritialStatus.Divorced}>Divorced</option>,
     ];
   };
 
@@ -88,7 +87,7 @@ const UserInfoForm: FunctionComponent<IUserInfoFormProps &
           container
           className={classes.avatarBlock}
           style={{
-            backgroundImage: `url(${getAvatarUrl()})`
+            backgroundImage: `url(${getAvatarUrl()})`,
           }}
         >
           <Field
@@ -115,16 +114,14 @@ const UserInfoForm: FunctionComponent<IUserInfoFormProps &
           component={CustomTextField}
         />
         <ListItem button onClick={handleClick}>
-          <ListItemText
-            secondary={open ? "Show less" : "Show more"}
-          />
+          <ListItemText secondary={open ? "Show less" : "Show more"} />
           {open ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse
           in={open}
           timeout="auto"
           classes={{
-            wrapperInner: classes.collapse
+            wrapperInner: classes.collapse,
           }}
         >
           <Field
@@ -163,7 +160,7 @@ const UserInfoForm: FunctionComponent<IUserInfoFormProps &
             component={CustomDateField}
             disabled={!canEdit}
             InputLabelProps={{
-              shrink: true
+              shrink: true,
             }}
           />
           <Field
@@ -246,5 +243,5 @@ const UserInfoForm: FunctionComponent<IUserInfoFormProps &
 
 export default reduxForm({
   form: FormNames.ProfileInfoForm.name,
-  enableReinitialize: true
+  enableReinitialize: true,
 })(UserInfoForm as any);

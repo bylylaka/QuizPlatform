@@ -17,11 +17,11 @@ const Actions = {
       title,
     };
   },
-  setActiveHederComponents(components: JSX.Element[]){
+  setActiveHederComponents(components: JSX.Element[]) {
     return {
       type: ActionTypes.SET_ACTIVE_HEADER_COMPONENTS,
-      components
-    }
+      components,
+    };
   },
   setAppSnackbarMessage(message: AppSnackbarMessage) {
     return {
@@ -85,12 +85,19 @@ const Actions = {
       statistic,
     };
   },
-  
+
   setQuizFilteredStatistic(statistic: StatisticQuiz) {
     return {
       type: ActionTypes.SET_QUIZ_FILTERED_STATISTIC,
-      statistic
-    }
+      statistic,
+    };
+  },
+
+  setSubscriptionStatus(status: boolean) {
+    return {
+      type: ActionTypes.SET_SUBSCRIPTION_STATUS,
+      status,
+    };
   },
 
   //saga actions
@@ -185,9 +192,24 @@ const Actions = {
   filterQuizStatistic(filter: StatisticFilter) {
     return {
       type: ActionTypes.FILTER_QUIZ_STATISTIC,
-      filter
-    }
-  }
+      filter,
+    };
+  },
+
+  getSubscriptionStatus(producerId: number) {
+    return {
+      type: ActionTypes.GET_SUBSCRIPTION_STATUS,
+      producerId,
+    };
+  },
+
+  changeSubscriptionStatus(producerId: number, status: boolean) {
+    return {
+      type: ActionTypes.CHANGE_SUBSCRIPTION_STATUS,
+      producerId,
+      status,
+    };
+  },
 };
 
 export default Actions;

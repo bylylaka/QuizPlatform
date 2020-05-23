@@ -9,11 +9,21 @@ import IconButton from "@material-ui/core/IconButton";
 import AddCircleOutlinedIcon from "@material-ui/icons/AddCircleOutlined";
 import Tooltip from "@material-ui/core/Tooltip";
 import UserQuizListContainer from "./UserQuizList/UserQuizListContainer";
+import Button from "@material-ui/core/Button";
+import User from "../../shared/models/user/User";
 
 export const UserPage: React.FunctionComponent<
   IUserPageProps & IUserPageCallProps
 > = (props) => {
-  const { setTitle, getUser, user, isMyProfile } = props;
+  const {
+    setTitle,
+    getUser,
+    user,
+    isMyProfile,
+    subscriptionStatus,
+    checkSubscriptionStatus,
+    chagneSubscriptionStatus,
+  } = props;
 
   const classes = createStyles();
 
@@ -24,8 +34,11 @@ export const UserPage: React.FunctionComponent<
   useEffect(() => {
     if (id) {
       getUser(Number(id));
+      if (!isMyProfile) {
+        checkSubscriptionStatus(Number(id));
+      }
     }
-  }, [id]);
+  }, [id, isMyProfile]);
 
   useEffect(() => {
     if (user) {
@@ -37,6 +50,36 @@ export const UserPage: React.FunctionComponent<
     history.push("/createQuiz");
   };
 
+  const renderSubscribeButton = (): JSX.Element => {
+    if (isMyProfile) {
+      return <></>;
+    }
+
+    if (subscriptionStatus) {
+      return (
+        <Button
+          type="submit"
+          variant="outlined"
+          className={classes.subscribeButton}
+          onClick={() => chagneSubscriptionStatus(Number(id), false)}
+        >
+          Unsubscribe
+        </Button>
+      );
+    }
+    return (
+      <Button
+        type="submit"
+        className={classes.subscribeButton}
+        color="secondary"
+        variant="contained"
+        onClick={() => chagneSubscriptionStatus(Number(id), true)}
+      >
+        Subscribe
+      </Button>
+    );
+  };
+
   if (!user) {
     return <CircularProgress />;
   }
@@ -44,6 +87,7 @@ export const UserPage: React.FunctionComponent<
   return (
     <Grid container justify="center">
       <Grid container item className={classes.root}>
+        {renderSubscribeButton()}
         <UserInfoFormContainer />
         {isMyProfile && (
           <Grid container justify="flex-end">

@@ -1,7 +1,8 @@
 ﻿namespace Diplom.Infrastructure
 {
-    using Diplom.Domain.Contexts.Quiz.Models;
-    using Diplom.Domain.Contexts.Team.Models;
+	using Diplom.Domain.Contexts.Notifications.Models;
+	using Diplom.Domain.Contexts.Quiz.Models;
+	using Diplom.Domain.Contexts.Team.Models;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,10 @@
 		public DbSet<Option> Options { get; set; }
 
 		public DbSet<Answer> Answers { get; set; }
+
+		public DbSet<Subscription> Subscriptions { get; set; }
+
+		public DbSet<SiteNotification> SiteNotifications { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
@@ -88,6 +93,24 @@
 				.HasConversion(
 					v => JsonConvert.SerializeObject(v),
 					v => JsonConvert.DeserializeObject(v));
+
+			modelBuilder.Entity<Subscription>()
+				.HasOne(x => x.Consumer)
+				.WithMany()
+				.HasForeignKey(x => x.ConsumerId)
+				.OnDelete(DeleteBehavior.Cascade);
+
+			modelBuilder.Entity<Subscription>()
+				.HasOne(x => x.Producer)
+				.WithMany()
+				.HasForeignKey(x => x.ProducerId)
+				.OnDelete(DeleteBehavior.Cascade);
+
+			modelBuilder.Entity<SiteNotification>()
+				.HasOne(x => x.Producer)
+				.WithMany()
+				.HasForeignKey(x => x.ProducerId)
+				.OnDelete(DeleteBehavior.Cascade);
 		}
 	}
 }

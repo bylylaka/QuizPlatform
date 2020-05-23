@@ -192,11 +192,32 @@ export const Sagas = {
 
     filteredStatistic.questions.forEach((question: StatisticQuestion) => {
       question.answers = question.answers.filter((answer: StatisticAnswer) => {
-        return allowedParticipants.map(p => p.id).includes(answer.participant.id);
+        return allowedParticipants
+          .map((p) => p.id)
+          .includes(answer.participant.id);
       });
     });
 
     yield put(Actions.setQuizFilteredStatistic(filteredStatistic));
+  },
+
+  *getSubsctiptionStatusSaga(
+    action: ReturnType<typeof Actions.getSubscriptionStatus>
+  ) {
+    let reponse = yield call(Apis.getSubsctiptionStatus, action.producerId);
+
+    yield put(Actions.setSubscriptionStatus(reponse.data));
+  },
+
+  *changeSubsctiptionStatusSaga(
+    action: ReturnType<typeof Actions.changeSubscriptionStatus>
+  ) {
+    let reponse = yield call(
+      Apis.changeSubscriptionStatus,
+      action.producerId,
+      action.status
+    );
+    yield put(Actions.setSubscriptionStatus(action.status));
   },
 
   filterStatisticParticipant(participant: User, filter: StatisticFilter) {
