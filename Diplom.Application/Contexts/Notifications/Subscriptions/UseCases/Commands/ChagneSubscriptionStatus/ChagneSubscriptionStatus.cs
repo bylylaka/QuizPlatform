@@ -1,4 +1,4 @@
-﻿namespace Diplom.Application.Contexts.Notifications.UseCases.Commands.ChagneSubscriptionStatus
+﻿namespace Diplom.Application.Contexts.Notifications.Subscriptions.UseCases.Commands.ChagneSubscriptionStatus
 {
 	using Diplom.Application.Contexts.Core.Mediator;
 

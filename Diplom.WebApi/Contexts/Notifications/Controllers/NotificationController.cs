@@ -1,7 +1,8 @@
 ﻿namespace Diplom.WebApi.Contexts.Notifications.Controllers
 {
-	using Diplom.Application.Contexts.Notifications.UseCases.Commands.ChagneSubscriptionStatus;
-	using Diplom.Application.Contexts.Notifications.UseCases.Commands.Queries.GetSubscriptionStatus;
+	using Diplom.Application.Contexts.Notifications.Notifications.SiteNotifications.UseCases.Queries.GetSiteNotifications;
+	using Diplom.Application.Contexts.Notifications.Subscriptions.UseCases.Commands.ChagneSubscriptionStatus;
+	using Diplom.Application.Contexts.Notifications.Subscriptions.UseCases.Queries.GetSubscriptionStatus;
 	using Diplom.Application.Contexts.Team.UseCases.Queries.GetMyProfileSimplified;
 	using MediatR;
 	using Microsoft.AspNetCore.Authorization;
@@ -44,6 +45,19 @@
 			var result = await _mediator.Send(command);
 
 			return Ok(result);
+		}
+
+		[Authorize]
+		[HttpGet]
+		[Route("[action]/{producerId}")]
+		public async Task<IActionResult> GetSiteNotifications()
+		{
+			var consumer = await _mediator.Send(new GetMyProfileSimplified(User));
+
+			var query = new GetSiteNotifications(consumer.Id);
+			var result = await _mediator.Send(query);
+
+			return Ok(result.Notifications);
 		}
 	}
 }

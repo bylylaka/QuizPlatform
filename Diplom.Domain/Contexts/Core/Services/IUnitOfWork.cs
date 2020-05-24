@@ -1,19 +1,23 @@
-﻿using Diplom.Domain.Contexts.Notifications.Services;
-using Diplom.Domain.Contexts.Quiz.Services;
-using Diplom.Domain.Contexts.Team.Services;
-using System;
-using System.Threading.Tasks;
-
-namespace Diplom.Domain.Contexts.Core.Repositories
+﻿namespace Diplom.Domain.Contexts.Core.Repositories
 {
-    public interface IUnitOfWork : IDisposable
-    {
-        public IQuizRepository Quizes { get; }
+	using Diplom.Domain.Contexts.Notifications.Notifications.Models;
+	using Diplom.Domain.Contexts.Notifications.Notifications.Services;
+	using Diplom.Domain.Contexts.Notifications.Subscriptions.Services;
+	using Diplom.Domain.Contexts.Quiz.Services;
+	using Diplom.Domain.Contexts.Team.Services;
+	using System;
+	using System.Threading.Tasks;
 
-        public IUserRepository Users { get; }
+	public interface IUnitOfWork : IDisposable
+	{
+		public IQuizRepository Quizes { get; }
 
-        public INotificationRepository Notifications { get; }
+		public IUserRepository Users { get; }
 
-        public Task SaveAsync();
-    }
+		public INotificationRepository<SiteNotification> SiteNotifications { get; }
+
+		public ISubscriptionRepository Subscriptions { get; }
+
+		public Task SaveAsync();
+	}
 }

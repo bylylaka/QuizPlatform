@@ -1,6 +1,7 @@
 ﻿namespace Diplom.Infrastructure
 {
-	using Diplom.Domain.Contexts.Notifications.Models;
+	using Diplom.Domain.Contexts.Notifications.Notifications.Models;
+	using Diplom.Domain.Contexts.Notifications.Subscriptions.Models;
 	using Diplom.Domain.Contexts.Quiz.Models;
 	using Diplom.Domain.Contexts.Team.Models;
 	using Microsoft.AspNetCore.Identity;

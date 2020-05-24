@@ -16,14 +16,17 @@ namespace Diplom
 	using Diplom.Application.Contexts.Team.Validators;
 	using Diplom.Domain.Contexts.Core.Repositories;
 	using Diplom.Domain.Contexts.Files.Services;
-	using Diplom.Domain.Contexts.Notifications.Services;
+	using Diplom.Domain.Contexts.Notifications.Notifications.Models;
+	using Diplom.Domain.Contexts.Notifications.Notifications.Services;
+	using Diplom.Domain.Contexts.Notifications.Subscriptions.Services;
 	using Diplom.Domain.Contexts.Quiz.Services;
 	using Diplom.Domain.Contexts.Team.Models;
 	using Diplom.Domain.Contexts.Team.Services;
 	using Diplom.Domain.utils.Countries;
 	using Diplom.Infrastructure;
 	using Diplom.Infrastructure.Contexts.Core.Repositories;
-	using Diplom.Infrastructure.Contexts.Notifications.Repositories;
+	using Diplom.Infrastructure.Contexts.Notifications.Notifications.Repositories;
+	using Diplom.Infrastructure.Contexts.Notifications.Subsctiptions.Repositories;
 	using Diplom.Infrastructure.Contexts.Quiz.Repositories;
 	using Diplom.Infrastructure.Contexts.Team.Repositories;
 	using Diplom.WebApi.Contexts.Core.Middleware;
@@ -83,7 +86,8 @@ namespace Diplom
 			services.AddScoped<IFileService, FileService>();
 			services.AddScoped<IUserRepository, UserRepository>();
 			services.AddScoped<IQuizRepository, QuizRepository>();
-			services.AddScoped<INotificationRepository, NotificationRepository>();
+			services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
+			services.AddScoped<INotificationRepository<SiteNotification>, SiteNotificationRepository>();
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
 			services.AddScoped<CountriesHelper>();
 

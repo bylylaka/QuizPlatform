@@ -1,9 +1,9 @@
-﻿namespace Diplom.Application.Contexts.Notifications.UseCases.Commands.ChagneSubscriptionStatus
+﻿namespace Diplom.Application.Contexts.Notifications.Subscriptions.UseCases.Commands.ChagneSubscriptionStatus
 {
 	using Diplom.Application.Contexts.Core.Mediator;
 	using Diplom.Domain.Contexts.Core.Exceptions;
 	using Diplom.Domain.Contexts.Core.Repositories;
-	using Diplom.Domain.Contexts.Notifications.Models;
+	using Diplom.Domain.Contexts.Notifications.Subscriptions.Models;
 	using MediatR;
 	using System.Threading;
 	using System.Threading.Tasks;
@@ -19,7 +19,7 @@
 
 		public async Task<Unit> Handle(ChagneSubscriptionStatus request, CancellationToken cancellationToken)
 		{
-			var subscription = await _unitOfWork.Notifications.GetSubscription(request.ProducerId, request.ConsumerId);
+			var subscription = await _unitOfWork.Subscriptions.GetSubscription(request.ProducerId, request.ConsumerId);
 
 			if (request.Subscribe)
 			{
@@ -34,7 +34,7 @@
 					ProducerId = request.ProducerId,
 				};
 
-				await _unitOfWork.Notifications.AddSubsctiption(newSubscription);
+				await _unitOfWork.Subscriptions.AddSubsctiption(newSubscription);
 			}
 			else
 			{
@@ -43,7 +43,7 @@
 					throw new BadRequestException();
 				}
 
-				await _unitOfWork.Notifications.RemoveSubsctiption(subscription);
+				await _unitOfWork.Subscriptions.RemoveSubsctiption(subscription);
 			}
 			await _unitOfWork.SaveAsync();
 

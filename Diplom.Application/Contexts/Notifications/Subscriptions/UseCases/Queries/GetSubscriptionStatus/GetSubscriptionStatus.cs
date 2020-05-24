@@ -1,4 +1,4 @@
-﻿namespace Diplom.Application.Contexts.Notifications.UseCases.Commands.Queries.GetSubscriptionStatus
+﻿namespace Diplom.Application.Contexts.Notifications.Subscriptions.UseCases.Queries.GetSubscriptionStatus
 {
 	using Diplom.Application.Contexts.Core.Mediator;
 

@@ -1,7 +1,7 @@
-﻿using Diplom.Domain.Contexts.Team.Models;
-
-namespace Diplom.Domain.Contexts.Notifications.Models
+﻿namespace Diplom.Domain.Contexts.Notifications.Subscriptions.Models
 {
+	using Diplom.Domain.Contexts.Team.Models;
+
 	public class Subscription
 	{
 		public int Id { get; set; }
