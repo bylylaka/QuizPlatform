@@ -16,6 +16,9 @@ const Selectors = {
   subscriptionStatus(state: RootState) {
     return state.reducer.subscriptionStatus;
   },
+  siteNotifications(state: RootState) {
+    return state.reducer.siteNotifications;
+  },
 };
 
 export default Selectors;

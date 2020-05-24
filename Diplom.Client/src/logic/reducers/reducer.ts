@@ -7,6 +7,7 @@ import UserSimplified from "../../shared/models/user/UserSimplified";
 import Quiz from "../../shared/models/quiz/Quiz";
 import QuizSearch from "../../shared/models/quiz/QuizSearch";
 import StatisticQuiz from "../../shared/models/quiz/StatisticQuiz";
+import SiteNotification from "../../shared/models/notification/SiteNotification";
 
 export interface State {
   title: string;
@@ -22,6 +23,7 @@ export interface State {
   quizStatistic: StatisticQuiz;
   quizFilteredStatistic: StatisticQuiz;
   subscriptionStatus: boolean;
+  siteNotifications: SiteNotification[];
 }
 
 const initialState: State = {
@@ -35,6 +37,7 @@ const initialState: State = {
   quizStatistic: {} as any,
   quizFilteredStatistic: {} as any,
   subscriptionStatus: false,
+  siteNotifications: [],
 };
 
 export const Reducer = (state = initialState, action: AnyAction): State => {
@@ -104,6 +107,11 @@ export const Reducer = (state = initialState, action: AnyAction): State => {
       return {
         ...state,
         subscriptionStatus: action.status,
+      };
+    case ActionTypes.SET_SITE_NOTIFICATIONS:
+      return {
+        ...state,
+        siteNotifications: action.notifications,
       };
     default:
       return state;

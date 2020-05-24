@@ -50,7 +50,6 @@ export const QuizStatisticsPage: FunctionComponent<
     let filtered = false;
     if (formValues) {
       for (let [key, value] of Object.entries(formValues)) {
-        // console.log(`${key}: ${value}`);
         if (value != null && key != "age") {
           filtered = true;
         }
@@ -102,17 +101,17 @@ export const QuizStatisticsPage: FunctionComponent<
       if (!q.answers.length) {
         return (
           <Card className={classes.card}>
-              <Grid item container xs={12} spacing={1} direction="column">
-                <Grid item>
-                  <Typography component="h1" variant="h5" align="center">
-                    {q.title}
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography align="center" color="textSecondary">
-                    Ответов пока нет.
-                  </Typography>
-                </Grid>
+            <Grid item container xs={12} spacing={1} direction="column">
+              <Grid item>
+                <Typography component="h1" variant="h5" align="center">
+                  {q.title}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography align="center" color="textSecondary">
+                  Ответов пока нет.
+                </Typography>
+              </Grid>
             </Grid>
           </Card>
         );

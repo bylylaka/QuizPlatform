@@ -7,7 +7,8 @@ import Quiz from "../../shared/models/quiz/Quiz";
 import Answer from "../../shared/models/quiz/Answer";
 import QuizSearch from "../../shared/models/quiz/QuizSearch";
 import StatisticQuiz from "../../shared/models/quiz/StatisticQuiz";
-import StatisticFilter from "../../shared/models/quiz/Filter/StatusticFilter";
+import StatisticFilter from "../../shared/models/quiz/Filter/StatisticFilter";
+import SiteNotification from "../../shared/models/notification/SiteNotification";
 
 const Actions = {
   //store actions
@@ -97,6 +98,13 @@ const Actions = {
     return {
       type: ActionTypes.SET_SUBSCRIPTION_STATUS,
       status,
+    };
+  },
+
+  setSiteNotifications(notifications: SiteNotification[]) {
+    return {
+      type: ActionTypes.SET_SITE_NOTIFICATIONS,
+      notifications,
     };
   },
 
@@ -208,6 +216,12 @@ const Actions = {
       type: ActionTypes.CHANGE_SUBSCRIPTION_STATUS,
       producerId,
       status,
+    };
+  },
+
+  loadSiteNotifications() {
+    return {
+      type: ActionTypes.LOAD_SITE_NOTIFICATOINS,
     };
   },
 };

@@ -1,7 +1,7 @@
 import Actions from "../../actions/actions";
 import { call, put, select } from "@redux-saga/core/effects";
 import Apis from "../../apis/apis";
-import { stopSubmit } from "redux-form";
+import { stopSubmit, reset } from "redux-form";
 import FormNames from "../../../GUI/shared/Form/FormNames";
 import { AxiosResponse } from "axios";
 import User from "../../../shared/models/user/User";
@@ -16,11 +16,12 @@ import StatisticQuiz from "../../../shared/models/quiz/StatisticQuiz";
 import _ from "lodash";
 import StatisticQuestion from "../../../shared/models/quiz/StatisticQuestion";
 import StatisticAnswer from "../../../shared/models/quiz/StatisticAnswer";
-import StatisticFilter from "../../../shared/models/quiz/Filter/StatusticFilter";
+import StatisticFilter from "../../../shared/models/quiz/Filter/StatisticFilter";
 import { userInfo } from "os";
 import ChildsCount from "../../../shared/models/quiz/Filter/ChildsCount";
 import Salary from "../../../shared/models/quiz/Filter/Salary";
 import moment from "moment";
+import SiteNotification from "../../../shared/models/notification/SiteNotification";
 
 export const Sagas = {
   *loginSaga(action: ReturnType<typeof Actions.login>) {
@@ -218,6 +219,17 @@ export const Sagas = {
       action.status
     );
     yield put(Actions.setSubscriptionStatus(action.status));
+  },
+
+  *loadSiteNotificationsSaga() {
+    let response: AxiosResponse<SiteNotification[]> = yield call(
+      Apis.loadSiteNotifications
+    );
+    let sortedNotifications = response.data.sort(
+      (a, b) =>
+        new Date(b.dateCreated).getTime() - new Date(a.dateCreated).getTime()
+    );
+    yield put(Actions.setSiteNotifications(sortedNotifications));
   },
 
   filterStatisticParticipant(participant: User, filter: StatisticFilter) {

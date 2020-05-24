@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
@@ -18,16 +18,34 @@ import { IAppLayoutProps, IAppLayoutCallProps } from "./props";
 import Grid from "@material-ui/core/Grid";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import { BrowserRouter, useHistory } from "react-router-dom";
+import NotificationsPanelContainer from "./NotificationsPanel/NotificationsPanelContainer";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import NotificationsIcon from "@material-ui/icons/Notifications";
 
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-
-const AppLayout: FunctionComponent<IAppLayoutProps &
-  IAppLayoutCallProps> = props => {
-  const { title, activeHeaderComponents, logout, loadMyProfileSimplified, profileId } = props;
+const AppLayout: FunctionComponent<IAppLayoutProps & IAppLayoutCallProps> = (
+  props
+) => {
+  const {
+    title,
+    activeHeaderComponents,
+    logout,
+    loadMyProfileSimplified,
+    profileId,
+  } = props;
 
   const classes = createStyles();
   let history = useHistory();
+
+  const [notificationsDrawerOpen, setNotificationsDrawerOpen] = useState(false);
+
+  const toggleNotificationsDrawer = () => {
+    setNotificationsDrawerOpen(!notificationsDrawerOpen);
+  };
+
+  const closeNotificationsDrawer = () => {
+    setNotificationsDrawerOpen(false);
+  };
 
   useEffect(() => {
     loadMyProfileSimplified();
@@ -60,7 +78,7 @@ const AppLayout: FunctionComponent<IAppLayoutProps &
         variant="permanent"
         className={clsx(classes.drawer, classes.drawerClose)}
         classes={{
-          paper: classes.drawerClose
+          paper: classes.drawerClose,
         }}
       >
         <div className={classes.toolbar} />
@@ -88,6 +106,16 @@ const AppLayout: FunctionComponent<IAppLayoutProps &
                   </ListItemIcon>
                 </Tooltip>
               </ListItem>
+              <ListItem button>
+                <Tooltip
+                  title="Notifications"
+                  onClick={toggleNotificationsDrawer}
+                >
+                  <ListItemIcon>
+                    <NotificationsIcon className={classes.listIcon} />
+                  </ListItemIcon>
+                </Tooltip>
+              </ListItem>
             </Grid>
             <Grid item className={classes.fitContent}>
               <ListItem button onClick={handleLogout}>
@@ -107,6 +135,10 @@ const AppLayout: FunctionComponent<IAppLayoutProps &
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <AppRouter />
+        <NotificationsPanelContainer
+          open={notificationsDrawerOpen}
+          close={closeNotificationsDrawer}
+        />
       </main>
     </div>
   );

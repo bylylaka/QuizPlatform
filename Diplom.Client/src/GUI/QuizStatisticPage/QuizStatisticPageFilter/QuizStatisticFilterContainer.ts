@@ -9,15 +9,23 @@ import { RootState } from "../../../logic/reducers/rootReducer";
 import FormNames from "../../shared/Form/FormNames";
 import { formValueSelector } from "redux-form";
 import Actions from "../../../logic/actions/actions";
-import StatisticFilter from "../../../shared/models/quiz/Filter/StatusticFilter";
+import StatisticFilter from "../../../shared/models/quiz/Filter/StatisticFilter";
 
-type ContainerProps = Pick<IQuizStatisticsFilterProps & IQuizStatisticsFilterCallProps, "open">
+type ContainerProps = Pick<
+  IQuizStatisticsFilterProps & IQuizStatisticsFilterCallProps,
+  "open"
+>;
 
 const selector = formValueSelector(FormNames.filterAnswers.name);
 
-const mapStateToProps = (state: RootState): Omit<IQuizStatisticsFilterProps, keyof ContainerProps> => {
+const mapStateToProps = (
+  state: RootState
+): Omit<IQuizStatisticsFilterProps, keyof ContainerProps> => {
   return {
-    selectedCountry: selector(state, FormNames.filterAnswers.fieldNames.country)
+    selectedCountry: selector(
+      state,
+      FormNames.filterAnswers.fieldNames.country
+    ),
   };
 };
 
@@ -25,7 +33,8 @@ const mapDispatchToProps = (
   dispatch: Dispatch
 ): Omit<IQuizStatisticsFilterCallProps, keyof ContainerProps> => {
   return {
-    submitFilter: (filter: StatisticFilter) => dispatch(Actions.filterQuizStatistic(filter))
+    submitFilter: (filter: StatisticFilter) =>
+      dispatch(Actions.filterQuizStatistic(filter)),
   };
 };
 

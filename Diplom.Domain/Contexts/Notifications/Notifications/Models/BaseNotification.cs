@@ -3,7 +3,7 @@ using System;
 
 namespace Diplom.Domain.Contexts.Notifications.Notifications.Models
 {
-	public class BaseNotification
+	public abstract class BaseNotification
 	{
 		public int Id { get; set; }
 

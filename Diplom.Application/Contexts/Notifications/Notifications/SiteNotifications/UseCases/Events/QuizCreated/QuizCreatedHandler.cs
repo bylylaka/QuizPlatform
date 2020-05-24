@@ -24,7 +24,7 @@
 
 			var notifications = subscribers.Select(subscriber => new SiteNotification()
 			{
-				ProducerId = notification.Quiz.Id,
+				ProducerId = notification.Quiz.User.Id,
 				ProducerName = notification.Quiz.User.UserName,
 				QuizId = notification.Quiz.Id,
 				QuizTitle = notification.Quiz.Title,

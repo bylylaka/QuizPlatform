@@ -81,6 +81,13 @@ function* changeSubsctiptionStatusWatcher() {
   );
 }
 
+function* loadSiteNotificationsWatcher() {
+  yield takeLatest(
+    ActionTypes.LOAD_SITE_NOTIFICATOINS,
+    Sagas.loadSiteNotificationsSaga
+  );
+}
+
 export default function* watchers() {
   yield all([
     loginWatcher(),
@@ -99,5 +106,6 @@ export default function* watchers() {
     filterQuizStatisticWatcher(),
     getSubsctiptionStatusWatcher(),
     changeSubsctiptionStatusWatcher(),
+    loadSiteNotificationsWatcher(),
   ]);
 }

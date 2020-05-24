@@ -25,10 +25,6 @@ D:\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.cs
 D:\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.dll
 D:\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.pdb
 D:\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.genruntimeconfig.cache
-C:\Users\marslanov\Documents\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.csproj.CoreCompileInputs.cache
-C:\Users\marslanov\Documents\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.AssemblyInfoInputs.cache
-C:\Users\marslanov\Documents\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.AssemblyInfo.cs
-C:\Users\marslanov\Documents\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.csprojAssemblyReference.cache
 C:\Users\marslanov\Documents\Diplom\Diplom.Infrastructure\bin\Debug\netcoreapp3.1\Diplom.Infrastructure.deps.json
 C:\Users\marslanov\Documents\Diplom\Diplom.Infrastructure\bin\Debug\netcoreapp3.1\Diplom.Infrastructure.runtimeconfig.json
 C:\Users\marslanov\Documents\Diplom\Diplom.Infrastructure\bin\Debug\netcoreapp3.1\Diplom.Infrastructure.runtimeconfig.dev.json
@@ -36,6 +32,10 @@ C:\Users\marslanov\Documents\Diplom\Diplom.Infrastructure\bin\Debug\netcoreapp3.
 C:\Users\marslanov\Documents\Diplom\Diplom.Infrastructure\bin\Debug\netcoreapp3.1\Diplom.Infrastructure.pdb
 C:\Users\marslanov\Documents\Diplom\Diplom.Infrastructure\bin\Debug\netcoreapp3.1\Diplom.Domain.dll
 C:\Users\marslanov\Documents\Diplom\Diplom.Infrastructure\bin\Debug\netcoreapp3.1\Diplom.Domain.pdb
+C:\Users\marslanov\Documents\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.csprojAssemblyReference.cache
+C:\Users\marslanov\Documents\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\marslanov\Documents\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\marslanov\Documents\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.AssemblyInfo.cs
 C:\Users\marslanov\Documents\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.csproj.CopyComplete
 C:\Users\marslanov\Documents\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.dll
 C:\Users\marslanov\Documents\Diplom\Diplom.Infrastructure\obj\Debug\netcoreapp3.1\Diplom.Infrastructure.pdb

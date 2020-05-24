@@ -49,7 +49,7 @@
 
 		[Authorize]
 		[HttpGet]
-		[Route("[action]/{producerId}")]
+		[Route("[action]")]
 		public async Task<IActionResult> GetSiteNotifications()
 		{
 			var consumer = await _mediator.Send(new GetMyProfileSimplified(User));

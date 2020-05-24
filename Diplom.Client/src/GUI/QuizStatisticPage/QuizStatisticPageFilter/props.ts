@@ -1,10 +1,10 @@
-import StatisticFilter from "../../../shared/models/quiz/Filter/StatusticFilter";
+import StatisticFilter from "../../../shared/models/quiz/Filter/StatisticFilter";
 
 export interface IQuizStatisticsFilterProps {
-    open: boolean;
-    selectedCountry: number;
+  open: boolean;
+  selectedCountry: number;
 }
 
 export interface IQuizStatisticsFilterCallProps {
-    submitFilter: (filter: StatisticFilter) => void;
+  submitFilter: (filter: StatisticFilter) => void;
 }

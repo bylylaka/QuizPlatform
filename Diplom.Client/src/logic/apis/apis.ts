@@ -55,6 +55,9 @@ export const Apis = {
       subscribe: status,
     });
   },
+  loadSiteNotifications() {
+    return Axios.get(`api/notification/getSiteNotifications`);
+  },
 };
 
 export default Apis;
