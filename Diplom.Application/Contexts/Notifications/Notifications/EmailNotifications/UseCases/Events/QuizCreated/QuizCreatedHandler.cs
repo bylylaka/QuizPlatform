@@ -2,11 +2,17 @@
 {
 	using Diplom.Application.Contexts.Core.Mediator;
 	using Diplom.Application.Contexts.Quiz.UseCases.Events;
-	using Diplom.Domain.Contexts.Emails.Models;
+	using Diplom.Application.Contexts.Team.UseCases.Queries.GetCurrentUser;
+	using Diplom.Domain.Contexts.Core.Repositories;
 	using Diplom.Domain.Contexts.Emails.Services;
+	using Diplom.Domain.Contexts.Notifications.Notifications.Models;
 	using Diplom.WebApi.Contexts.Notifications.Controllers;
+	using MediatR;
+	using Microsoft.AspNetCore.Http;
 	using System;
 	using System.Net.Mail;
+	using System.Net.Mime;
+	using System.Text;
 	using System.Threading;
 	using System.Threading.Tasks;
 
@@ -14,35 +20,62 @@
 	{
 		private readonly IRazorViewToStringRenderer _renderer;
 
+		private readonly IMediator _mediator;
+
 		private readonly IEmailService _emailService;
+
+		private readonly IHttpContextAccessor _httpContextAccessor;
+
+		private readonly IUnitOfWork _unitOfWork;
 
 		public QuizCreatedHandler(
 			IRazorViewToStringRenderer renderer,
-			IEmailService emailService)
+			IEmailService emailService,
+			IHttpContextAccessor httpContextAccessor,
+			IUnitOfWork unitOfWork,
+			IMediator mediator)
 		{
 			_renderer = renderer;
 			_emailService = emailService;
+			_httpContextAccessor = httpContextAccessor;
+			_unitOfWork = unitOfWork;
+			_mediator = mediator;
 		}
 
 		public async Task Handle(QuizCreated notification, CancellationToken cancellationToken)
 		{
-			var model = new HelloWorldViewModel("https://www.google.com");
+			var subscribers = await _unitOfWork.Subscriptions.GetSubscribers(notification.Quiz.UserId);
 
-			try
+			var geCurrentUserResult = await _mediator.Send(new GetCurrentUser());
+
+			var host = _httpContextAccessor.HttpContext.Request.Host.Value;
+			var QuizCreatorPath = $"{host}/user/{notification.Quiz.UserId}";
+			var QuizPath = $"{host}/quiz/{notification.Quiz.Id}";
+
+			var model = new EmailNotification()
 			{
-				var textBody = await _renderer.RenderViewToStringAsync("/Views/HelloWorldText.cshtml", model);
+				QuizCreatorPath = QuizCreatorPath,
+				QuizPath = QuizPath,
+				QuizTitle = notification.Quiz.Title,
+				DateCreated = DateTime.Now,
+				Reciever = geCurrentUserResult.User,
+				ProducerName = notification.Quiz.User.UserName
+			};
 
-				var message = new MailMessage("maxim.arslanov.1998@gmail.com", "maxim.arslanov@myget-it.com")
+			var textbody = await _renderer.RenderViewToStringAsync("/Views/HelloworldText.cshtml", model);
+
+			foreach (var subscriber in subscribers)
+			{
+				var message = new MailMessage("maxim.arslanov.1998@gmail.com", subscriber.Email)
 				{
-					Subject = "Hello World!",
-					Body = textBody
+					Subject = "New Quiz was published!",
+					Body = textbody
 				};
 
+				message.AlternateViews.Add(
+					AlternateView.CreateAlternateViewFromString(textbody, Encoding.UTF8, MediaTypeNames.Text.Html));
+
 				await _emailService.SendEmailAsync(message);
-			}
-			catch (Exception e)
-			{
-				throw e;
 			}
 		}
 	}

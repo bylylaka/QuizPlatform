@@ -1,9 +1,20 @@
-﻿@using Diplom.Domain.Contexts.Emails.Models
+﻿@using Diplom.Domain.Contexts.Notifications.Notifications.Models
 
-@model HelloWorldViewModel
+@model EmailNotification
 
 @{
 }
 
-It looks like you may have just sent your first custom email! Let's Go to @Model.ButtonLink.
-- Derek Arends
+<h3>Hello, @Model.Reciever.UserName!</h3>
+
+<p>New notification for you:<br />
+<a href="@Model.QuizCreatorPath" target="_blank" style="font-family: Helvetica; color: rgb(63,81,181);">
+    @Model.ProducerName
+</a>
+publish
+<a href="@Model.QuizPath" style="font-family: Helvetica; color: rgb(63,81,181);">@Model.QuizTitle</a></p>
+
+<p style="color: rgb(200,200,200);">Date publish: @Model.DateCreated</p>
+
+--<br />
+Diplom

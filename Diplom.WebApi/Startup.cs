@@ -71,6 +71,8 @@ namespace Diplom
 			services.AddMvc()
 				.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<RegistrationValidator>());
 
+			services.AddHttpContextAccessor();
+
 			services.AddMediatR(typeof(LoginHandler).Assembly,
 				typeof(RegisterHandler).Assembly,
 				typeof(LogoutHandler).Assembly,

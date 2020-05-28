@@ -8,17 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Contexts\Emails\Templates\HelloWorldText.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Contexts\Emails\Templates\HelloWorldText.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />
     <PackageReference Include="FluentValidation.ValidatorAttribute" Version="8.6.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
