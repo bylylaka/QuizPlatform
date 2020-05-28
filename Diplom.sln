@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diplom.Domain", "Diplom.Dom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diplom.Infrastructure", "Diplom.Infrastructure\Diplom.Infrastructure.csproj", "{1166E62D-8EDC-4736-8B3D-AE1BF534A6B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diplom.Application", "Diplom.Application\Diplom.Application.csproj", "{F7279687-1335-4BA2-99A9-D0200CF7BE05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diplom.Application", "Diplom.Application\Diplom.Application.csproj", "{F7279687-1335-4BA2-99A9-D0200CF7BE05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

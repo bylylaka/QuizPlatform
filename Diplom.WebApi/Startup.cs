@@ -30,6 +30,7 @@ namespace Diplom
 	using Diplom.Infrastructure.Contexts.Quiz.Repositories;
 	using Diplom.Infrastructure.Contexts.Team.Repositories;
 	using Diplom.WebApi.Contexts.Core.Middleware;
+	using Diplom.WebApi.Contexts.Notifications.Controllers;
 	using FluentValidation.AspNetCore;
 	using MediatR;
 	using Microsoft.AspNetCore.Builder;
@@ -83,6 +84,7 @@ namespace Diplom
 				typeof(GetUserQuizListHandler).Assembly,
 				typeof(Application.Contexts.Quiz.UseCases.Queries.SearchByWord.SearchByWordHandler).Assembly);
 
+			services.AddTransient<IRazorViewToStringRenderer, RazorViewToStringRenderer>();
 			services.AddScoped<IFileService, FileService>();
 			services.AddScoped<IUserRepository, UserRepository>();
 			services.AddScoped<IQuizRepository, QuizRepository>();

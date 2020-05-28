@@ -22,3 +22,4 @@ C:\Users\marslanov\Documents\Diplom\Diplom.Domain\obj\Debug\netcoreapp3.1\Diplom
 C:\Users\marslanov\Documents\Diplom\Diplom.Domain\obj\Debug\netcoreapp3.1\Diplom.Domain.AssemblyInfo.cs
 C:\Users\marslanov\Documents\Diplom\Diplom.Domain\obj\Debug\netcoreapp3.1\Diplom.Domain.dll
 C:\Users\marslanov\Documents\Diplom\Diplom.Domain\obj\Debug\netcoreapp3.1\Diplom.Domain.pdb
+C:\Users\marslanov\Documents\Diplom\Diplom.Domain\obj\Debug\netcoreapp3.1\Diplom.Domain.csprojAssemblyReference.cache

@@ -8,16 +8,34 @@
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Mvc;
 	using System.Threading.Tasks;
+	using MailKit.Net.Smtp;
+	using MimeKit;
+	using System;
+	using FluentEmail.Core;
+	using System.Text;
+	using System.Net.Mime;
+	using System.Net.Mail;
+	using System.Net;
+	using Microsoft.AspNetCore.Hosting;
+	using System.IO;
 
 	[Route("api/[controller]")]
 	public class NotificationController : Controller
 	{
 		private readonly IMediator _mediator;
 
+		private readonly IRazorViewToStringRenderer _renderer;
+
+		private readonly IWebHostEnvironment _env;
+
 		public NotificationController(
-			IMediator mediator)
+			IMediator mediator,
+			IRazorViewToStringRenderer renderer,
+			IWebHostEnvironment env)
 		{
 			_mediator = mediator;
+			_renderer = renderer;
+			_env = env;
 		}
 
 		[Authorize]
@@ -56,6 +74,37 @@
 
 			var query = new GetSiteNotifications(consumer.Id);
 			var result = await _mediator.Send(query);
+
+
+			//var message = new MimeMessage();
+			//message.To.Add(new MailboxAddress("maxim.arslanov@myget-it.com"));
+			//message.From.Add(new MailboxAddress("maxim.arslanov.1998@gmail.com"));
+			//message.Subject = "subject";
+			//message.Body = new TextPart(MimeKit.Text.TextFormat.Html)
+			//{
+			//	Text = "Привет!"
+			//};
+
+			var model = new HelloWorldViewModel("https://www.google.com");
+
+			var textBody = await _renderer.RenderViewToStringAsync("/Contexts/Notifications/Views/HelloWorldText.cshtml", model);
+
+			var message = new MailMessage("maxim.arslanov@myget-it.com", "maxim.arslanov@myget-it.com")
+			{
+				Subject = "Hello World!",
+				Body = textBody
+			};
+
+			using (var client = new System.Net.Mail.SmtpClient("smtp.gmail.com"))
+			{
+				client.EnableSsl = true;
+				client.Credentials = new NetworkCredential("maxim.arslanov.1998@gmail.com", "Zampsa1998");
+				await client.SendMailAsync(message);
+
+				client.Send(message);
+			}
+
+
 
 			return Ok(result.Notifications);
 		}
