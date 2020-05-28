@@ -14,7 +14,6 @@
 	using System.Linq;
 	using System.Threading.Tasks;
 
-	// Code from: https://github.com/aspnet/Entropy/blob/dev/samples/Mvc.RenderViewToString/RazorViewToStringRenderer.cs
 	public interface IRazorViewToStringRenderer
 	{
 		Task<string> RenderViewToStringAsync<TModel>(string viewName, TModel model);

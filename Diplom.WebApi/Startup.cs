@@ -15,6 +15,7 @@ namespace Diplom
 	using Diplom.Application.Contexts.Team.UseCases.Queries.SearchByWord;
 	using Diplom.Application.Contexts.Team.Validators;
 	using Diplom.Domain.Contexts.Core.Repositories;
+	using Diplom.Domain.Contexts.Emails.Services;
 	using Diplom.Domain.Contexts.Files.Services;
 	using Diplom.Domain.Contexts.Notifications.Notifications.Models;
 	using Diplom.Domain.Contexts.Notifications.Notifications.Services;
@@ -25,6 +26,7 @@ namespace Diplom
 	using Diplom.Domain.utils.Countries;
 	using Diplom.Infrastructure;
 	using Diplom.Infrastructure.Contexts.Core.Repositories;
+	using Diplom.Infrastructure.Contexts.Emails.Services;
 	using Diplom.Infrastructure.Contexts.Notifications.Notifications.Repositories;
 	using Diplom.Infrastructure.Contexts.Notifications.Subsctiptions.Repositories;
 	using Diplom.Infrastructure.Contexts.Quiz.Repositories;
@@ -85,6 +87,7 @@ namespace Diplom
 				typeof(Application.Contexts.Quiz.UseCases.Queries.SearchByWord.SearchByWordHandler).Assembly);
 
 			services.AddTransient<IRazorViewToStringRenderer, RazorViewToStringRenderer>();
+			services.AddTransient<IEmailService, EmailService>();
 			services.AddScoped<IFileService, FileService>();
 			services.AddScoped<IUserRepository, UserRepository>();
 			services.AddScoped<IQuizRepository, QuizRepository>();

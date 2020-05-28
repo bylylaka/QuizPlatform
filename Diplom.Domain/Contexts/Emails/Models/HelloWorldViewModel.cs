@@ -1,4 +1,4 @@
-﻿namespace Diplom.WebApi.Contexts.Notifications.Controllers
+﻿namespace Diplom.Domain.Contexts.Emails.Models
 {
 	public class HelloWorldViewModel
 	{
