@@ -49,8 +49,9 @@
 			var geCurrentUserResult = await _mediator.Send(new GetCurrentUser());
 
 			var host = _httpContextAccessor.HttpContext.Request.Host.Value;
-			var QuizCreatorPath = $"{host}/user/{notification.Quiz.UserId}";
-			var QuizPath = $"{host}/quiz/{notification.Quiz.Id}";
+			var scheme = _httpContextAccessor.HttpContext.Request.Scheme;
+			var QuizCreatorPath = $"{scheme}://{host}/user/{notification.Quiz.UserId}";
+			var QuizPath = $"{scheme}://{host}/answerQuiz/{notification.Quiz.Id}";
 
 			var model = new EmailNotification()
 			{
