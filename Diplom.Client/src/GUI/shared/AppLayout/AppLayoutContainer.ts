@@ -11,14 +11,15 @@ const mapStateToProps = (state: RootState): IAppLayoutProps => {
     profileId:
       state.reducer.myProfileSimplified && state.reducer.myProfileSimplified.id,
     title: state.reducer.title,
-    activeHeaderComponents: Selectors.activeHeaderComponents(state)
+    activeHeaderComponents: Selectors.activeHeaderComponents(state),
+    notifications: Selectors.siteNotifications(state),
   };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): IAppLayoutCallProps => {
   return {
     loadMyProfileSimplified: () => dispatch(Actions.getMyProfileSimplified()),
-    logout: () => dispatch(Actions.logout())
+    logout: () => dispatch(Actions.logout()),
   };
 };
 

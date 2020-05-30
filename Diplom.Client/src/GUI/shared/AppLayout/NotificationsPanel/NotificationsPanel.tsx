@@ -11,17 +11,31 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import CloseIcon from "@material-ui/icons/Close";
+import IconButton from "@material-ui/core/IconButton";
 
 export const NotificationsPanel: FunctionComponent<
   INotificationsPanelProps & INotificationsPanelCallProps
 > = (props) => {
-  const { open, notifications, loadNotifications, close } = props;
+  const {
+    open,
+    notifications,
+    loadNotifications,
+    close,
+    setNotificationsWasOpened,
+  } = props;
 
   const classes = createStyles(notifications);
 
   useEffect(() => {
     loadNotifications();
   }, []);
+
+  const handleClose = () => {
+    let notificationsIds = notifications.map((n) => n.id);
+    setNotificationsWasOpened(notificationsIds);
+    close();
+  };
 
   const renderNotificationsList = (): JSX.Element | JSX.Element[] => {
     if (!notifications.length) {
@@ -70,7 +84,9 @@ export const NotificationsPanel: FunctionComponent<
       }}
     >
       <div className={classes.drawerHeader} />
-      <Divider />
+      <IconButton className={classes.closeButton} onClick={handleClose}>
+        <CloseIcon color="error" />
+      </IconButton>
       <Container className={classes.container}>
         {renderNotificationsList()}
       </Container>

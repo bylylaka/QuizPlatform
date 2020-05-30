@@ -1,5 +1,6 @@
 ﻿namespace Diplom.WebApi.Contexts.Notifications.Controllers
 {
+	using Diplom.Application.Contexts.Notifications.Notifications.SiteNotifications.UseCases.Commands.UpdateNotificationsOpenedStatus;
 	using Diplom.Application.Contexts.Notifications.Notifications.SiteNotifications.UseCases.Queries.GetSiteNotifications;
 	using Diplom.Application.Contexts.Notifications.Subscriptions.UseCases.Commands.ChagneSubscriptionStatus;
 	using Diplom.Application.Contexts.Notifications.Subscriptions.UseCases.Queries.GetSubscriptionStatus;
@@ -62,6 +63,15 @@
 			var result = await _mediator.Send(query);
 
 			return Ok(result.Notifications);
+		}
+
+		[Authorize]
+		[HttpPut]
+		[Route("[action]")]
+		public async Task<IActionResult> UpdateNotificationOpenedStatus([FromBody] UpdateNotificationsOpenedStatus command)
+		{
+			await _mediator.Send(command);
+			return Ok();
 		}
 	}
 }

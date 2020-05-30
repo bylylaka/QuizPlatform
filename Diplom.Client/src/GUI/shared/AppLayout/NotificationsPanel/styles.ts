@@ -36,6 +36,11 @@ const createStyles = makeStyles((theme) => ({
   notificationBlock: {
     margin: "15px 0",
   },
+  closeButton: {
+    width: "fit-content",
+    alignSelf: "flex-end",
+    margin: "8px 8px 0 0",
+  },
 }));
 
 export default createStyles;

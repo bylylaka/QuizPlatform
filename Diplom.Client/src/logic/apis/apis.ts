@@ -58,6 +58,11 @@ export const Apis = {
   loadSiteNotifications() {
     return Axios.get(`api/notification/getSiteNotifications`);
   },
+  updateNotificationsOpenedStatus(ids: number[]) {
+    return Axios.put(`api/notification/updateNotificationOpenedStatus`, {
+      notificationsIds: ids,
+    });
+  },
 };
 
 export default Apis;

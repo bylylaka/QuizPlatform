@@ -232,6 +232,21 @@ export const Sagas = {
     yield put(Actions.setSiteNotifications(sortedNotifications));
   },
 
+  *updateNotificationsOpenedStatusSaga(
+    action: ReturnType<typeof Actions.updateNotificationsOpenedStatus>
+  ) {
+    yield call(Apis.updateNotificationsOpenedStatus, action.ids);
+
+    let storeNotifications: SiteNotification[] = yield select(
+      Selectors.siteNotifications
+    );
+    let updatedNotifications = storeNotifications.map((n) => {
+      return { ...n, wasOpened: true };
+    });
+
+    yield put(Actions.setSiteNotifications(updatedNotifications));
+  },
+
   filterStatisticParticipant(participant: User, filter: StatisticFilter) {
     //age
     if (filter.age && (filter.age[0] != 0 || filter.age[1] != 100)) {

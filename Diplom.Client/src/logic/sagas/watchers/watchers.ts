@@ -88,6 +88,13 @@ function* loadSiteNotificationsWatcher() {
   );
 }
 
+function* updateNotificationsOpenedStatusWatcher() {
+  yield takeLatest(
+    ActionTypes.UPDATE_NOTIFICATIONS_OPENED_STATUS,
+    Sagas.updateNotificationsOpenedStatusSaga
+  );
+}
+
 export default function* watchers() {
   yield all([
     loginWatcher(),
@@ -107,5 +114,6 @@ export default function* watchers() {
     getSubsctiptionStatusWatcher(),
     changeSubsctiptionStatusWatcher(),
     loadSiteNotificationsWatcher(),
+    updateNotificationsOpenedStatusWatcher(),
   ]);
 }

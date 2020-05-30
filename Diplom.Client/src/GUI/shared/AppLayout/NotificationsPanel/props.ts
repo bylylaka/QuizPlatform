@@ -8,4 +8,5 @@ export interface INotificationsPanelProps {
 export interface INotificationsPanelCallProps {
   loadNotifications: () => void;
   close: () => void;
+  setNotificationsWasOpened: (ids: number[]) => void;
 }

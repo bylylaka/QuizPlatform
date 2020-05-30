@@ -11,15 +11,13 @@ import Actions from "../../../../logic/actions/actions";
 
 type ContainerProps = Pick<
   INotificationsPanelProps & INotificationsPanelCallProps,
-  "open" | "close"
+  "open" | "close" | "notifications"
 >;
 
 const mapStateToProps = (
   state: RootState
 ): Omit<INotificationsPanelProps, keyof ContainerProps> => {
-  return {
-    notifications: Selectors.siteNotifications(state),
-  };
+  return {};
 };
 
 const mapDispatchToProps = (
@@ -27,6 +25,8 @@ const mapDispatchToProps = (
 ): Omit<INotificationsPanelCallProps, keyof ContainerProps> => {
   return {
     loadNotifications: () => dispatch(Actions.loadSiteNotifications()),
+    setNotificationsWasOpened: (ids: number[]) =>
+      dispatch(Actions.updateNotificationsOpenedStatus(ids)),
   };
 };
 

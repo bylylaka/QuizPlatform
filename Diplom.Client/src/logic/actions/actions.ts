@@ -224,6 +224,13 @@ const Actions = {
       type: ActionTypes.LOAD_SITE_NOTIFICATOINS,
     };
   },
+
+  updateNotificationsOpenedStatus(ids: number[]) {
+    return {
+      type: ActionTypes.UPDATE_NOTIFICATIONS_OPENED_STATUS,
+      ids,
+    };
+  },
 };
 
 export default Actions;

@@ -16,6 +16,11 @@
 			_appContext = appContext;
 		}
 
+		public IQueryable<SiteNotification> GetNotificationsTracking()
+		{
+			return _appContext.SiteNotifications;
+		}
+
 		public async Task<List<SiteNotification>> GetNotificationsByRecieverId(int id)
 		{
 			return await _appContext.SiteNotifications

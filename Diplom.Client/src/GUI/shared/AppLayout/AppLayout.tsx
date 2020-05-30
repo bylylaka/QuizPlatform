@@ -22,6 +22,7 @@ import NotificationsPanelContainer from "./NotificationsPanel/NotificationsPanel
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import NotificationsIcon from "@material-ui/icons/Notifications";
+import Badge from "@material-ui/core/Badge";
 
 const AppLayout: FunctionComponent<IAppLayoutProps & IAppLayoutCallProps> = (
   props
@@ -32,6 +33,7 @@ const AppLayout: FunctionComponent<IAppLayoutProps & IAppLayoutCallProps> = (
     logout,
     loadMyProfileSimplified,
     profileId,
+    notifications,
   } = props;
 
   const classes = createStyles();
@@ -61,6 +63,20 @@ const AppLayout: FunctionComponent<IAppLayoutProps & IAppLayoutCallProps> = (
 
   const searchRedirect = () => {
     history.push(`/search`);
+  };
+
+  const hasNewNotification = () => notifications.some((n) => !n.wasOpened);
+
+  const renderNotificationsIcon = (): JSX.Element => {
+    if (hasNewNotification()) {
+      return (
+        <Badge color="secondary" variant="dot">
+          <NotificationsIcon className={classes.listIcon} />
+        </Badge>
+      );
+    } else {
+      return <NotificationsIcon className={classes.listIcon} />;
+    }
   };
 
   return (
@@ -111,9 +127,7 @@ const AppLayout: FunctionComponent<IAppLayoutProps & IAppLayoutCallProps> = (
                   title="Notifications"
                   onClick={toggleNotificationsDrawer}
                 >
-                  <ListItemIcon>
-                    <NotificationsIcon className={classes.listIcon} />
-                  </ListItemIcon>
+                  <ListItemIcon>{renderNotificationsIcon()}</ListItemIcon>
                 </Tooltip>
               </ListItem>
             </Grid>
@@ -138,6 +152,7 @@ const AppLayout: FunctionComponent<IAppLayoutProps & IAppLayoutCallProps> = (
         <NotificationsPanelContainer
           open={notificationsDrawerOpen}
           close={closeNotificationsDrawer}
+          notifications={notifications}
         />
       </main>
     </div>

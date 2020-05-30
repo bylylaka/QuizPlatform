@@ -112,6 +112,10 @@
 				.WithMany()
 				.HasForeignKey(x => x.ProducerId)
 				.OnDelete(DeleteBehavior.Cascade);
+
+			modelBuilder.Entity<SiteNotification>()
+				.Property(x => x.WasOpened)
+				.HasDefaultValue(false);
 		}
 	}
 }
